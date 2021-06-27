@@ -5,6 +5,7 @@
   "prettier": "@pushred/prettier-config",
   "scripts": {
     "dev": "svelte-kit dev",
+    "storybook": "start-storybook -p 6006",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
@@ -13,9 +14,13 @@
   "devDependencies": {
     "@pushred/eslint-config": "^1.0.0",
     "@pushred/prettier-config": "^1.0.0",
+    "@storybook/addon-essentials": "next",
+    "@storybook/addon-svelte-csf": "^1.0.0",
+    "@storybook/svelte": "next",
     "@sveltejs/kit": "next",
     "eslint": "^7.22.0",
     "prettier": "~2.2.1",
+    "storybook-builder-vite": "^0.0.9",
     "svelte": "^3.34.0"
   }
 }
