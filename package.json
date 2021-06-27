@@ -7,6 +7,7 @@
     "dev": "svelte-kit dev",
     "storybook": "start-storybook -p 6006",
     "build": "svelte-kit build",
+    "build:svg": "./scripts/build-svg-components.js",
     "preview": "svelte-kit preview",
     "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --write --plugin-search-dir=. ."
@@ -18,9 +19,13 @@
     "@storybook/addon-svelte-csf": "^1.0.0",
     "@storybook/svelte": "next",
     "@sveltejs/kit": "next",
+    "cheerio": "^1.0.0-rc.10",
     "eslint": "^7.22.0",
     "prettier": "~2.2.1",
     "storybook-builder-vite": "^0.0.9",
     "svelte": "^3.34.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }
