@@ -1,4 +1,32 @@
-<g>
+<script>
+  import { onDestroy, onMount } from 'svelte'
+
+  import { animateNeon, DURATIONS, TIMELINE } from '../animate'
+
+  let g
+  let animationInterval
+
+  function animateBling(parts) {
+    animateNeon(parts, {
+      delay: TIMELINE.bling + DURATIONS.bling,
+      duration: DURATIONS.bling,
+      random: true,
+      stagger: true,
+    })
+  }
+
+  onMount(() => {
+    const parts = g.querySelectorAll('path')
+    animationInterval = setInterval(() => animateBling(parts), 2500)
+    animateBling(parts)
+  })
+
+  onDestroy(() => {
+    clearInterval(animationInterval)
+  })
+</script>
+
+<g bind:this={g}>
   <path
     d="M999.733 679.721C999.207 679.721 998.703 679.511 998.331 679.138C997.959 678.765 997.75 678.259 997.75 677.732V545.074C997.75 544.547 997.959 544.041 998.331 543.668C998.703 543.294 999.207 543.085 999.733 543.085C1000.26 543.085 1000.76 543.294 1001.13 543.668C1001.51 544.041 1001.71 544.547 1001.71 545.074V677.732C1001.71 678.259 1001.51 678.765 1001.13 679.138C1000.76 679.511 1000.26 679.721 999.733 679.721Z"
     fill="white"
@@ -20,3 +48,9 @@
     fill="white"
   />
 </g>
+
+<style>
+  path {
+    opacity: 0;
+  }
+</style>

@@ -1,4 +1,29 @@
-<g>
+<script>
+  import { onMount } from 'svelte'
+
+  import { animateNeon, DURATIONS, TIMELINE } from '../animate'
+
+  let g
+
+  onMount(() => {
+    animateNeon(g.querySelectorAll('path'), {
+      delay: TIMELINE.bottomRightArrows + DURATIONS.arrows,
+      direction: 'reverse',
+      duration: DURATIONS.glow,
+      stagger: true,
+    })
+
+    animateNeon(g.querySelectorAll('path'), {
+      delay: TIMELINE.bottomRightArrows + DURATIONS.arrows + DURATIONS.glow * 2,
+      direction: 'reverse',
+      duration: DURATIONS.arrows,
+      iterations: Infinity,
+      stagger: true,
+    })
+  })
+</script>
+
+<g bind:this={g}>
   <path
     d="M1529.84 914.968C1529.52 914.969 1529.2 914.89 1528.91 914.737C1528.62 914.584 1528.38 914.363 1528.19 914.093C1528.01 913.823 1527.9 913.512 1527.86 913.187C1527.83 912.863 1527.88 912.535 1528 912.232L1570.17 806.232C1570.36 805.741 1570.74 805.348 1571.22 805.139C1571.71 804.93 1572.25 804.922 1572.74 805.118C1573.23 805.313 1573.62 805.695 1573.83 806.18C1574.04 806.665 1574.05 807.213 1573.85 807.704L1532.85 910.77L1640.62 903.241C1640.88 903.22 1641.15 903.254 1641.4 903.339C1641.65 903.425 1641.89 903.56 1642.09 903.737C1642.28 903.914 1642.45 904.13 1642.56 904.371C1642.67 904.612 1642.74 904.874 1642.75 905.141C1642.78 905.665 1642.61 906.183 1642.27 906.58C1641.92 906.977 1641.44 907.221 1640.92 907.259L1530 915.008L1529.84 914.968Z"
     fill="white"
@@ -76,3 +101,9 @@
     fill="white"
   />
 </g>
+
+<style>
+  path {
+    opacity: 0;
+  }
+</style>

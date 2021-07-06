@@ -1,5 +1,5 @@
-export { default as PurpleFrame } from './PurpleFrame.svelte'
-export { default as PurpleFrameGlow } from './PurpleFrameGlow.svelte'
+export { default as Frame } from './Frame.svelte'
+export { default as FrameGlow } from './FrameGlow.svelte'
 export { default as BottomRightArrows } from './BottomRightArrows.svelte'
 export { default as BottomRightArrowsGlow } from './BottomRightArrowsGlow.svelte'
 export { default as BottomLeftArrows } from './BottomLeftArrows.svelte'

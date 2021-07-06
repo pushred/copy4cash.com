@@ -1,4 +1,32 @@
-<g>
+<script>
+  import { onDestroy, onMount } from 'svelte'
+
+  import { animateNeon, flickerNeon, DURATIONS, TIMELINE } from '../animate'
+
+  let g
+  let flickerInterval
+
+  onMount(() => {
+    const parts = g.querySelectorAll('path')
+
+    flickerInterval = setInterval(
+      () => flickerNeon(parts, { delay: TIMELINE.fourFrame, random: true }),
+      5000
+    )
+
+    animateNeon(parts, {
+      delay: TIMELINE.fourFrame,
+      duration: DURATIONS.frames,
+      stagger: true,
+    })
+  })
+
+  onDestroy(() => {
+    clearInterval(flickerInterval)
+  })
+</script>
+
+<g bind:this={g}>
   <path
     d="M1032.77 45.7758H1156.13L1128.47 144.943"
     stroke="#FFB32C"
@@ -28,3 +56,9 @@
     stroke-linejoin="round"
   />
 </g>
+
+<style>
+  path {
+    opacity: 0;
+  }
+</style>

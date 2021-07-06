@@ -1,4 +1,29 @@
-<g>
+<script>
+  import { onMount } from 'svelte'
+
+  import { animateNeon, DURATIONS, TIMELINE } from '../animate'
+
+  let g
+
+  onMount(() => {
+    animateNeon(g.querySelectorAll('path'), {
+      delay: TIMELINE.bottomLeftArrows,
+      direction: 'reverse',
+      duration: DURATIONS.arrows,
+      stagger: true,
+    })
+
+    animateNeon(g.querySelectorAll('path'), {
+      delay: TIMELINE.bottomLeftArrows + DURATIONS.arrows + DURATIONS.glow * 2,
+      direction: 'reverse',
+      duration: DURATIONS.arrows,
+      iterations: Infinity,
+      stagger: true,
+    })
+  })
+</script>
+
+<g bind:this={g}>
   <path
     d="M736.387 581.429L752.293 597.393L736.387 613.358"
     stroke="#FFB32C"
@@ -70,3 +95,9 @@
     stroke-linejoin="round"
   />
 </g>
+
+<style>
+  path {
+    opacity: 0;
+  }
+</style>
