@@ -1,3 +1,6 @@
+import '../static/preflight.css'
+import '../static/vars.css'
+
 export const parameters = {
   backgrounds: {
     values: [
