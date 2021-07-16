@@ -3,6 +3,7 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": [
+    "sanity",
     "web"
   ],
   "version": "0.0.1",
