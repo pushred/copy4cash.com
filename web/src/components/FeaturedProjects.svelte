@@ -1,16 +1,42 @@
 <script>
   export let data = []
+
+  const TOTAL_ROW_LENGTH = 35
+
+  const rows = data.reduce(
+    (accumulator, project) => {
+      const currentRow = accumulator[accumulator.length - 1]
+
+      const rowLength = currentRow.reduce((sum, text) => {
+        return sum + text.length
+      }, 0)
+
+      if (rowLength > TOTAL_ROW_LENGTH) {
+        accumulator.push([project.name])
+      } else {
+        currentRow.push(project.name)
+      }
+
+      return accumulator
+    },
+    [[]]
+  )
+
+  const projects = data.reduce((accumulator, project) => {
+    accumulator[project.name] = project
+    return accumulator
+  }, {})
 </script>
 
 <nav>
-  {#each data as cluster}
+  {#each rows as row}
     <ul>
-      {#each cluster as project}
+      {#each row as project}
         <li>
           <a href="#">
-            <strong>{project.title}</strong>
+            <strong>{project}</strong>
             <br />
-            {project.client}
+            {projects[project].client}
           </a>
         </li>
       {/each}
@@ -39,6 +65,7 @@
   }
 
   a {
+    display: block;
     color: #fff;
     font-size: var(--text-1);
     transition: color 100ms ease-out;
