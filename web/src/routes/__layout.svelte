@@ -1,5 +1,3 @@
-<h1>Copy4Cash</h1>
-
 <slot />
 
 <style>

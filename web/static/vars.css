@@ -1,9 +1,10 @@
 :root {
-  --gold: #FFB32C;
-  --blue: #004FFF;
-  --neon-green: #00FF8B;
-  --purple: #6A0BFF;
-  --black: #231F20;
+  --gold: #ffb32c;
+  --blue: #004fff;
+  --neon-green: #00ff8b;
+  --purple: #6a0bff;
+  --black: #231f20;
+  --white: #fff;
 
   --text-1: 0.875rem;
   --text-2: 1rem;
