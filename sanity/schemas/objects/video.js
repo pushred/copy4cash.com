@@ -1,9 +1,10 @@
 import { YoutubeLogo } from 'phosphor-react'
+import VimeoInput from '../../components/VimeoInput'
 
 export default {
   type: 'object',
   name: 'video',
-  title: 'Video',
+  title: 'Vimeo Video',
   icon: YoutubeLogo,
   fields: [
     {
@@ -12,9 +13,47 @@ export default {
       title: 'Heading',
     },
     {
-      name: 'vimeoUrl',
-      type: 'url',
-      title: 'Vimeo URL',
+      name: 'video',
+      type: 'object',
+      title: 'Vimeo Video',
+      fields: [
+        {
+          name: 'url',
+          type: 'url',
+          title: 'URL',
+        },
+        {
+          name: 'vimeoId',
+          type: 'string',
+          hidden: true,
+        },
+        {
+          name: 'embedHtml',
+          type: 'string',
+          hidden: true,
+        },
+        {
+          name: 'title',
+          type: 'string',
+          hidden: true,
+        },
+        {
+          name: 'description',
+          type: 'string',
+          hidden: true,
+        },
+        {
+          name: 'width',
+          type: 'number',
+          hidden: true,
+        },
+        {
+          name: 'height',
+          type: 'number',
+          hidden: true,
+        },
+      ],
+      inputComponent: VimeoInput,
     },
   ],
 }

@@ -2005,7 +2005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach/auto-id@npm:^0.15.0":
+"@reach/auto-id@npm:^0.15.0, @reach/auto-id@npm:^0.15.3":
   version: 0.15.3
   resolution: "@reach/auto-id@npm:0.15.3"
   dependencies:
@@ -17493,6 +17493,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "sanity@workspace:sanity"
   dependencies:
+    "@reach/auto-id": ^0.15.3
     "@sanity/base": ^2.12.2
     "@sanity/cli": ^2.12.2
     "@sanity/components": ^2.2.6
