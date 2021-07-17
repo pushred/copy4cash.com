@@ -2,18 +2,20 @@
   import groq from 'groq'
 
   import sanity from '../sanity'
+  import { overlayDrafts } from '../overlayDrafts'
   import { ArrowLogo, FeaturedProjects, FullScreenVideo } from '../components'
 
   const query = groq`
     *[_type == 'project'] | order(order) {
-      name,
+      _id,
       client,
+      name
     }
   `
 
   async function fetch() {
     const data = await sanity.fetch(query)
-    return data
+    return overlayDrafts(data)
   }
 </script>
 
