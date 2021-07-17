@@ -5,6 +5,7 @@ const client = sanityClient({
   dataset: 'production',
   apiVersion: '2021-04-04',
   useCdn: false,
+  withCredentials: true,
   // unauthenticated for now
 })
 
