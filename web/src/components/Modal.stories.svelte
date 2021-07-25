@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
-  import ImageViewer from './ImageViewer.svelte'
+  import Carousel from './Carousel.svelte'
   import Flex from './Flex.svelte'
   import Modal from './Modal.svelte'
   import Video from './Video.svelte'
@@ -26,7 +26,7 @@
     <Video vimeoId="336888265" originalWidth="426" originalHeight="240" />
   </Flex>
   <Modal {...args}>
-    <ImageViewer
+    <Carousel
       data={[
         {
           description: 'Cat',

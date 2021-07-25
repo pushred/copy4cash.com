@@ -1,5 +1,5 @@
 <script>
-  import { ImageViewer, Modal } from '.'
+  import { Carousel, Modal } from '.'
 
   export let data = []
 
@@ -37,7 +37,7 @@
 
 {#if viewerIndex !== undefined}
   <Modal isOpen={true} onClose={handleModalClose}>
-    <ImageViewer {data} startIndex={viewerIndex} />
+    <Carousel {data} startIndex={viewerIndex} />
   </Modal>
 {/if}
 

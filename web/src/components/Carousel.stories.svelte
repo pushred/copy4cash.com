@@ -1,12 +1,12 @@
 <script>
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
-  import ImageViewer from './ImageViewer.svelte'
+  import Carousel from './Carousel.svelte'
 </script>
 
-<Meta title="ImageViewer" component={ImageViewer} />
+<Meta title="Carousel" component={Carousel} />
 
 <Story name="Example">
-  <ImageViewer
+  <Carousel
     data={[
       {
         description: 'Cat',
@@ -25,7 +25,7 @@
 </Story>
 
 <Story name="Start Index">
-  <ImageViewer
+  <Carousel
     data={[
       {
         description: 'Cat',
