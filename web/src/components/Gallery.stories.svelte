@@ -8,8 +8,7 @@
   component={Gallery}
   argTypes={{
     columns: {
-      options: [2, 3, 4, 5, 6, 7, 8],
-      control: { type: 'select' },
+      control: { type: 'range', min: 1, max: 8 },
     },
     gap: {
       options: [true, false],
@@ -22,14 +21,38 @@
   <Gallery
     {...args}
     data={[
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
-      'https://placekitten.com/200/300',
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=1',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=2',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=3',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=4',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=5',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=6',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=7',
+      },
+      {
+        description: 'Cat',
+        url: 'http://placekitten.com/200/300?image=8',
+      },
     ]}
   />
 </Template>

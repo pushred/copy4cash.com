@@ -4,15 +4,16 @@
   import Button from './Button.svelte'
 
   export let isOpen = false
+  export let onClose
 
   function handleClose(event) {
     isOpen = false
-    console.log('yo')
+    if (typeof onClose === 'function') onClose()
   }
 
   function handleKeydown(event) {
     if (event.key === 'Escape') {
-      isOpen = false
+      handleClose()
     }
   }
 </script>
