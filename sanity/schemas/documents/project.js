@@ -35,6 +35,10 @@ export default {
           title: 'Gallery',
         },
         {
+          type: 'tweet',
+          title: 'Tweet',
+        },
+        {
           type: 'video',
           title: 'Video',
         },
