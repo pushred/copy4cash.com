@@ -13,6 +13,12 @@ export default {
       title: 'Heading',
     },
     {
+      name: 'caption',
+      type: 'string',
+      title: 'Caption',
+      description: 'Appears over video',
+    },
+    {
       name: 'video',
       type: 'object',
       title: 'Vimeo Video',

@@ -17,3 +17,13 @@
     originalHeight="240"
   />
 </Story>
+
+<Story name="Captioned">
+  <Video
+    caption="Red = Nighttime Cravings"
+    vimeoId="334797164"
+    width="100%"
+    originalWidth="426"
+    originalHeight="240"
+  />
+</Story>
