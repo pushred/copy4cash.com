@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte'
 
-  import Button from './Button.svelte'
+  import { Button, Video } from '.'
 
   export let startIndex = 0
   export let data = []
+  export let variant = 'block'
 
   let carouselEl
   let currentIndex = startIndex
@@ -21,9 +22,8 @@
     }
 
     const el = carouselEl.children[currentIndex]
-    const xPos = carouselEl.scrollLeft + el.getBoundingClientRect().left
 
-    carouselEl.scrollTo(xPos, 0)
+    carouselEl.scrollTo(el.offsetLeft, 0)
   }
 
   function handleKeydown(event) {
@@ -37,52 +37,89 @@
   }
 
   onMount(() => {
-    slide()
+    if (startIndex !== 0) slide()
   })
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-<ul class="carousel" bind:this={carouselEl}>
-  {#each data as image}
-    <li class="image">
-      <img src={image.url} alt={image.description} />
-    </li>
-  {/each}
-</ul>
+<div
+  class="carousel"
+  class:block={variant === 'block'}
+  class:fullscreen={variant === 'fullscreen'}
+>
+  <ul bind:this={carouselEl}>
+    {#each data as slide}
+      <li class="slide">
+        {#if slide.image}
+          <img src={slide.image.url} alt={slide.image.description} />
+        {:else if slide.video}
+          <Video
+            caption={slide.video.caption}
+            width={slide.video.width}
+            height={slide.video.height}
+            originalWidth={slide.video.originalWidth}
+            originalHeight={slide.video.originalHeight}
+            vimeoId={slide.video.vimeoId}
+          />
+        {/if}
+      </li>
+    {/each}
+  </ul>
 
-<nav>
-  <Button
-    class="back"
-    icon="back"
-    label="Back"
-    on:click={() => slide('next')}
-  />
-  <Button
-    class="next"
-    icon="next"
-    label="Next"
-    on:click={() => slide('next')}
-  />
-</nav>
+  <nav>
+    <Button
+      class="back"
+      icon="back"
+      label="Back"
+      on:click={() => slide('next')}
+    />
+    <Button
+      class="next"
+      icon="next"
+      label="Next"
+      on:click={() => slide('next')}
+    />
+  </nav>
+</div>
 
 <style>
-  .carousel {
+  ul {
     display: flex;
-    position: absolute;
-    inset: 0;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
   }
 
-  .image {
-    width: 100vw;
-    height: 100vh;
-    flex-shrink: 0;
+  .slide {
+    position: relative;
     display: flex;
+    padding: 1px; /* avoids visibility of adjacent images re: rounding */
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     scroll-snap-align: start;
+  }
+
+  .carousel.block {
+    position: relative;
+  }
+
+  .carousel.block .slide {
+    width: 100%;
+  }
+
+  .carousel.fullscreen {
+    position: absolute;
+    inset: 0;
+  }
+
+  .carousel.fullscreen .slide {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  :global(.carousel.block .slide > *) {
+    width: 100%;
   }
 
   nav {

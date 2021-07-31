@@ -34,6 +34,57 @@
   </Grid>
 </Story>
 
+<Story name="Videos">
+  <Grid>
+    <GridItem colStart={5} colSpan={6}>
+      <Carousel
+        data={[
+          {
+            video: {
+              caption: 'Red = Nighttime Cravings',
+              title: 'Nicorette - Christian’s #QuiTips',
+              width: '100%',
+              originalWidth: 426,
+              originalHeight: 240,
+              vimeoId: '334797164',
+            },
+          },
+          {
+            video: {
+              caption: 'Blue = Midday Cravings',
+              title: 'Nicorette - Linda’s #QuiTips',
+              width: '100%',
+              originalWidth: 426,
+              originalHeight: 240,
+              vimeoId: '334798302',
+            },
+          },
+          {
+            video: {
+              caption: 'Green = Car Cravings',
+              title: 'Nicorette - Gottam #QuiTips',
+              width: '100%',
+              originalWidth: 426,
+              originalHeight: 240,
+              vimeoId: '334799879',
+            },
+          },
+          {
+            video: {
+              caption: 'Yellow = Mornings',
+              title: 'Nicorette - Kelli #QuiTips',
+              width: '100%',
+              originalWidth: 426,
+              originalHeight: 240,
+              vimeoId: '334801168',
+            },
+          },
+        ]}
+      />
+    </GridItem>
+  </Grid>
+</Story>
+
 <Story name="Fullscreen Images">
   <Carousel
     variant="fullscreen"
