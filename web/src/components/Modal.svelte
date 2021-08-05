@@ -41,13 +41,13 @@
     inset: 0;
     background-color: var(--black);
     opacity: 0.5;
-    z-index: var(--z-0);
+    z-index: var(--z-10);
   }
 
   .content {
     position: fixed;
     inset: 0;
-    z-index: var(--z-10);
+    z-index: var(--z-20);
   }
 
   :global(.button) {

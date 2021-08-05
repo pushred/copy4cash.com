@@ -1,5 +1,7 @@
 <script>
-  import { Carousel, Modal } from '.'
+  import Carousel from './Carousel.svelte'
+  import Modal from './Modal.svelte'
+  import Video from './Video.svelte'
 
   export let data = []
 
@@ -18,6 +20,7 @@
 </script>
 
 <ul
+  class="gallery"
   class:cols-1={columns === 1}
   class:cols-2={columns === 2}
   class:cols-3={columns === 3}
@@ -28,22 +31,33 @@
   class:cols-8={columns === 8}
   class:gap
 >
-  {#each data as image, index}
+  {#each data as item, index}
     <li on:click={() => handleClick(index)}>
-      <img src={image.url} alt={image.description} />
+      {#if item.image}
+        <img src={item.image.url} alt={item.image.description} />
+      {:else if item.video}
+        <Video
+          width={item.video.width}
+          height={item.video.height}
+          originalWidth={item.video.originalWidth}
+          originalHeight={item.video.originalHeight}
+          vimeoId={item.video.vimeoId}
+        />
+      {/if}
     </li>
   {/each}
 </ul>
 
 {#if viewerIndex !== undefined}
   <Modal isOpen={true} onClose={handleModalClose}>
-    <Carousel {data} startIndex={viewerIndex} />
+    <Carousel {data} startIndex={viewerIndex} variant="fullscreen" />
   </Modal>
 {/if}
 
 <style>
-  ul {
+  .gallery {
     display: inline-grid;
+    margin-bottom: var(--space-Gallery);
   }
 
   .cols-2 {
