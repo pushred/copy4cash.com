@@ -1,13 +1,45 @@
 <script>
+  export let center = false
+
   export let colStart = 1
   export let colSpan = 1
 </script>
 
-<div class={`col-start-${colStart} col-span-${colSpan}`}>
+<div
+  class:center
+  class:col-start-1={colStart === 1}
+  class:col-start-2={colStart === 2}
+  class:col-start-3={colStart === 3}
+  class:col-start-4={colStart === 4}
+  class:col-start-5={colStart === 5}
+  class:col-start-6={colStart === 6}
+  class:col-start-7={colStart === 7}
+  class:col-start-8={colStart === 8}
+  class:col-start-9={colStart === 9}
+  class:col-start-10={colStart === 10}
+  class:col-start-11={colStart === 11}
+  class:col-start-12={colStart === 12}
+  class:col-span-1={colSpan === 1}
+  class:col-span-2={colSpan === 2}
+  class:col-span-3={colSpan === 3}
+  class:col-span-4={colSpan === 4}
+  class:col-span-5={colSpan === 5}
+  class:col-span-6={colSpan === 6}
+  class:col-span-7={colSpan === 7}
+  class:col-span-8={colSpan === 8}
+  class:col-span-9={colSpan === 9}
+  class:col-span-10={colSpan === 10}
+  class:col-span-11={colSpan === 11}
+  class:col-span-12={colSpan === 12}
+>
   <slot />
 </div>
 
 <style>
+  .center {
+    text-align: center;
+  }
+
   .col-start-1 {
     grid-column-start: 1;
   }
