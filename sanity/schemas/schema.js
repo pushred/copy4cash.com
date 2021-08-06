@@ -5,6 +5,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import project from './documents/project'
 
 import carousel from './objects/carousel'
+import link from './objects/link'
 import gallery from './objects/gallery'
 import recognition from './objects/recognition'
 import tweet from './objects/tweet'
@@ -15,6 +16,7 @@ export default createSchema({
   types: schemaTypes.concat([
     carousel,
     gallery,
+    link,
     project,
     recognition,
     tweet,

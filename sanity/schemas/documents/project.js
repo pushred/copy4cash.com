@@ -47,6 +47,10 @@ export default {
           title: 'Gallery',
         },
         {
+          type: 'link',
+          title: 'Link',
+        },
+        {
           type: 'recognition',
           title: 'Recognition',
         },
