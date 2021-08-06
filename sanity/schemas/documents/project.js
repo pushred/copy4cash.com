@@ -47,6 +47,10 @@ export default {
           title: 'Gallery',
         },
         {
+          type: 'recognition',
+          title: 'Recognition',
+        },
+        {
           type: 'tweet',
           title: 'Tweet',
         },
