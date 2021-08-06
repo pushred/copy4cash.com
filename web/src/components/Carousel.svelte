@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte'
 
-  import { Button, Video } from '.'
+  import Button from './Button.svelte'
+  import Video from './Video.svelte'
 
   export let startIndex = 0
   export let data = []
@@ -84,6 +85,32 @@
 </div>
 
 <style>
+  .carousel {
+    margin-bottom: var(--space-Carousel);
+  }
+
+  .carousel.block {
+    position: relative;
+  }
+
+  .carousel.block .slide {
+    width: 100%;
+  }
+
+  .carousel.fullscreen {
+    position: fixed;
+    inset: 0;
+  }
+
+  .carousel.fullscreen .slide {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  :global(.carousel.block .slide > *) {
+    width: 100%;
+  }
+
   ul {
     display: flex;
     overflow-x: scroll;
@@ -98,28 +125,6 @@
     align-items: center;
     justify-content: center;
     scroll-snap-align: start;
-  }
-
-  .carousel.block {
-    position: relative;
-  }
-
-  .carousel.block .slide {
-    width: 100%;
-  }
-
-  .carousel.fullscreen {
-    position: absolute;
-    inset: 0;
-  }
-
-  .carousel.fullscreen .slide {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  :global(.carousel.block .slide > *) {
-    width: 100%;
   }
 
   nav {

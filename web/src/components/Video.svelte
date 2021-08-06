@@ -1,7 +1,7 @@
 <script>
   import { nanoid } from 'nanoid'
 
-  export let caption
+  export let caption = ''
   export let title = 'Video'
   export let vimeoId
   export let originalWidth
@@ -54,6 +54,7 @@
 <style>
   .video {
     position: relative;
+    margin-bottom: var(--space-Video);
   }
 
   .caption {

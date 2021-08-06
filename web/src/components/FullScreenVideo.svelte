@@ -3,14 +3,22 @@
   export let vimeoId = undefined
 </script>
 
-<div class:backdrop>
-  {#if vimeoId}
-    <iframe
-      title="Video"
-      src="https://player.vimeo.com/video/{vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0"
-    />
-  {/if}
-</div>
+{#if backdrop}
+  <div class={$$props.class} class:backdrop>
+    {#if vimeoId}
+      <iframe
+        title="Video"
+        src="https://player.vimeo.com/video/{vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0"
+      />
+    {/if}
+  </div>
+{:else if vimeoId}
+  <iframe
+    class={$$props.class}
+    title="Video"
+    src="https://player.vimeo.com/video/{vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0"
+  />
+{/if}
 
 <style>
   div {
