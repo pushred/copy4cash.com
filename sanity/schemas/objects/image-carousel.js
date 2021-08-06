@@ -12,6 +12,12 @@ export default {
       title: 'Heading',
     },
     {
+      type: 'boolean',
+      name: 'showHeading',
+      title: 'Show Heading',
+      initialValue: true,
+    },
+    {
       name: 'slides',
       type: 'array',
       of: [

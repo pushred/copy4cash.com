@@ -13,6 +13,12 @@ export default {
       title: 'Heading',
     },
     {
+      type: 'boolean',
+      name: 'showHeading',
+      title: 'Show Heading',
+      initialValue: true,
+    },
+    {
       name: 'caption',
       type: 'string',
       title: 'Caption',

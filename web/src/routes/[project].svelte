@@ -16,6 +16,7 @@
         page[] {
           columns,
           heading,
+          showHeading,
           gap,
           embed {
             embedHtml
@@ -86,7 +87,7 @@
       {/if}
 
       {#each project.page as block}
-        {#if block.heading}
+        {#if block.heading && block.showHeading !== false}
           <Heading3>{block.heading}</Heading3>
         {/if}
 
