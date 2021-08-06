@@ -3,7 +3,7 @@ import { Cards } from 'phosphor-react'
 export default {
   type: 'object',
   name: 'carousel',
-  title: 'Carousel',
+  title: 'Image Carousel',
   icon: Cards,
   fields: [
     {
@@ -18,10 +18,6 @@ export default {
         {
           type: 'image',
           name: 'image',
-        },
-        {
-          type: 'video',
-          name: 'video',
         },
       ],
     },
