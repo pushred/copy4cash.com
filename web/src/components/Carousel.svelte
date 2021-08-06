@@ -111,6 +111,10 @@
     width: 100%;
   }
 
+  :global(.carousel.fullscreen .slide > *) {
+    max-height: 100%;
+  }
+
   ul {
     display: flex;
     overflow-x: scroll;
