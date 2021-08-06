@@ -8,6 +8,7 @@ import carousel from './objects/carousel'
 import link from './objects/link'
 import gallery from './objects/gallery'
 import heading from './objects/heading'
+import instagram from './objects/instagram'
 import recognition from './objects/recognition'
 import tweet from './objects/tweet'
 import video from './objects/video'
@@ -18,6 +19,7 @@ export default createSchema({
     carousel,
     gallery,
     heading,
+    instagram,
     link,
     project,
     recognition,

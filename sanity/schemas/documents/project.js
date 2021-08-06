@@ -51,6 +51,10 @@ export default {
           title: 'Heading',
         },
         {
+          type: 'instagram',
+          title: 'Instagram',
+        },
+        {
           type: 'link',
           title: 'Link',
         },
