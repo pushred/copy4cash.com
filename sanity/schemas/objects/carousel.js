@@ -1,10 +1,10 @@
-import { SquaresFour } from 'phosphor-react'
+import { Cards } from 'phosphor-react'
 
 export default {
   type: 'object',
-  name: 'gallery',
-  title: 'Gallery',
-  icon: SquaresFour,
+  name: 'carousel',
+  title: 'Carousel',
+  icon: Cards,
   fields: [
     {
       type: 'string',
@@ -12,12 +12,16 @@ export default {
       title: 'Heading',
     },
     {
-      name: 'images',
+      name: 'slides',
       type: 'array',
       of: [
         {
           type: 'image',
           name: 'image',
+        },
+        {
+          type: 'video',
+          name: 'video',
         },
       ],
     },

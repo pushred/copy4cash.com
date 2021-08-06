@@ -9,6 +9,14 @@ export default {
       title: 'Name',
     },
     {
+      type: 'slug',
+      name: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name',
+      },
+    },
+    {
       type: 'string',
       name: 'order',
       title: 'Order',
@@ -30,6 +38,10 @@ export default {
       type: 'array',
       name: 'page',
       of: [
+        {
+          type: 'carousel',
+          title: 'Carousel',
+        },
         {
           type: 'gallery',
           title: 'Gallery',
