@@ -40,6 +40,7 @@
 
 <script>
   import { onMount } from 'svelte'
+  import unorphan from 'unorphan'
 
   import {
     Gallery,
@@ -57,6 +58,8 @@
   }
 
   onMount(() => {
+    unorphan('p, h1, h2, h3, h4')
+
     if (typeof twttr?.widgets?.load === 'function') {
       twttr.widgets.load()
     }
