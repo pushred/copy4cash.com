@@ -14,7 +14,9 @@
         name,
         summary,
         page[] {
+          columns,
           heading,
+          gap,
           embed {
             embedHtml
           },
@@ -87,6 +89,8 @@
 
         {#if block.images}
           <Gallery
+            columns={block.columns}
+            gap={block.gap}
             data={block.images.map((image) => ({
               image: {
                 description: 'Image',
