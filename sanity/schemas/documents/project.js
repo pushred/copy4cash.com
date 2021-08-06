@@ -13,7 +13,7 @@ export default {
       name: 'slug',
       title: 'Slug',
       options: {
-        source: 'name',
+        source: (doc) => `${doc.client}-${doc.name}`,
       },
     },
     {
