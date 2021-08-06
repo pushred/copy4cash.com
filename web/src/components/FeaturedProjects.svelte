@@ -33,7 +33,7 @@
     <ul>
       {#each row as project}
         <li>
-          <a href="#">
+          <a href="/{projects[project].slug?.current}">
             <strong>{project}</strong>
             <br />
             {projects[project].client}

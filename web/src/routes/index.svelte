@@ -1,46 +1,50 @@
-<script>
+<script context="module">
   import groq from 'groq'
 
-  import sanity from '../sanity'
   import { overlayDrafts } from '../overlayDrafts'
-  import { ArrowLogo, FeaturedProjects, FullScreenVideo } from '../components'
+  import sanity from '../sanity'
 
-  const query = groq`
-    *[_type == 'project'] | order(order) {
-      _id,
-      client,
-      name
+  export async function load() {
+    const query = groq`
+      *[_type == 'project'] | order(order) {
+        _id,
+        slug {
+          current
+        },
+        client,
+        name
+      }
+    `
+
+    return {
+      props: {
+        projects: overlayDrafts(await sanity.fetch(query)),
+      },
     }
-  `
-
-  async function fetch() {
-    const data = await sanity.fetch(query)
-    return overlayDrafts(data)
   }
 </script>
 
-{#await fetch()}
-  Loading
-{:then data}
-  <div class="layout">
-    <header>
-      <ArrowLogo />
-    </header>
-    <main>
-      <FeaturedProjects {data} />
-      <FullScreenVideo vimeoId="334283806" />
-    </main>
-    <footer>
-      <div class="info">
-        <strong>Diana Casthart</strong>
-        <em>Professional Smartass</em>
-        <span>ACD Copywriter</span>
-      </div>
-    </footer>
-  </div>
-{:catch error}
-  Boom
-{/await}
+<script>
+  import { ArrowLogo, FeaturedProjects, FullScreenVideo } from '../components'
+  export let projects
+</script>
+
+<div class="layout">
+  <header>
+    <ArrowLogo />
+  </header>
+  <main>
+    <FeaturedProjects data={projects} />
+    <FullScreenVideo vimeoId="334283806" />
+  </main>
+  <footer>
+    <div class="info">
+      <strong>Diana Casthart</strong>
+      <em>Professional Smartass</em>
+      <span>ACD Copywriter</span>
+    </div>
+  </footer>
+</div>
 
 <style>
   .layout {
