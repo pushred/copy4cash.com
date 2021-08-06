@@ -6,7 +6,8 @@ import project from './documents/project'
 
 import carousel from './objects/carousel'
 import link from './objects/link'
-import gallery from './objects/gallery'
+import imageGallery from './objects/image-gallery'
+import videoGallery from './objects/video-gallery'
 import heading from './objects/heading'
 import instagram from './objects/instagram'
 import recognition from './objects/recognition'
@@ -17,13 +18,14 @@ export default createSchema({
   name: 'copy4cash',
   types: schemaTypes.concat([
     carousel,
-    gallery,
     heading,
+    imageGallery,
     instagram,
     link,
     project,
     recognition,
     tweet,
     video,
+    videoGallery,
   ]),
 })

@@ -2,8 +2,8 @@ import { SquaresFour } from 'phosphor-react'
 
 export default {
   type: 'object',
-  name: 'gallery',
-  title: 'Gallery',
+  name: 'video-gallery',
+  title: 'Video Gallery',
   icon: SquaresFour,
   fields: [
     {
@@ -12,12 +12,12 @@ export default {
       title: 'Heading',
     },
     {
-      name: 'images',
+      name: 'videos',
       type: 'array',
       of: [
         {
-          type: 'image',
-          name: 'image',
+          type: 'video',
+          name: 'video',
         },
       ],
     },

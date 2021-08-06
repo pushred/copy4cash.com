@@ -44,7 +44,7 @@ export default {
         },
         {
           type: 'gallery',
-          title: 'Gallery',
+          title: 'Image Gallery',
         },
         {
           type: 'heading',
@@ -69,6 +69,10 @@ export default {
         {
           type: 'video',
           title: 'Video',
+        },
+        {
+          type: 'video-gallery',
+          title: 'Video Gallery',
         },
       ],
     },
