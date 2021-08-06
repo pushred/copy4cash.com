@@ -68,20 +68,22 @@
     {/each}
   </ul>
 
-  <nav>
-    <Button
-      class="back"
-      icon="back"
-      label="Back"
-      on:click={() => slide('next')}
-    />
-    <Button
-      class="next"
-      icon="next"
-      label="Next"
-      on:click={() => slide('next')}
-    />
-  </nav>
+  {#if data.length > 1}
+    <nav>
+      <Button
+        class="back"
+        icon="back"
+        label="Back"
+        on:click={() => slide('next')}
+      />
+      <Button
+        class="next"
+        icon="next"
+        label="Next"
+        on:click={() => slide('next')}
+      />
+    </nav>
+  {/if}
 </div>
 
 <style>
