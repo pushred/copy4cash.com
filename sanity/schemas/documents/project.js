@@ -47,6 +47,10 @@ export default {
           title: 'Gallery',
         },
         {
+          type: 'heading',
+          title: 'Heading',
+        },
+        {
           type: 'link',
           title: 'Link',
         },

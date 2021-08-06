@@ -7,6 +7,7 @@ import project from './documents/project'
 import carousel from './objects/carousel'
 import link from './objects/link'
 import gallery from './objects/gallery'
+import heading from './objects/heading'
 import recognition from './objects/recognition'
 import tweet from './objects/tweet'
 import video from './objects/video'
@@ -16,6 +17,7 @@ export default createSchema({
   types: schemaTypes.concat([
     carousel,
     gallery,
+    heading,
     link,
     project,
     recognition,
