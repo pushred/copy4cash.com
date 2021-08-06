@@ -37,6 +37,8 @@
 </script>
 
 <script>
+  import { onMount } from 'svelte'
+
   import {
     Gallery,
     Grid,
@@ -48,13 +50,25 @@
     Video,
   } from '../components'
 
-  export let project
+  export let project = {
+    page: [],
+  }
+
+  onMount(() => {
+    if (typeof twttr?.widgets?.load === 'function') {
+      twttr.widgets.load()
+    }
+  })
 </script>
 
 <slot />
 
 <main>
   <Grid>
+    <GridItem colStart={1} colSpan={2}>
+      <a href="/">Home</a>
+    </GridItem>
+
     <GridItem center colStart={5} colSpan={6}>
       <Heading2>{project.name}</Heading2>
 
