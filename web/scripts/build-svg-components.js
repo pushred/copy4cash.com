@@ -33,7 +33,7 @@ function updateComponent({ filepath, html }) {
   const $script = $('script')
   const $style = $('style')
 
-  let updatedHtml = html
+  let updatedHtml = html.replace('<g>', '<g bind:this={g}>')
 
   if ($script.length) {
     updatedHtml += `<script>${$script.html()}</script>`
@@ -68,6 +68,9 @@ function transformExportedArtwork({ group, output }) {
 
 const args = process.argv.slice(2)
 const filename = args[0]
+
+if (!filename) throw new Error('Must specify filename as an argument')
+
 const filePath = join(ARTWORK_PATH, filename)
 const artworkName = basename(filename, extname(filename))
 const outputPath = resolve(dirname, '..', 'src', 'components', artworkName)

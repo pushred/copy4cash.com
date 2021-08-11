@@ -9,6 +9,7 @@ export { default as Grid } from './Grid.svelte'
 export { default as GridItem } from './GridItem.svelte'
 export { default as Image } from './Image.svelte'
 export { default as Modal } from './Modal.svelte'
+export { default as StackedLogo } from './StackedLogo.svelte'
 export { default as Text } from './Text.svelte'
 export { default as Video } from './Video.svelte'
 
