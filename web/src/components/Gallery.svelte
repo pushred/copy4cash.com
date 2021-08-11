@@ -1,5 +1,6 @@
 <script>
   import Carousel from './Carousel.svelte'
+  import Image from './Image.svelte'
   import Modal from './Modal.svelte'
   import Video from './Video.svelte'
 
@@ -33,9 +34,9 @@
 >
   {#each data as item, index}
     <li on:click={() => handleClick(index)}>
-      {#if item.image}
-        <img src={item.image.url} alt={item.image.description} />
-      {:else if item.video}
+      {#if item._type === 'image'}
+        <Image document={item} />
+      {:else if item._type === 'video'}
         <Video
           width={item.video.width}
           height={item.video.height}
@@ -56,7 +57,7 @@
 
 <style>
   .gallery {
-    display: inline-grid;
+    display: grid;
     margin-bottom: var(--space-Gallery);
   }
 

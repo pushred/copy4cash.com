@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
 
   import Button from './Button.svelte'
+  import Image from './Image.svelte'
   import Video from './Video.svelte'
 
   export let startIndex = 0
@@ -52,9 +53,9 @@
   <ul bind:this={carouselEl}>
     {#each data as slide}
       <li class="slide">
-        {#if slide.image}
-          <img src={slide.image.url} alt={slide.image.description} />
-        {:else if slide.video}
+        {#if slide._type === 'image'}
+          <Image document={slide} />
+        {:else if slide._type === 'video'}
           <Video
             caption={slide.video.caption}
             width={slide.video.width}

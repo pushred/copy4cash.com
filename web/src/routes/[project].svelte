@@ -14,6 +14,7 @@
         name,
         summary,
         page[] {
+          _type,
           columns,
           heading,
           showHeading,
@@ -22,7 +23,34 @@
             embedHtml
           },
           images[] {
-            asset -> { url }
+            _key,
+            _type,
+            asset -> {
+              metadata {
+                dimensions {
+                  aspectRatio,
+                  height,
+                  width
+                },
+                mimeType
+              },
+              url
+            },
+          },
+          slides[] {
+            _key,
+            _type,
+            asset -> {
+              metadata {
+                dimensions {
+                  aspectRatio,
+                  height,
+                  width
+                },
+                mimeType
+              },
+              url
+            }
           },
           video
         }
@@ -44,6 +72,7 @@
   import unorphan from 'unorphan'
 
   import {
+    Carousel,
     Gallery,
     Grid,
     GridItem,
@@ -57,6 +86,8 @@
   export let project = {
     page: [],
   }
+
+  console.log(project)
 
   onMount(() => {
     unorphan('p, h1, h2, h3, h4')
@@ -91,20 +122,21 @@
           <Heading3>{block.heading}</Heading3>
         {/if}
 
-        {#if block.images}
-          <Gallery
-            columns={block.columns}
-            gap={block.gap}
-            data={block.images.map((image) => ({
-              image: {
-                description: 'Image',
-                url: image.asset?.url,
-              },
-            }))}
+        {#if block._type === 'carousel'}
+          <Carousel
+            data={block.slides}
           />
         {/if}
 
-        {#if block.video}
+        {#if block._type === 'gallery'}
+          <Gallery
+            columns={block.columns}
+            gap={block.gap}
+            data={block.images}
+          />
+        {/if}
+
+        {#if block._type === 'video'}
           <Video
             vimeoId={block.video.vimeoId}
             width="100%"
@@ -114,7 +146,7 @@
         {/if}
 
         {#if block.embed}
-          {@html block.embed.embedHtml}
+          <!-- {@html block.embed.embedHtml} -->
         {/if}
       {/each}
     </GridItem>

@@ -2542,7 +2542,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/image-url@npm:^0.140.19":
+"@sanity/image-url@npm:^0.140.19, @sanity/image-url@npm:^0.140.22":
   version: 0.140.22
   resolution: "@sanity/image-url@npm:0.140.22"
   checksum: d44125a4f229431d1142d5fcf0e0d2c3df01a02b57862220c021471930f13f694af24f29b1da3db1c9320a415998707c13cd2a1090461452f28730be6f886c18
@@ -19845,6 +19845,7 @@ fsevents@^1.2.7:
     "@pushred/eslint-config": ^1.0.0
     "@pushred/prettier-config": ^1.0.0
     "@sanity/client": ^2.11.0
+    "@sanity/image-url": ^0.140.22
     "@storybook/addon-essentials": next
     "@storybook/addon-svelte-csf": ^1.0.0
     "@storybook/svelte": next
