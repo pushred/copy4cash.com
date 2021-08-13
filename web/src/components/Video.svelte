@@ -53,6 +53,7 @@
 
 <style>
   .video {
+    width: 100%;
     position: relative;
     margin-bottom: var(--space-Video);
   }

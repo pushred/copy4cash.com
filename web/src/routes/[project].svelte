@@ -134,11 +134,23 @@
           <Carousel data={block.slides} />
         {/if}
 
+        {#if block._type === 'video-carousel'}
+          <Carousel data={block.videos} />
+        {/if}
+
         {#if block._type === 'gallery'}
           <Gallery
             columns={block.columns}
             gap={block.gap}
             data={block.images}
+          />
+        {/if}
+
+        {#if block._type === 'video-gallery'}
+          <Gallery
+            columns={block.columns}
+            gap={block.gap}
+            data={block.videos}
           />
         {/if}
 

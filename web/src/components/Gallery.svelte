@@ -38,11 +38,10 @@
         <Image document={item} />
       {:else if item._type === 'video'}
         <Video
-          width={item.video.width}
-          height={item.video.height}
-          originalWidth={item.video.originalWidth}
-          originalHeight={item.video.originalHeight}
-          vimeoId={item.video.vimeoId}
+          width="100%"
+          originalWidth={item.video?.width}
+          originalHeight={item.video?.height}
+          vimeoId={item.video?.vimeoId}
         />
       {/if}
     </li>
@@ -57,6 +56,8 @@
 
 <style>
   .gallery {
+    --space-Video: 0;
+
     display: grid;
     margin-bottom: var(--space-Gallery);
   }

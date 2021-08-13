@@ -57,11 +57,10 @@
           <Image document={slide} />
         {:else if slide._type === 'video'}
           <Video
-            caption={slide.video.caption}
-            width={slide.video.width}
-            height={slide.video.height}
-            originalWidth={slide.video.originalWidth}
-            originalHeight={slide.video.originalHeight}
+            caption={slide.caption}
+            width="100%"
+            originalWidth={slide.video.width}
+            originalHeight={slide.video.height}
             vimeoId={slide.video.vimeoId}
           />
         {/if}
