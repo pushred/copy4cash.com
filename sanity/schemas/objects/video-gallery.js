@@ -18,6 +18,22 @@ export default {
       initialValue: true,
     },
     {
+      type: 'number',
+      name: 'columns',
+      title: 'Columns',
+      initialValue: 1,
+      validation: (Rule) => [
+        Rule.required().min(1).error('At least 1 column required'),
+        Rule.required().max(8).error('Max. 8 supported columns'),
+      ],
+    },
+    {
+      type: 'boolean',
+      name: 'gap',
+      title: 'Space Between Grid Items',
+      initialValue: true,
+    },
+    {
       name: 'videos',
       type: 'array',
       of: [

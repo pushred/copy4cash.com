@@ -40,7 +40,7 @@ export default {
       of: [
         {
           type: 'carousel',
-          title: 'Carousel',
+          title: 'Image Carousel',
         },
         {
           type: 'gallery',
@@ -69,6 +69,10 @@ export default {
         {
           type: 'video',
           title: 'Video',
+        },
+        {
+          type: 'video-carousel',
+          title: 'Video Carousel',
         },
         {
           type: 'video-gallery',
