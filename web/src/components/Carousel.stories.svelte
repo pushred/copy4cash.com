@@ -1,35 +1,15 @@
 <script>
-  import { Meta, Story } from '@storybook/addon-svelte-csf'
+  import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
   import { Carousel, Grid, GridItem } from '.'
 </script>
 
 <Meta title="Carousel" component={Carousel} />
 
+<!-- TODO: fetch data from Sanity -->
 <Story name="Images">
   <Grid>
     <GridItem colStart={5} colSpan={6}>
-      <Carousel
-        data={[
-          {
-            image: {
-              description: 'Cat',
-              url: 'https://placekitten.com/500/300',
-            },
-          },
-          {
-            image: {
-              description: 'Cat',
-              url: 'https://placekitten.com/600/400',
-            },
-          },
-          {
-            image: {
-              description: 'Cat',
-              url: 'https://placekitten.com/900/500',
-            },
-          },
-        ]}
-      />
+      <Carousel />
     </GridItem>
   </Grid>
 </Story>
@@ -40,42 +20,42 @@
       <Carousel
         data={[
           {
+            _type: 'video',
             video: {
               caption: 'Red = Nighttime Cravings',
               title: 'Nicorette - Christian’s #QuiTips',
-              width: '100%',
-              originalWidth: 426,
-              originalHeight: 240,
+              width: 426,
+              height: 240,
               vimeoId: '334797164',
             },
           },
           {
+            _type: 'video',
             video: {
               caption: 'Blue = Midday Cravings',
               title: 'Nicorette - Linda’s #QuiTips',
-              width: '100%',
-              originalWidth: 426,
-              originalHeight: 240,
+              width: 426,
+              height: 240,
               vimeoId: '334798302',
             },
           },
           {
+            _type: 'video',
             video: {
               caption: 'Green = Car Cravings',
               title: 'Nicorette - Gottam #QuiTips',
-              width: '100%',
-              originalWidth: 426,
-              originalHeight: 240,
+              width: 426,
+              height: 240,
               vimeoId: '334799879',
             },
           },
           {
+            _type: 'video',
             video: {
               caption: 'Yellow = Mornings',
               title: 'Nicorette - Kelli #QuiTips',
-              width: '100%',
-              originalWidth: 426,
-              originalHeight: 240,
+              width: 426,
+              height: 240,
               vimeoId: '334801168',
             },
           },
@@ -86,29 +66,7 @@
 </Story>
 
 <Story name="Fullscreen Images">
-  <Carousel
-    variant="fullscreen"
-    data={[
-      {
-        image: {
-          description: 'Cat',
-          url: 'https://placekitten.com/500/300',
-        },
-      },
-      {
-        image: {
-          description: 'Cat',
-          url: 'https://placekitten.com/600/400',
-        },
-      },
-      {
-        image: {
-          description: 'Cat',
-          url: 'https://placekitten.com/900/500',
-        },
-      },
-    ]}
-  />
+  <Carousel variant="fullscreen" data={testImages} />
 </Story>
 
 <Story name="Fullscreen Videos">
@@ -116,6 +74,7 @@
     variant="fullscreen"
     data={[
       {
+        _type: 'video',
         caption: 'Red = Nighttime Cravings',
         video: {
           title: 'Nicorette - Christian’s #QuiTips',
@@ -125,6 +84,7 @@
         },
       },
       {
+        _type: 'video',
         caption: 'Blue = Midday Cravings',
         video: {
           title: 'Nicorette - Linda’s #QuiTips',
@@ -134,6 +94,7 @@
         },
       },
       {
+        _type: 'video',
         caption: 'Green = Car Cravings',
         video: {
           title: 'Nicorette - Gottam #QuiTips',
@@ -143,6 +104,7 @@
         },
       },
       {
+        _type: 'video',
         caption: 'Yellow = Mornings',
         video: {
           title: 'Nicorette - Kelli #QuiTips',
