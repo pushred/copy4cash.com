@@ -61,6 +61,10 @@
 </button>
 
 <style>
+  button {
+    pointer-events: auto;
+  }
+
   path,
   rect {
     transition: fill 100ms ease-out;

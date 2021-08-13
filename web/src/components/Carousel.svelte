@@ -70,18 +70,8 @@
 
   {#if data.length > 1}
     <nav>
-      <Button
-        class="back"
-        icon="back"
-        label="Back"
-        on:click={() => slide('next')}
-      />
-      <Button
-        class="next"
-        icon="next"
-        label="Next"
-        on:click={() => slide('next')}
-      />
+      <Button icon="back" label="Back" on:click={() => slide('next')} />
+      <Button icon="next" label="Next" on:click={() => slide('next')} />
     </nav>
   {/if}
 </div>
@@ -142,5 +132,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
   }
 </style>
