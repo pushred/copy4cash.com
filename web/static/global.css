@@ -1,3 +1,7 @@
+body {
+  margin: var(--space-10);
+}
+
 .twitter-tweet {
   display: inline-flex !important; /* for centering */
 }

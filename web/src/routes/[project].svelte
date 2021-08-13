@@ -52,7 +52,13 @@
               url
             }
           },
-          video
+          video,
+          videos[] {
+            _type,
+            caption,
+            heading,
+            video
+          }
         }
       }
     `
@@ -69,6 +75,7 @@
 
 <script>
   import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
   import unorphan from 'unorphan'
 
   import {
@@ -79,6 +86,7 @@
     Heading2,
     Heading3,
     Heading4,
+    StackedLogo,
     Text,
     Video,
   } from '../components'
@@ -102,8 +110,8 @@
 
 <main>
   <Grid>
-    <GridItem colStart={1} colSpan={2}>
-      <a href="/">Home</a>
+    <GridItem colStart={1} colSpan={3}>
+      <StackedLogo on:click={() => goto('/')} />
     </GridItem>
 
     <GridItem center colStart={5} colSpan={6}>
@@ -123,9 +131,7 @@
         {/if}
 
         {#if block._type === 'carousel'}
-          <Carousel
-            data={block.slides}
-          />
+          <Carousel data={block.slides} />
         {/if}
 
         {#if block._type === 'gallery'}
