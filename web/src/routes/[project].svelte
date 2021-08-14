@@ -52,6 +52,7 @@
               url
             }
           },
+          sources[],
           video,
           videos[] {
             _type,
@@ -86,6 +87,7 @@
     Heading2,
     Heading3,
     Heading4,
+    Recognition,
     StackedLogo,
     Text,
     Video,
@@ -152,6 +154,11 @@
             gap={block.gap}
             data={block.videos}
           />
+        {/if}
+
+        {#if block._type === 'recognition'}
+          <Heading3>Recognition</Heading3>
+          <Recognition data={block.sources} />
         {/if}
 
         {#if block._type === 'video'}

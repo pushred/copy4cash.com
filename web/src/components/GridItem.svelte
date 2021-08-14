@@ -7,6 +7,7 @@
 
 <div
   class:center
+  class:col-start-auto={colStart === 'auto'}
   class:col-start-1={colStart === 1}
   class:col-start-2={colStart === 2}
   class:col-start-3={colStart === 3}
@@ -37,7 +38,14 @@
 
 <style>
   .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+  }
+
+  .col-start-auto {
+    grid-column-start: auto;
   }
 
   .col-start-1 {
