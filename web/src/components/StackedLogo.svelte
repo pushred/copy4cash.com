@@ -13,7 +13,7 @@
     Four,
     Frame,
     FrameGlow,
-  } from './StackedLogo'
+  } from './logos/StackedLogo'
 </script>
 
 <svg

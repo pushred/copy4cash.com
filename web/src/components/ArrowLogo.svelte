@@ -26,7 +26,7 @@
     TopLeftArrowsGlow,
     TopRightArrows,
     TopRightArrowsGlow,
-  } from './ArrowLogo'
+  } from './logos/ArrowLogo'
 </script>
 
 <svg

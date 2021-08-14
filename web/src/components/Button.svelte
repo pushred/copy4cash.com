@@ -67,7 +67,7 @@
 
   path,
   rect {
-    transition: fill 100ms ease-out;
+    transition: var(--transition);
   }
 
   button:focus {
