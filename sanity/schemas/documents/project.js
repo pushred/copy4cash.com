@@ -51,20 +51,12 @@ export default {
           title: 'Heading',
         },
         {
-          type: 'instagram',
-          title: 'Instagram',
-        },
-        {
-          type: 'link',
-          title: 'Link',
-        },
-        {
           type: 'recognition',
           title: 'Recognition',
         },
         {
-          type: 'tweet',
-          title: 'Tweet',
+          type: 'social-media',
+          title: 'Social Media',
         },
         {
           type: 'video',

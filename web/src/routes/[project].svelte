@@ -52,6 +52,7 @@
               url
             }
           },
+          posts[],
           sources[],
           video,
           videos[] {
@@ -88,6 +89,7 @@
     Heading3,
     Heading4,
     Recognition,
+    SocialMedia,
     StackedLogo,
     Text,
     Video,
@@ -101,10 +103,6 @@
 
   onMount(() => {
     unorphan('p, h1, h2, h3, h4')
-
-    if (typeof twttr?.widgets?.load === 'function') {
-      twttr.widgets.load()
-    }
   })
 </script>
 
@@ -136,10 +134,6 @@
           <Carousel data={block.slides} />
         {/if}
 
-        {#if block._type === 'video-carousel'}
-          <Carousel data={block.videos} />
-        {/if}
-
         {#if block._type === 'gallery'}
           <Gallery
             columns={block.columns}
@@ -148,17 +142,14 @@
           />
         {/if}
 
-        {#if block._type === 'video-gallery'}
-          <Gallery
-            columns={block.columns}
-            gap={block.gap}
-            data={block.videos}
-          />
-        {/if}
-
         {#if block._type === 'recognition'}
           <Heading3>Recognition</Heading3>
           <Recognition data={block.sources} />
+        {/if}
+
+        {#if block._type === 'social-media'}
+          <Heading3>What People Are Saying</Heading3>
+          <SocialMedia data={block.posts} />
         {/if}
 
         {#if block._type === 'video'}
@@ -170,8 +161,16 @@
           />
         {/if}
 
-        {#if block.embed}
-          <!-- {@html block.embed.embedHtml} -->
+        {#if block._type === 'video-carousel'}
+          <Carousel data={block.videos} />
+        {/if}
+
+        {#if block._type === 'video-gallery'}
+          <Gallery
+            columns={block.columns}
+            gap={block.gap}
+            data={block.videos}
+          />
         {/if}
       {/each}
     </GridItem>

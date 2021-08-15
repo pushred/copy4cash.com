@@ -45,7 +45,7 @@
 <style>
   path {
     fill: var(--faded-purple);
-    transition: var(--transition);
+    transition: var(--fill-transition);
   }
 
   .hover path {

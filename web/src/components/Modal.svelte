@@ -48,10 +48,11 @@
     position: fixed;
     inset: 0;
     z-index: var(--z-20);
+    overflow-y: auto;
   }
 
   :global(.button) {
-    position: absolute;
+    position: fixed;
     top: var(--space-8);
     right: var(--space-8);
   }

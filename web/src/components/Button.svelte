@@ -67,7 +67,7 @@
 
   path,
   rect {
-    transition: var(--transition);
+    transition: var(--fill-transition);
   }
 
   button:focus {

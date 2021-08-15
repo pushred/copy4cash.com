@@ -13,6 +13,7 @@ import heading from './objects/heading'
 import instagram from './objects/instagram'
 import press from './objects/press'
 import recognition from './objects/recognition'
+import socialMedia from './objects/social-media'
 import tweet from './objects/tweet'
 import video from './objects/video'
 import videoCarousel from './objects/video-carousel'
@@ -31,6 +32,7 @@ export default createSchema({
     press,
     project,
     recognition,
+    socialMedia,
     tweet,
     video,
     videoCarousel,
