@@ -2,6 +2,7 @@
   --gold: #ffb32c;
   --blue: #004fff;
   --neon-green: #00ff8b;
+  --dark-purple: #17013a;
   --purple: #6a0bff;
   --faded-purple: #544370;
   --purple-black: #0e0024;
@@ -26,6 +27,11 @@
   --space-10: 2.5rem; /* 40px */
 
   --space-blocks: var(--space-3);
+  --space-grid-gap: var(--space-6);
+  --space-page-margin-x: var(--space-10);
+  --space-page-margin-y: var(--space-10);
+
+  --max-page-width: 1640px;
 
   --z-0: 0;
   --z-10: 10;

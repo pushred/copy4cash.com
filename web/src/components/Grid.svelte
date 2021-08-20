@@ -10,7 +10,7 @@
   .grid {
     width: 100%;
     display: grid;
-    grid-gap: var(--space-6);
+    grid-gap: var(--space-grid-gap);
   }
 
   .cols-2 {

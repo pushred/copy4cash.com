@@ -41,3 +41,9 @@
   <Frame />
   <FrameGlow />
 </svg>
+
+<style>
+  svg {
+    cursor: pointer;
+  }
+</style>

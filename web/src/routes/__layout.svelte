@@ -1,7 +1,9 @@
-<slot />
+<div>
+  <slot />
+</div>
 
 <style>
   :global(body) {
-    background-color: var(--black);
+    background-color: var(--dark-purple);
   }
 </style>

@@ -81,6 +81,7 @@
   import unorphan from 'unorphan'
 
   import {
+    Button,
     Carousel,
     Gallery,
     Grid,
@@ -88,9 +89,10 @@
     Heading2,
     Heading3,
     Heading4,
+    Navbar,
+    NavLink,
     Recognition,
     SocialMedia,
-    StackedLogo,
     Text,
     Video,
   } from '../components'
@@ -110,8 +112,18 @@
 
 <main>
   <Grid>
-    <GridItem colStart={1} colSpan={3}>
-      <StackedLogo on:click={() => goto('/')} />
+    <GridItem colStart={1} colSpan={2}>
+      <Navbar gotoHome={() => goto('/')}>
+        <svelte:fragment slot="sub-nav">
+          <Button icon="back" />
+          <Button icon="menu" on:click={() => goto('/')} />
+          <Button icon="next" />
+        </svelte:fragment>
+        <svelte:fragment slot="site-nav">
+          <NavLink icon="hire" label="Hire" />
+          <NavLink icon="work" label="Work" {goto} url="/" />
+        </svelte:fragment>
+      </Navbar>
     </GridItem>
 
     <GridItem center colStart={5} colSpan={6}>
@@ -186,5 +198,9 @@
     --space-Gallery: var(--space-10);
     --space-Text: var(--space-10);
     --space-Video: var(--space-10);
+
+    max-width: var(--max-page-width);
+    padding: var(--space-page-margin-y) var(--space-page-margin-x);
+    background-color: var(--purple-black);
   }
 </style>
