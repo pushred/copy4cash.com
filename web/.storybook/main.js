@@ -4,4 +4,8 @@ module.exports = {
   core: {
     builder: 'storybook-builder-vite',
   },
+  async viteFinal(config) {
+    config.resolve.dedupe = ['@storybook/client-api']
+    return config
+  },
 }

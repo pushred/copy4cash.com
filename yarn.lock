@@ -4010,23 +4010,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:1.0.0-next.115":
-  version: 1.0.0-next.115
-  resolution: "@sveltejs/kit@npm:1.0.0-next.115"
+"@sveltejs/kit@npm:next":
+  version: 1.0.0-next.154
+  resolution: "@sveltejs/kit@npm:1.0.0-next.154"
   dependencies:
-    "@sveltejs/vite-plugin-svelte": ^1.0.0-next.11
+    "@sveltejs/vite-plugin-svelte": ^1.0.0-next.16
     cheap-watch: ^1.0.3
     sade: ^1.7.4
-    vite: 2.3.7
+    vite: ^2.5.0
   peerDependencies:
-    svelte: ^3.38.2
+    svelte: ^3.39.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 076337aa97f0c9a45668853f64b02abfeced434e93cdce75417ca35d99a57a416ddac55f38e175725afdb2bb382e6d91b8eff35907f869d54106ad674652ae41
+  checksum: 3d1e8e73cc63a49349d2910a21aa3db9465751fd891554c63d08da047b3428e050fdfc1507430fd097f4d693b42535c485a0d4d10014ed028791c7037ec14ba9
   languageName: node
   linkType: hard
 
-"@sveltejs/vite-plugin-svelte@npm:^1.0.0-next.11":
+"@sveltejs/vite-plugin-svelte@npm:^1.0.0-next.16":
   version: 1.0.0-next.17
   resolution: "@sveltejs/vite-plugin-svelte@npm:1.0.0-next.17"
   dependencies:
@@ -8602,7 +8602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.12.5":
+"esbuild@npm:^0.12.17":
   version: 0.12.21
   resolution: "esbuild@npm:0.12.21"
   bin:
@@ -9858,7 +9858,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"fsevents@^2.1.2, fsevents@~2.3.1, fsevents@~2.3.2":
+"fsevents@^2.1.2, fsevents@~2.3.2":
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
   dependencies:
@@ -9877,7 +9877,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@^2.1.2#builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.1#builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#builtin<compat/fsevents>":
+"fsevents@patch:fsevents@^2.1.2#builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#builtin<compat/fsevents>":
   version: 2.3.2
   resolution: "fsevents@patch:fsevents@npm%3A2.3.2#builtin<compat/fsevents>::version=2.3.2&hash=11e9ea"
   dependencies:
@@ -15383,7 +15383,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.0, postcss@npm:^8.3.0":
+"postcss@npm:^8.2.0, postcss@npm:^8.3.6":
   version: 8.3.6
   resolution: "postcss@npm:8.3.6"
   dependencies:
@@ -19761,21 +19761,21 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"vite@npm:2.3.7":
-  version: 2.3.7
-  resolution: "vite@npm:2.3.7"
+"vite@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "vite@npm:2.5.0"
   dependencies:
-    esbuild: ^0.12.5
-    fsevents: ~2.3.1
-    postcss: ^8.3.0
-    resolve: ^1.19.0
+    esbuild: ^0.12.17
+    fsevents: ~2.3.2
+    postcss: ^8.3.6
+    resolve: ^1.20.0
     rollup: ^2.38.5
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: d22efa9b20fec505d8813e87d0faf82a7160283da806487106bede729605b7c2b67ca9a829cd5d7c878c81ec4108e422ebae0e0928fe714265466c0056aa5ce3
+  checksum: 7f72bff87eb4231550c611ff436003d269153840da7f1102d8bae77385040c401f9b4f3ce27a5867cd16644c8029dba7c2a9f62d9250de585902cd6cd6da640d
   languageName: node
   linkType: hard
 
@@ -19857,7 +19857,7 @@ fsevents@^1.2.7:
     "@storybook/addon-essentials": next
     "@storybook/addon-svelte-csf": ^1.0.0
     "@storybook/svelte": next
-    "@sveltejs/kit": 1.0.0-next.115
+    "@sveltejs/kit": next
     body-scroll-lock: ^4.0.0-beta.0
     cheerio: ^1.0.0-rc.10
     eslint: ^7.22.0
