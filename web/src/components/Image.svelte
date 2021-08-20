@@ -1,6 +1,8 @@
 <script>
   import imageUrlBuilder from '@sanity/image-url'
-  import { onMount } from 'svelte'
+  import { getContext, onMount } from 'svelte'
+
+  import Placeholder from './Placeholder.svelte'
 
   import sanity from '../sanity'
 
@@ -21,6 +23,8 @@
   let initialHeight
   let sources = {}
   let url
+
+  const context = getContext('page')
 
   // limit possible sizes to leverage caching; increments of 128 → 256
   const widthMultiples = [256, 512, 640, 768, 896, 1024, 1280, 1536, 1792, 2048]
@@ -80,6 +84,7 @@
         }
       },
       {
+        root: context.getCarouselEl() || window,
         rootMargin: '0px 0px 0px 0px',
       }
     )
@@ -90,9 +95,9 @@
   })
 </script>
 
-<div bind:this={container} class:has-intersected={hasIntersected}>
-  <picture class="placeholder">
-    {#if hasIntersected}
+<div bind:this={container}>
+  {#if hasIntersected}
+    <picture>
       <source
         type="image/webp"
         srcset={sources.srcset?.webP}
@@ -103,29 +108,14 @@
         srcset={sources.srcset?.originalFormat}
         sizes={sources.sizes}
       />
-    {/if}
-    <img
-      src={hasIntersected ? url : null}
-      alt={caption}
-      width={initialWidth}
-      height={initialHeight}
-    />
-  </picture>
+      <img
+        src={url}
+        alt={caption}
+        width={initialWidth}
+        height={initialHeight}
+      />
+    </picture>
+  {:else}
+    <Placeholder width={initialWidth} height={initialHeight} />
+  {/if}
 </div>
-
-<style>
-  .placeholder {
-    display: block;
-    background-color: #ccc;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    opacity: 0;
-  }
-
-  .has-intersected img {
-    opacity: 1;
-  }
-</style>

@@ -1,5 +1,8 @@
 <script>
+  import { getContext, onMount } from 'svelte'
   import { nanoid } from 'nanoid'
+
+  import Placeholder from './Placeholder.svelte'
 
   export let caption = ''
   export let title = 'Video'
@@ -10,7 +13,11 @@
   export let width = originalWidth
   export let height = originalHeight
 
+  const context = getContext('page')
+
   let captionId = caption ? nanoid() : undefined
+  let container
+  let hasIntersected = false
 
   function proportionalHeight(node) {
     if (width === originalWidth) return
@@ -30,14 +37,38 @@
       },
     }
   }
+
+  onMount(() => {
+    if (typeof IntersectionObserver === 'undefined') {
+      hasIntersected = true
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          hasIntersected = true
+          observer.unobserve(container)
+        }
+      },
+      {
+        root: context.getCarouselEl() || window,
+        rootMargin: '0px 0px 0px 0px',
+      }
+    )
+
+    observer.observe(container)
+
+    return () => observer.unobserve(container)
+  })
 </script>
 
-<div class="video">
+<div bind:this={container} class="video">
   {#if caption}
     <span class="caption" id={captionId}>{caption}</span>
   {/if}
 
-  {#if vimeoId}
+  {#if vimeoId && hasIntersected}
     <iframe
       use:proportionalHeight
       {width}
@@ -48,6 +79,8 @@
       src={`https://player.vimeo.com/video/${vimeoId}`}
       {title}
     />
+  {:else}
+    <Placeholder width={originalWidth} height={originalHeight} />
   {/if}
 </div>
 
