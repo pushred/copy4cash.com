@@ -1,4 +1,5 @@
 <script>
+  import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
   import { fade } from 'svelte/transition'
 
   import Button from './Button.svelte'
@@ -6,7 +7,14 @@
   export let isOpen = false
   export let onClose
 
+  let modalEl
+
+  $: if (isOpen && modalEl) {
+    disableBodyScroll(modalEl)
+  }
+
   function handleClose(event) {
+    enableBodyScroll(modalEl)
     isOpen = false
     if (typeof onClose === 'function') onClose()
   }
@@ -21,7 +29,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if isOpen}
-  <div transition:fade={{ duration: 200 }}>
+  <div bind:this={modalEl} transition:fade={{ duration: 200 }}>
     <div class="content">
       <slot />
       <Button
