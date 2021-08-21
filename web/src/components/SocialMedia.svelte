@@ -64,6 +64,7 @@
 <style>
   nav {
     display: inline-flex;
+    margin-bottom: var(--space-SocialMedia);
     gap: var(--space-4);
   }
 

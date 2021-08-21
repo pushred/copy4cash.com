@@ -21,10 +21,13 @@
   let hasIntersected = false
   let initialWidth
   let initialHeight
+  let isModalOpen
   let sources = {}
   let url
 
   const context = getContext('page')
+
+  context.stores.isModalOpen.subscribe((value) => (isModalOpen = value))
 
   // limit possible sizes to leverage caching; increments of 128 → 256
   const widthMultiples = [256, 512, 640, 768, 896, 1024, 1280, 1536, 1792, 2048]
@@ -76,6 +79,12 @@
       return
     }
 
+    let root = undefined
+
+    if (!isModalOpen && typeof context?.getCarouselEl === 'function') {
+      root = context.getCarouselEl()
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -84,7 +93,7 @@
         }
       },
       {
-        root: context.getCarouselEl() || window,
+        root,
         rootMargin: '0px 0px 0px 0px',
       }
     )
@@ -119,3 +128,10 @@
     <Placeholder width={initialWidth} height={initialHeight} />
   {/if}
 </div>
+
+<style>
+  img {
+    width: 100%;
+    height: auto;
+  }
+</style>

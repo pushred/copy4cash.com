@@ -1,8 +1,9 @@
 <script>
-  import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+  import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
   import { fade } from 'svelte/transition'
 
   import Button from './Button.svelte'
+  import { isModalOpen } from '../stores'
 
   export let isOpen = false
   export let onClose
@@ -13,9 +14,14 @@
     disableBodyScroll(modalEl)
   }
 
+  $: if (isOpen) {
+    isModalOpen.set(true)
+  }
+
   function handleClose(event) {
-    enableBodyScroll(modalEl)
+    clearAllBodyScrollLocks()
     isOpen = false
+    isModalOpen.set(false)
     if (typeof onClose === 'function') onClose()
   }
 
