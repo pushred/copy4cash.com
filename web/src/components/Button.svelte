@@ -13,6 +13,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
+      id="shadow"
       d="M6 35H35L35 6"
       stroke="#544370"
       stroke-width="2"
@@ -81,9 +82,20 @@
     outline: none;
   }
 
+  #shadow {
+    opacity: 0.5;
+    transition: var(--slow-opacity-transition);
+  }
+
+  button:hover .shape > rect,
   button:active .shape > rect,
   button:focus .shape > rect {
     stroke: var(--purple);
+  }
+
+  button:hover #shadow {
+    opacity: 1;
+    transition-delay: 500;
   }
 
   button:hover .icon path {

@@ -41,5 +41,6 @@
   --z-50: 50;
 
   --fill-transition: fill 100ms ease-out;
+  --slow-opacity-transition: opacity 1000ms ease-out;
   --stroke-transition: stroke 100ms ease-out;
 }
