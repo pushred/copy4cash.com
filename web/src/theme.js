@@ -1,3 +1,5 @@
+import { isPlainObject } from 'lodash-es'
+
 import * as stores from './stores'
 
 export const theme = {
@@ -42,7 +44,7 @@ export function getResponsivePropValues(breakpoint, props) {
       props[key] = value
     } else if (Array.isArray(value)) {
       props[key] = value[breakpoint.index]
-    } else {
+    } else if (isPlainObject(value)) {
       props[key] = value[breakpoint.key]
     }
   })

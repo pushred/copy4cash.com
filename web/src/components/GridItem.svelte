@@ -5,15 +5,21 @@
 
   export let colStart = 1
   export let colSpan = 1
+  export let rowStart = undefined
 
   let props = {
     colStart,
     colSpan,
+    rowStart,
   }
 
   $: {
     onBreakpointChange((breakpoint) => {
-      props = getResponsivePropValues(breakpoint, { colStart, colSpan })
+      props = getResponsivePropValues(breakpoint, {
+        colStart,
+        colSpan,
+        rowStart,
+      })
     })
   }
 </script>
@@ -45,6 +51,8 @@
   class:col-span-10={props.colSpan === 10}
   class:col-span-11={props.colSpan === 11}
   class:col-span-12={props.colSpan === 12}
+  class:row-start-1={props.rowStart === 1}
+  class:row-start-2={props.rowStart === 2}
 >
   <slot />
 </div>
@@ -155,5 +163,13 @@
 
   .col-span-12 {
     grid-column-end: span 12;
+  }
+
+  .row-start-1 {
+    grid-row-start: 1;
+  }
+
+  .row-start-2 {
+    grid-row-start: 2;
   }
 </style>

@@ -53,8 +53,8 @@
   .backdrop {
     position: fixed;
     inset: 0;
-    background-color: var(--black);
-    opacity: 0.5;
+    background-color: var(--purple-black);
+    opacity: 0.8;
     z-index: var(--z-10);
   }
 

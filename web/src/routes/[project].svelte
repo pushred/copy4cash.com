@@ -78,7 +78,7 @@
 </script>
 
 <script>
-  import { onMount, setContext } from 'svelte'
+  import { getContext, onMount, setContext } from 'svelte'
   import { goto } from '$app/navigation'
   import unorphan from 'unorphan'
 
@@ -98,8 +98,6 @@
     Text,
     Video,
   } from '../components'
-
-  import * as stores from '../stores'
 
   function getProjectIndex() {
     return projects.findIndex((project) => slug === project.slug?.current)
@@ -146,28 +144,61 @@
   let project
   let isModalOpen
 
+  const projectEls = [...Array(projects.length)]
+
   $: if (slug && carouselEl) {
     currentIndex = getProjectIndex()
     project = projects[currentIndex]
 
     const target = carouselEl.children[currentIndex]
-    document.scrollingElement.scrollTop = 0
-    carouselEl.scrollTo(target.offsetLeft, 0)
+
+    if (target) {
+      document.scrollingElement.scrollTop = 0
+      carouselEl.scrollLeft = target.offsetLeft
+    }
   }
 
+  const siteContext = getContext('site')
+
   setContext('page', {
-    stores,
     getCarouselEl: () => carouselEl,
   })
 
-  stores.isModalOpen.subscribe((value) => {
+  siteContext.stores.isModalOpen.subscribe((value) => {
     isModalOpen = value
   })
 
-  console.log(projects)
-
   onMount(() => {
     unorphan('p, h1, h2, h3, h4')
+
+    const observers = projectEls.map((projectEl) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            const slug = projectEl.id
+            if (!slug) return
+            goto(`/${slug}`)
+          }
+        },
+        {
+          root: carouselEl,
+          rootMargin: '0px 0px 0px 0px',
+          threshold: 0.5,
+        }
+      )
+
+      observer.observe(projectEl)
+
+      return {
+        observer,
+        projectEl,
+      }
+    })
+
+    return () =>
+      observers.forEach(({ observer, projectEl }) =>
+        observer.unobserve(projectEl)
+      )
   })
 </script>
 
@@ -180,8 +211,8 @@
 <svelte:window on:keydown={handleKeydown} on:resize={handleResize} />
 
 <div class="layout">
-  <Grid>
-    <GridItem colStart={1} colSpan={2}>
+  <Grid cols={[6, 6, 12]}>
+    <GridItem colStart={[2, 3, 1]} colSpan={[4, 2, 2]} rowStart={[2, 2, 1]}>
       <Navbar gotoHome={() => goto('/')}>
         <svelte:fragment slot="sub-nav">
           <Button icon="back" on:click={() => gotoProject('back')} />
@@ -195,68 +226,76 @@
       </Navbar>
     </GridItem>
 
-    <GridItem center colStart={5} colSpan={6}>
+    <GridItem center colStart={[1, 1, 5]} colSpan={6}>
       <div bind:this={carouselEl} class="carousel">
         {#each projects as project, index}
-          <section class:active={index === currentIndex}>
-            <Heading2>{project.name}</Heading2>
+          <section
+            bind:this={projectEls[index]}
+            id={project.slug?.current}
+            class="project"
+            class:active={index === currentIndex}
+          >
+            {#if index === currentIndex}
+              <Heading2>{project.name}</Heading2>
 
-            {#if project.client}
-              <Heading4>{project.client}</Heading4>
+              {#if project.client}
+                <Heading4>{project.client}</Heading4>
+              {/if}
+
+              {#if project.summary}
+                <Text blocks={project.summary} />
+              {/if}
+
+              {#each project.page || [] as block}
+                {#if block.heading && block.showHeading !== false}
+                  <Heading3>{block.heading}</Heading3>
+                {/if}
+
+                {#if block._type === 'carousel'}
+                  <Carousel data={block.slides} />
+                {/if}
+
+                {#if block._type === 'gallery'}
+                  <Gallery
+                    columns={block.columns}
+                    gap={block.gap}
+                    data={block.images}
+                  />
+                {/if}
+
+                {#if block._type === 'recognition'}
+                  <Heading3>Recognition</Heading3>
+                  <Recognition data={block.sources} />
+                {/if}
+
+                {#if block._type === 'social-media'}
+                  <Heading3>What People Are Saying</Heading3>
+                  <SocialMedia data={block.posts} />
+                {/if}
+
+                {#if block._type === 'video'}
+                  <Video
+                    vimeoId={block.video.vimeoId}
+                    width="100%"
+                    originalWidth={block.video.width}
+                    originalHeight={block.video.height}
+                  />
+                {/if}
+
+                {#if block._type === 'video-carousel'}
+                  <Carousel data={block.videos} />
+                {/if}
+
+                {#if block._type === 'video-gallery'}
+                  <Gallery
+                    columns={block.columns}
+                    gap={block.gap}
+                    data={block.videos}
+                  />
+                {/if}
+              {/each}
             {/if}
-
-            {#if project.summary}
-              <Text blocks={project.summary} />
-            {/if}
-
-            {#each project.page || [] as block}
-              {#if block.heading && block.showHeading !== false}
-                <Heading3>{block.heading}</Heading3>
-              {/if}
-
-              {#if block._type === 'carousel'}
-                <Carousel data={block.slides} />
-              {/if}
-
-              {#if block._type === 'gallery'}
-                <Gallery
-                  columns={block.columns}
-                  gap={block.gap}
-                  data={block.images}
-                />
-              {/if}
-
-              {#if block._type === 'recognition'}
-                <Heading3>Recognition</Heading3>
-                <Recognition data={block.sources} />
-              {/if}
-
-              {#if block._type === 'social-media'}
-                <Heading3>What People Are Saying</Heading3>
-                <SocialMedia data={block.posts} />
-              {/if}
-
-              {#if block._type === 'video'}
-                <Video
-                  vimeoId={block.video.vimeoId}
-                  width="100%"
-                  originalWidth={block.video.width}
-                  originalHeight={block.video.height}
-                />
-              {/if}
-
-              {#if block._type === 'video-carousel'}
-                <Carousel data={block.videos} />
-              {/if}
-
-              {#if block._type === 'video-gallery'}
-                <Gallery
-                  columns={block.columns}
-                  gap={block.gap}
-                  data={block.videos}
-                />
-              {/if}
-            {/each}
+            <div class="shim" aria-hidden>.</div>
           </section>
         {/each}
       </div>
@@ -268,7 +307,6 @@
   .layout {
     max-width: var(--max-page-width);
     padding: var(--space-page-margin-y) var(--space-page-margin-x);
-    background-color: var(--purple-black);
   }
 
   .carousel {
@@ -276,10 +314,11 @@
     display: flex;
     width: 100%;
     overflow-y: hidden;
-    overflow-x: auto;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
   }
 
-  section {
+  .project {
     --space-Heading2: var(--space-4);
     --space-Heading3: var(--space-4);
     --space-Heading4: var(--space-4);
@@ -291,13 +330,21 @@
     --space-Video: var(--space-10);
 
     width: 100%;
-    height: 1px;
+    height: 1px; /* limit height for observer threshold */
     flex-shrink: 0;
     overflow-y: hidden;
+    scroll-snap-align: start;
   }
 
-  section.active {
+  .project.active {
     overflow-y: auto;
     height: auto;
+  }
+
+  .shim {
+    /* carousel does not scroll to empty project shells */
+    height: 1px;
+    overflow: hidden;
+    visibility: hidden;
   }
 </style>
