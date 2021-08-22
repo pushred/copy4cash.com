@@ -1,8 +1,23 @@
 <script>
+  import { onBreakpointChange, getResponsivePropValues } from '../theme.js'
+
   export let cols = 12
+
+  let props = {}
+
+  $: {
+    onBreakpointChange((breakpoint) => {
+      props = getResponsivePropValues(breakpoint, { cols })
+    })
+  }
 </script>
 
-<div class="grid" class:cols-2={cols === 2} class:cols-12={cols === 12}>
+<div
+  class="grid"
+  class:cols-2={props.cols === 2}
+  class:cols-6={props.cols === 6}
+  class:cols-12={props.cols === 12}
+>
   <slot />
 </div>
 
@@ -15,6 +30,10 @@
 
   .cols-2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cols-6 {
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .cols-12 {

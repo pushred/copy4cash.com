@@ -1,37 +1,50 @@
 <script>
+  import { getResponsivePropValues, onBreakpointChange } from '../theme.js'
+
   export let center = false
 
   export let colStart = 1
   export let colSpan = 1
+
+  let props = {
+    colStart,
+    colSpan,
+  }
+
+  $: {
+    onBreakpointChange((breakpoint) => {
+      props = getResponsivePropValues(breakpoint, { colStart, colSpan })
+    })
+  }
 </script>
 
 <div
   class:center
-  class:col-start-auto={colStart === 'auto'}
-  class:col-start-1={colStart === 1}
-  class:col-start-2={colStart === 2}
-  class:col-start-3={colStart === 3}
-  class:col-start-4={colStart === 4}
-  class:col-start-5={colStart === 5}
-  class:col-start-6={colStart === 6}
-  class:col-start-7={colStart === 7}
-  class:col-start-8={colStart === 8}
-  class:col-start-9={colStart === 9}
-  class:col-start-10={colStart === 10}
-  class:col-start-11={colStart === 11}
-  class:col-start-12={colStart === 12}
-  class:col-span-1={colSpan === 1}
-  class:col-span-2={colSpan === 2}
-  class:col-span-3={colSpan === 3}
-  class:col-span-4={colSpan === 4}
-  class:col-span-5={colSpan === 5}
-  class:col-span-6={colSpan === 6}
-  class:col-span-7={colSpan === 7}
-  class:col-span-8={colSpan === 8}
-  class:col-span-9={colSpan === 9}
-  class:col-span-10={colSpan === 10}
-  class:col-span-11={colSpan === 11}
-  class:col-span-12={colSpan === 12}
+  class:col-start-auto={props.colStart === 'auto'}
+  class:col-start-1={props.colStart === 1}
+  class:col-start-2={props.colStart === 2}
+  class:col-start-3={props.colStart === 3}
+  class:col-start-4={props.colStart === 4}
+  class:col-start-5={props.colStart === 5}
+  class:col-start-6={props.colStart === 6}
+  class:col-start-7={props.colStart === 7}
+  class:col-start-8={props.colStart === 8}
+  class:col-start-9={props.colStart === 9}
+  class:col-start-10={props.colStart === 10}
+  class:col-start-11={props.colStart === 11}
+  class:col-start-12={props.colStart === 12}
+  class:col-span-1={props.colSpan === 1}
+  class:col-span-2={props.colSpan === 2}
+  class:col-span-3={props.colSpan === 3}
+  class:col-span-4={props.colSpan === 4}
+  class:col-span-5={props.colSpan === 5}
+  class:col-span-6={props.colSpan === 6}
+  class:col-span-7={props.colSpan === 7}
+  class:col-span-8={props.colSpan === 8}
+  class:col-span-9={props.colSpan === 9}
+  class:col-span-10={props.colSpan === 10}
+  class:col-span-11={props.colSpan === 11}
+  class:col-span-12={props.colSpan === 12}
 >
   <slot />
 </div>

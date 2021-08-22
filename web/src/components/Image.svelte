@@ -25,7 +25,7 @@
   let sources = {}
   let url
 
-  const context = getContext('page')
+  const context = getContext('site')
 
   context.stores.isModalOpen.subscribe((value) => (isModalOpen = value))
 
