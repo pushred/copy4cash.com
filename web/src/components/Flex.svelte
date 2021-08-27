@@ -11,6 +11,7 @@
   class:inset-0={inset === '0'}
   class:items-center={alignItems === 'center'}
   class:justify-center={justifyContent === 'center'}
+  class:justify-space-between={justifyContent === 'space-between'}
   class:gap-2={gap === '2'}
   class:gap-3={gap === '3'}
   class:gap-4={gap === '4'}
@@ -43,6 +44,10 @@
 
   .justify-center {
     justify-content: center;
+  }
+
+  .justify-space-between {
+    justify-content: space-between;
   }
 
   .gap-2 {
