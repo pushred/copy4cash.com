@@ -1,6 +1,6 @@
 <script>
   import { onBreakpointChange } from '../theme.js'
-  import StackedLogo from './StackedLogo.svelte'
+  import StackedLogo from './logos/StackedLogo.svelte'
 
   let isLarge = false
 
