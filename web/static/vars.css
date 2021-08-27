@@ -9,6 +9,9 @@
   --black: #231f20;
   --white: #fff;
 
+  --button-icon-disabled: var(--faded-purple);
+  --button-icon-hover: var(--neon-green);
+
   --text-1: 0.875rem; /* 14px */
   --text-2: 1rem; /* 16px */
   --text-3: 1.5rem; /* 24px */

@@ -215,9 +215,17 @@
     <GridItem colStart={[2, 3, 1]} colSpan={[4, 2, 2]} rowStart={[2, 2, 1]}>
       <Navbar gotoHome={() => goto('/')}>
         <svelte:fragment slot="sub-nav">
-          <Button icon="back" on:click={() => gotoProject('back')} />
-          <Button icon="menu" on:click={() => goto('/')} />
-          <Button icon="next" on:click={() => gotoProject('next')} />
+          <Button
+            variant="raised"
+            icon="back"
+            on:click={() => gotoProject('back')}
+          />
+          <Button variant="raised" icon="menu" on:click={() => goto('/')} />
+          <Button
+            variant="raised"
+            icon="next"
+            on:click={() => gotoProject('next')}
+          />
         </svelte:fragment>
         <svelte:fragment slot="site-nav">
           <NavLink icon="hire" label="Hire" />

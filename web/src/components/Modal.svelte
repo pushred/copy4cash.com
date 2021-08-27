@@ -39,6 +39,7 @@
     <div class="content">
       <slot />
       <Button
+        variant="raised"
         class="button"
         icon="close"
         label="Close"

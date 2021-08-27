@@ -1,71 +1,68 @@
 <script>
-  export let icon
-  export let label
+  import RaisedButton from './Button.raised.svelte'
+
+  import Back from './icons/small/Back.svelte'
+  import Close from './icons/small/Close.svelte'
+  import LeftArrows from './icons/small/LeftArrows.svelte'
+  import Menu from './icons/small/Menu.svelte'
+  import Next from './icons/small/Next.svelte'
+  import Pause from './icons/small/Pause.svelte'
+  import Play from './icons/small/Play.svelte'
+  import RightArrows from './icons/small/RightArrows.svelte'
+
+  export let disabled = false
+  export let hover = false
+  export let icon = undefined
+  export let label = undefined
+  export let variant = undefined
+
+  let iconX = 0
+  let iconY = 0
+
+  if (variant === 'raised') iconX = 4
+  if (variant === 'raised') iconY = 4
+
+  let Icon
+
+  if (icon === 'back') Icon = Back
+  if (icon === 'close') Icon = Close
+  if (icon === 'left-arrows') Icon = LeftArrows
+  if (icon === 'menu') Icon = Menu
+  if (icon === 'next') Icon = Next
+  if (icon === 'pause') Icon = Pause
+  if (icon === 'play') Icon = Play
+  if (icon === 'right-arrows') Icon = RightArrows
+
+  function handleEnter() {
+    hover = true
+  }
+
+  function handleLeave() {
+    hover = false
+  }
 </script>
 
-<button class={$$props.class} aria-label={label} title={label} on:click>
-  <svg
-    class="shape"
-    width="36"
-    height="36"
-    viewBox="0 0 36 36"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      id="shadow"
-      d="M6 35H35L35 6"
-      stroke="#544370"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-    <rect
-      width="30"
-      height="30"
-      x="1"
-      y="1"
-      rx="1"
-      stroke="#544370"
-      stroke-width="2"
-    />
-    <svg
-      class="icon"
-      x="4"
-      y="4"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {#if icon === 'next'}
-        <path
-          d="M21 11.875C21 11.6 20.8694 11.3375 20.6344 11.125L13.8962 4.6875C13.6612 4.475 13.4 4.375 13.1258 4.375C12.5512 4.375 12.1072 4.7875 12.1072 5.35C12.1072 5.6125 12.1986 5.875 12.3945 6.05L14.1966 7.8375L17.9052 11.0375L15.3718 10.8625H3.04467C2.43093 10.8625 2 11.2875 2 11.875C2 12.4625 2.43093 12.8875 3.04467 12.8875H15.3718L17.9182 12.7125L14.1966 15.9125L12.3945 17.7C12.1986 17.875 12.1072 18.1375 12.1072 18.4C12.1072 18.9625 12.5512 19.375 13.1258 19.375C13.4 19.375 13.6612 19.275 13.8962 19.0625L20.6344 12.625C20.8694 12.4125 21 12.15 21 11.875Z"
-          fill="#6A0BFF"
-        />
-      {:else if icon === 'back'}
-        <path
-          d="M2 11.875C2 11.6 2.13058 11.3375 2.36563 11.125L9.10378 4.6875C9.33883 4.475 9.6 4.375 9.87423 4.375C10.4488 4.375 10.8928 4.7875 10.8928 5.35C10.8928 5.6125 10.8014 5.875 10.6055 6.05L8.80344 7.8375L5.09484 11.0375L7.62818 10.8625H19.9553C20.5691 10.8625 21 11.2875 21 11.875C21 12.4625 20.5691 12.8875 19.9553 12.8875H7.62818L5.08179 12.7125L8.80344 15.9125L10.6055 17.7C10.8014 17.875 10.8928 18.1375 10.8928 18.4C10.8928 18.9625 10.4488 19.375 9.87423 19.375C9.6 19.375 9.33883 19.275 9.10378 19.0625L2.36563 12.625C2.13058 12.4125 2 12.15 2 11.875Z"
-          fill="#6A0BFF"
-        />
-      {:else if icon === 'close'}
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M5.2921 6.70656C4.90157 6.31603 4.90158 5.68287 5.2921 5.29234C5.68262 4.90182 6.31579 4.90182 6.70631 5.29234L12.0001 10.5861L17.2937 5.29244C17.6843 4.90192 18.3174 4.90192 18.708 5.29244C19.0985 5.68297 19.0985 6.31613 18.708 6.70665L13.4143 12.0003L18.7073 17.2933C19.0978 17.6839 19.0978 18.317 18.7073 18.7076C18.3168 19.0981 17.6836 19.0981 17.2931 18.7076L12.0001 13.4145L6.70699 18.7077C6.31646 19.0982 5.6833 19.0982 5.29277 18.7077C4.90225 18.3171 4.90225 17.684 5.29277 17.2934L10.5859 12.0003L5.2921 6.70656Z"
-          fill="#6A0BFF"
-        />
-      {:else if icon === 'menu'}
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M4 6C4 6.55228 4.44772 7 5 7H19C19.5523 7 20 6.55228 20 6C20 5.44772 19.5523 5 19 5H5C4.44772 5 4 5.44772 4 6ZM4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H5C4.44772 11 4 11.4477 4 12ZM5 19C4.44772 19 4 18.5523 4 18C4 17.4477 4.44772 17 5 17H19C19.5523 17 20 17.4477 20 18C20 18.5523 19.5523 19 19 19H5Z"
-          fill="#6A0BFF"
-        />
-      {/if}
-    </svg>
-  </svg>
+<button
+  {disabled}
+  class:disabled
+  class={$$props.class}
+  aria-label={label}
+  title={label}
+  on:click
+  on:blur={handleLeave}
+  on:focus={handleEnter}
+  on:mouseenter={handleEnter}
+  on:mouseleave={handleLeave}
+>
+  {#if variant === 'raised'}
+    <RaisedButton {hover}>
+      <svelte:component this={Icon} {disabled} {hover} x={iconX} y={iconY} />
+    </RaisedButton>
+  {:else if icon}
+    <svelte:component this={Icon} {disabled} {hover} x={iconX} y={iconY} />
+  {:else}
+    <slot />
+  {/if}
 </button>
 
 <style>
@@ -73,36 +70,11 @@
     pointer-events: auto;
   }
 
-  path,
-  rect {
-    transition: var(--fill-transition);
-  }
-
   button:focus {
     outline: none;
   }
 
-  #shadow {
-    opacity: 0.5;
-    transition: var(--slow-opacity-transition);
-  }
-
-  button:hover .shape > rect,
-  button:active .shape > rect,
-  button:focus .shape > rect {
-    stroke: var(--purple);
-  }
-
-  button:hover #shadow {
-    opacity: 1;
-    transition-delay: 500;
-  }
-
-  button:hover .icon path {
-    fill: var(--neon-green);
-  }
-
-  button:focus .icon path {
-    fill: var(--neon-green);
+  .disabled {
+    cursor: not-allowed;
   }
 </style>

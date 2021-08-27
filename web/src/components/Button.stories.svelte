@@ -6,16 +6,20 @@
 <Meta
   title="Button"
   component={Button}
+  parameters={{ layout: 'centered' }}
   argTypes={{
+    disabled: {
+      control: { type: 'boolean' },
+    },
     icon: {
-      options: ['next', 'back', 'close'],
+      options: ['next', 'back', 'close', 'menu', 'play', 'pause'],
       control: { type: 'select' },
     },
   }}
 />
 
 <Template let:args>
-  <Button {...args} />
+  <Button variant="raised" {...args} />
 </Template>
 
-<Story name="Icon" args={{ icon: 'next', label: 'Next' }} />
+<Story name="Raised" args={{ disabled: false, icon: 'next', label: 'Next' }} />
