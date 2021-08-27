@@ -82,7 +82,7 @@
     let root = undefined
 
     if (!isModalOpen && typeof context?.getCarouselEl === 'function') {
-      root = context.getCarouselEl()
+      root = context?.getCarouselEl()
     }
 
     const observer = new IntersectionObserver(
