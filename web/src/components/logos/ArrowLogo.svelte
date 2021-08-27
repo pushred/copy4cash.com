@@ -74,3 +74,9 @@
   <Frame />
   <FrameGlow />
 </svg>
+
+<style>
+  svg {
+    margin-left: -1.2%; /* optical centering */
+  }
+</style>

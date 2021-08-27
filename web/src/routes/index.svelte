@@ -32,6 +32,7 @@
     FeaturedProjects,
     FullScreenVideo,
     LoadingOverlay,
+    NameFooter,
   } from '../components'
 
   import { onBreakpointChange } from '../theme.js'
@@ -41,6 +42,7 @@
   let sm = false
   let md = false
   let lg = false
+
   let isLoading = true
 
   onBreakpointChange((breakpoint) => {
@@ -64,11 +66,7 @@
     <FullScreenVideo vimeoId="334283806" />
   </main>
   <footer>
-    <div class="info">
-      <strong>Diana Casthart</strong>
-      <em>Professional Smartass</em>
-      <span>ACD Copywriter</span>
-    </div>
+    <NameFooter />
   </footer>
 </div>
 
@@ -77,18 +75,8 @@
     height: 250px;
   }
 
-  footer strong {
-    color: var(--neon-green);
-    margin-right: 1em;
-  }
-
-  footer em {
-    color: var(--gold);
-    margin-right: 1em;
-  }
-
-  footer span {
-    color: var(--purple);
+  footer {
+    margin: var(--space-10) 0;
   }
 
   .sm,
@@ -101,15 +89,6 @@
     margin-bottom: var(--space-10);
   }
 
-  .sm footer .info,
-  .md footer .info {
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--space-8);
-    gap: var(--space-2);
-    text-align: center;
-  }
-
   .lg {
     display: flex;
     flex-direction: column;
@@ -118,35 +97,20 @@
     right: 0;
     bottom: 0;
     left: 0;
+    justify-content: space-between;
   }
 
   .lg header {
-    height: 40%;
     display: flex;
     align-items: flex-end;
-    justify-content: end;
-  }
-
-  .lg main {
-    height: 30%;
-    display: flex;
     justify-content: center;
-    align-items: center;
-  }
-
-  .lg footer {
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    color: var(--white);
+    flex-grow: 1;
     padding-bottom: var(--space-10);
   }
 
-  .lg footer .info {
+  .lg main {
     display: flex;
-    font-weight: bold;
-    font-style: italic;
-    text-transform: uppercase;
+    justify-content: center;
+    flex-grow: 1;
   }
 </style>
