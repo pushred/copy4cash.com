@@ -24,14 +24,16 @@
 
   let Icon
 
-  if (icon === 'back') Icon = Back
-  if (icon === 'close') Icon = Close
-  if (icon === 'left-arrows') Icon = LeftArrows
-  if (icon === 'menu') Icon = Menu
-  if (icon === 'next') Icon = Next
-  if (icon === 'pause') Icon = Pause
-  if (icon === 'play') Icon = Play
-  if (icon === 'right-arrows') Icon = RightArrows
+  $: {
+    if (icon === 'back') Icon = Back
+    if (icon === 'close') Icon = Close
+    if (icon === 'left-arrows') Icon = LeftArrows
+    if (icon === 'menu') Icon = Menu
+    if (icon === 'next') Icon = Next
+    if (icon === 'pause') Icon = Pause
+    if (icon === 'play') Icon = Play
+    if (icon === 'right-arrows') Icon = RightArrows
+  }
 
   function handleEnter() {
     hover = true
