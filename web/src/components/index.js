@@ -1,5 +1,6 @@
 export { default as ArrowLogo } from './logos/ArrowLogo.svelte'
 export { default as AppIcon } from './AppIcon.svelte'
+export { default as AudioPlayer } from './AudioPlayer.svelte'
 export { default as Button } from './Button.svelte'
 export { default as Carousel } from './Carousel.svelte'
 export { default as FeaturedProjects } from './FeaturedProjects.svelte'
