@@ -93,27 +93,32 @@
     Heading4,
     Navbar,
     NavLink,
+    Pagination,
     Recognition,
     SocialMedia,
     Text,
     Video,
   } from '../components'
 
+  import { onBreakpointChange } from '../theme.js'
+
   function getProjectIndex() {
     return projects.findIndex((project) => slug === project.slug?.current)
   }
 
-  function gotoProject(direction) {
+  function gotoProject(directionOrIndex) {
     const prevIndex = currentIndex - 1
     const nextIndex = currentIndex + 1
     const lastIndex = projects.length - 1
 
     let index
 
-    if (direction === 'back') {
+    if (directionOrIndex === 'back') {
       index = projects[prevIndex] === undefined ? lastIndex : prevIndex
-    } else if (direction === 'next') {
+    } else if (directionOrIndex === 'next') {
       index = projects[nextIndex] === undefined ? 0 : nextIndex
+    } else if (typeof directionOrIndex === 'number') {
+      index = directionOrIndex
     }
 
     goto(`/${projects[index].slug.current}`)
@@ -131,18 +136,26 @@
     }
   }
 
+  function handlePagination(event) {
+    gotoProject(event.detail)
+  }
+
   function handleResize(event) {
     const target = carouselEl.children[currentIndex]
     carouselEl.scrollTo(target.offsetLeft, 0)
   }
 
   export let projects = []
-  export let slug
+  export let slug = undefined
 
-  let carouselEl
-  let currentIndex
-  let project
-  let isModalOpen
+  let carouselEl = undefined
+  let currentIndex = undefined
+  let project = undefined
+  let isModalOpen = false
+
+  let sm = false
+  let md = false
+  let lg = false
 
   const projectEls = [...Array(projects.length)]
 
@@ -166,6 +179,12 @@
 
   siteContext.stores.isModalOpen.subscribe((value) => {
     isModalOpen = value
+  })
+
+  onBreakpointChange((breakpoint) => {
+    sm = breakpoint?.key === 'sm'
+    md = breakpoint?.key === 'md'
+    lg = breakpoint?.key === 'lg'
   })
 
   onMount(() => {
@@ -235,6 +254,14 @@
     </GridItem>
 
     <GridItem center colStart={[1, 1, 5]} colSpan={6}>
+      {#if !lg}
+        <Pagination
+          totalPages={projects.length}
+          {currentIndex}
+          on:change={handlePagination}
+          --space-bottom="var(--space-8)"
+        />
+      {/if}
       <div bind:this={carouselEl} class="carousel">
         {#each projects as project, index}
           <section

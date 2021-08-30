@@ -18,7 +18,7 @@
   }
 </script>
 
-<Flex justifyContent="space-between">
+<Flex justifyContent="space-between" --width="100%">
   <Button
     disabled={currentIndex === 0}
     on:click={handleChange.bind(null, 'back')}
