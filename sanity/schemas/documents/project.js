@@ -39,16 +39,20 @@ export default {
       name: 'page',
       of: [
         {
+          type: 'audio',
+          title: 'Audio',
+        },
+        {
+          type: 'heading',
+          title: 'Heading',
+        },
+        {
           type: 'carousel',
           title: 'Image Carousel',
         },
         {
           type: 'gallery',
           title: 'Image Gallery',
-        },
-        {
-          type: 'heading',
-          title: 'Heading',
         },
         {
           type: 'recognition',

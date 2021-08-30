@@ -16,12 +16,18 @@
         summary,
         page[] {
           _type,
+          caption,
           columns,
           heading,
           showHeading,
           gap,
           embed {
             embedHtml
+          },
+          file {
+            asset -> {
+              url
+            }
           },
           images[] {
             _key,

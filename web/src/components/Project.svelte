@@ -1,5 +1,6 @@
 <script>
   import {
+    AudioPlayer,
     Carousel,
     Gallery,
     Heading2,
@@ -27,6 +28,10 @@
 {#each data.page || [] as block}
   {#if block.heading && block.showHeading !== false}
     <Heading3>{block.heading}</Heading3>
+  {/if}
+
+  {#if block._type === 'audio'}
+    <AudioPlayer caption={block.caption} url={block.file?.asset?.url} />
   {/if}
 
   {#if block._type === 'carousel'}
