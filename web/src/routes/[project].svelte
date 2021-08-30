@@ -354,16 +354,6 @@
   }
 
   .project {
-    --space-Heading2: var(--space-4);
-    --space-Heading3: var(--space-4);
-    --space-Heading4: var(--space-4);
-
-    --space-Gallery: var(--space-10);
-    --space-Recognition: var(--space-10);
-    --space-SocialMedia: var(--space-10);
-    --space-Text: var(--space-10);
-    --space-Video: var(--space-10);
-
     width: 100%;
     height: 1px; /* limit height for observer threshold */
     flex-shrink: 0;

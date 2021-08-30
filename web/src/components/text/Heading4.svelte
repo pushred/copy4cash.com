@@ -10,7 +10,9 @@
 
 <style>
   * {
-    margin-bottom: var(--space-Heading4);
+    --space-bottom: var(--space-4);
+
+    margin-bottom: var(--space-bottom);
     font-size: var(--text-1);
     line-height: 1.25;
     color: var(--gold);

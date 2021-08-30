@@ -1,8 +1,10 @@
-<h2 class={$$props.class}><slot /></h2>
+<h2><slot /></h2>
 
 <style>
   h2 {
-    margin-bottom: var(--space-Heading2);
+    --space-bottom: var(--space-4);
+
+    margin-bottom: var(--space-bottom);
     font-size: var(--text-4);
     line-height: 1;
     color: var(--neon-green);

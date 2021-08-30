@@ -4,7 +4,7 @@
 </script>
 
 {#if backdrop}
-  <div class={$$props.class} class:backdrop>
+  <div class:backdrop>
     {#if vimeoId}
       <iframe
         title="Video"
@@ -14,7 +14,6 @@
   </div>
 {:else if vimeoId}
   <iframe
-    class={$$props.class}
     title="Video"
     src="https://player.vimeo.com/video/{vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0"
   />

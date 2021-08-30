@@ -88,7 +88,7 @@
 
 <style>
   .carousel {
-    margin-bottom: var(--space-Carousel);
+    margin-bottom: var(--space-bottom);
   }
 
   .carousel.block {

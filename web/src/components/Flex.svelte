@@ -28,6 +28,8 @@
 <style>
   div {
     display: flex;
+    width: var(--width);
+    margin-bottom: var(--space-bottom);
   }
 
   .absolute {

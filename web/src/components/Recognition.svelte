@@ -48,6 +48,6 @@
 
 <style>
   div {
-    margin-bottom: var(--space-Recognition);
+    margin-bottom: var(--space-bottom);
   }
 </style>

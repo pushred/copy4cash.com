@@ -38,13 +38,14 @@
   <div bind:this={modalEl} transition:fade={{ duration: 200 }}>
     <div class="content">
       <slot />
-      <Button
-        variant="raised"
-        class="button"
-        icon="close"
-        label="Close"
-        on:click={handleClose}
-      />
+      <div class="button">
+        <Button
+          variant="raised"
+          icon="close"
+          label="Close"
+          on:click={handleClose}
+        />
+      </div>
     </div>
     <div class="backdrop" aria-hidden />
   </div>

@@ -30,6 +30,7 @@
   --space-10: 2.5rem; /* 40px */
 
   --space-blocks: var(--space-3);
+  --space-bottom: var(--space-10);
   --space-grid-gap: var(--space-6);
   --space-page-margin-x: var(--space-10);
   --space-page-margin-y: var(--space-10);

@@ -31,7 +31,9 @@
 
 <style>
   h3 {
-    margin-bottom: var(--space-Heading3);
+    --space-bottom: var(--space-4);
+
+    margin-bottom: var(--space-bottom);
     font-size: var(--text-3);
     font-style: italic;
     font-weight: bold;

@@ -45,7 +45,6 @@
 <button
   {disabled}
   class:disabled
-  class={$$props.class}
   aria-label={label}
   title={label}
   on:click

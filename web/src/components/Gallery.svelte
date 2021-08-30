@@ -56,10 +56,8 @@
 
 <style>
   .gallery {
-    --space-Video: 0;
-
     display: grid;
-    margin-bottom: var(--space-Gallery);
+    margin-bottom: var(--space-bottom);
   }
 
   .cols-2 {

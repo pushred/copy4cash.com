@@ -88,7 +88,7 @@
   .video {
     width: 100%;
     position: relative;
-    margin-bottom: var(--space-Video);
+    margin-bottom: var(--space-bottom);
   }
 
   .caption {

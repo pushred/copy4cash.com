@@ -16,6 +16,6 @@
 
 <style>
   div {
-    margin-bottom: var(--space-Text);
+    margin-bottom: var(--space-bottom);
   }
 </style>
