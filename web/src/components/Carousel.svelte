@@ -113,8 +113,8 @@
     width: 100%;
   }
 
-  :global(.carousel.fullscreen .slide > *) {
-    max-height: 100%;
+  :global(.carousel.fullscreen img.is-vertical) {
+    max-height: 100vh;
   }
 
   ul {

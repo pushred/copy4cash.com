@@ -16,12 +16,14 @@
 
   const aspectRatio = metadata.dimensions?.aspectRatio
   const originalWidth = metadata.dimensions?.width
+  const originalHeight = metadata.dimensions?.height
 
   let container
   let hasIntersected = false
   let initialWidth
   let initialHeight
   let isModalOpen
+  let isVertical
   let sources = {}
   let url
 
@@ -72,6 +74,7 @@
 
     initialWidth = Math.round(width)
     initialHeight = Math.round(initialWidth / aspectRatio)
+    isVertical = originalHeight > originalWidth
     sources = getSources()
 
     if (typeof IntersectionObserver === 'undefined') {
@@ -118,6 +121,7 @@
         sizes={sources.sizes}
       />
       <img
+        class:is-vertical={isVertical}
         src={url}
         alt={caption}
         width={initialWidth}
