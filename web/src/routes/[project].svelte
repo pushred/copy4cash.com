@@ -84,20 +84,12 @@
 
   import {
     Button,
-    Carousel,
-    Gallery,
     Grid,
     GridItem,
-    Heading2,
-    Heading3,
-    Heading4,
     Navbar,
     NavLink,
     Pagination,
-    Recognition,
-    SocialMedia,
-    Text,
-    Video,
+    Project,
   } from '../components'
 
   import { onBreakpointChange } from '../theme.js'
@@ -153,8 +145,6 @@
   let project = undefined
   let isModalOpen = false
 
-  let sm = false
-  let md = false
   let lg = false
 
   const projectEls = [...Array(projects.length)]
@@ -182,8 +172,6 @@
   })
 
   onBreakpointChange((breakpoint) => {
-    sm = breakpoint?.key === 'sm'
-    md = breakpoint?.key === 'md'
     lg = breakpoint?.key === 'lg'
   })
 
@@ -271,64 +259,7 @@
             class:active={index === currentIndex}
           >
             {#if index === currentIndex}
-              <Heading2>{project.name}</Heading2>
-
-              {#if project.client}
-                <Heading4>{project.client}</Heading4>
-              {/if}
-
-              {#if project.summary}
-                <Text blocks={project.summary} />
-              {/if}
-
-              {#each project.page || [] as block}
-                {#if block.heading && block.showHeading !== false}
-                  <Heading3>{block.heading}</Heading3>
-                {/if}
-
-                {#if block._type === 'carousel'}
-                  <Carousel data={block.slides} />
-                {/if}
-
-                {#if block._type === 'gallery'}
-                  <Gallery
-                    columns={block.columns}
-                    gap={block.gap}
-                    data={block.images}
-                  />
-                {/if}
-
-                {#if block._type === 'recognition'}
-                  <Heading3>Recognition</Heading3>
-                  <Recognition data={block.sources} />
-                {/if}
-
-                {#if block._type === 'social-media'}
-                  <Heading3>What People Are Saying</Heading3>
-                  <SocialMedia data={block.posts} />
-                {/if}
-
-                {#if block._type === 'video'}
-                  <Video
-                    vimeoId={block.video.vimeoId}
-                    width="100%"
-                    originalWidth={block.video.width}
-                    originalHeight={block.video.height}
-                  />
-                {/if}
-
-                {#if block._type === 'video-carousel'}
-                  <Carousel data={block.videos} />
-                {/if}
-
-                {#if block._type === 'video-gallery'}
-                  <Gallery
-                    columns={block.columns}
-                    gap={block.gap}
-                    data={block.videos}
-                  />
-                {/if}
-              {/each}
+              <Project data={project} />
             {/if}
             <div class="shim" aria-hidden>.</div>
           </section>
