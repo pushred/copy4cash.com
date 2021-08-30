@@ -30,6 +30,9 @@
     display: flex;
     width: var(--width);
     margin-bottom: var(--space-bottom);
+    gap: var(--gap);
+    align-items: var(--align-items);
+    justify-content: var(--justify-content);
   }
 
   .absolute {
