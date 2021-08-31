@@ -1,11 +1,11 @@
 <script>
-  import Nib from './icons/small/Nib.svelte'
+  import Coin from './icons/small/Coin.svelte'
 </script>
 
 <div class="layout">
   <div class="name">
     <span>Diana Casthart</span>
-    <Nib />
+    <Coin />
     <span>ACD Copywriter</span>
   </div>
   <span>Professional Smartass</span>
