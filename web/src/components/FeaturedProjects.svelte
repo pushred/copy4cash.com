@@ -1,5 +1,6 @@
 <script>
   import { onBreakpointChange } from '../theme.js'
+  import Separator from './Separator.svelte'
 
   let sm = false
   let md = false
@@ -47,7 +48,12 @@
 <nav class:sm class:md class:lg>
   {#each rows as row}
     <ul>
-      {#each row as project}
+      {#each row as project, index}
+        {#if lg && index > 0}
+          <li aria-hidden>
+            <Separator />
+          </li>
+        {/if}
         <li>
           <a href="/{projects[project].slug?.current}">
             <strong>{project}</strong>
@@ -96,12 +102,8 @@
     max-width: 75vw;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-  }
-
-  .lg li + li {
-    padding-left: var(--space-8);
-    border-left: 2px solid var(--gold);
-    margin-left: var(--space-8);
+    gap: var(--space-6);
   }
 </style>
