@@ -14,7 +14,7 @@
     })
 
     animateNeon(g.querySelectorAll('path'), {
-      delay: TIMELINE.bottomRightArrows + DURATIONS.arrows + DURATIONS.glow * 2,
+      delay: TIMELINE.bottomRightArrows + DURATIONS.arrows + DURATIONS.glow,
       direction: 'reverse',
       duration: DURATIONS.arrows,
       iterations: Infinity,

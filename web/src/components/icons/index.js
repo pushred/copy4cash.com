@@ -1,6 +1,7 @@
 export { default as Audio } from './small/Audio.svelte'
 export { default as Back } from './small/Back.svelte'
 export { default as Close } from './small/Close.svelte'
+export { default as Coin } from './small/Coin.svelte'
 export { default as LeftArrows } from './small/LeftArrows.svelte'
 export { default as Next } from './small/Next.svelte'
 export { default as Nib } from './small/Nib.svelte'

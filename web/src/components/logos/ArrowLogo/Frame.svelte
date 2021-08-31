@@ -1,20 +1,4 @@
-<script>
-  import { onMount } from 'svelte'
-
-  import { animateNeon, DURATIONS, TIMELINE } from '../../animate'
-
-  let g
-
-  onMount(() => {
-    animateNeon(g.querySelectorAll('path'), {
-      delay: TIMELINE.frame,
-      duration: DURATIONS.frames,
-      random: true,
-    })
-  })
-</script>
-
-<g bind:this={g}>
+<g>
   <path
     d="M1152.89 204.971L1208.39 5.98944H782.312L837.829 204.971"
     stroke="#6A0BFF"
@@ -93,9 +77,3 @@
     stroke-linejoin="round"
   />
 </g>
-
-<style>
-  path {
-    opacity: 0;
-  }
-</style>
