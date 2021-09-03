@@ -52,7 +52,7 @@
         }
       },
       {
-        root: context?.getCarouselEl() || window,
+        root: context?.getCarouselEl(),
         rootMargin: '0px 0px 0px 0px',
       }
     )
