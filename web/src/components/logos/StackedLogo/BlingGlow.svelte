@@ -1,10 +1,10 @@
 <script>
-  import { onDestroy, onMount } from 'svelte'
+  import { onDestroy, onMount } from "svelte";
 
-  import { animateNeon, DURATIONS, TIMELINE } from '../../animate'
+  import { animateNeon, DURATIONS, TIMELINE } from "../../animate";
 
-  let g
-  let animationInterval
+  let g;
+  let animationInterval;
 
   function animateBling(parts) {
     animateNeon(parts, {
@@ -12,18 +12,18 @@
       duration: DURATIONS.bling,
       random: true,
       stagger: true,
-    })
+    });
   }
 
   onMount(() => {
-    const parts = g.querySelectorAll('path')
-    animationInterval = setInterval(() => animateBling(parts), 5000)
-    animateBling(parts)
-  })
+    const parts = g.querySelectorAll("path");
+    animationInterval = setInterval(() => animateBling(parts), 5000);
+    animateBling(parts);
+  });
 
   onDestroy(() => {
-    clearInterval(animationInterval)
-  })
+    clearInterval(animationInterval);
+  });
 </script>
 
 <g bind:this={g}>

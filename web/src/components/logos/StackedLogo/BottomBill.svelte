@@ -7,17 +7,17 @@
 
   onMount(() => {
     animateNeon(g.querySelectorAll('path'), {
-      delay: TIMELINE.copyFrame,
-      duration: DURATIONS.frames,
+      delay: TIMELINE.bottomBill,
+      duration: DURATIONS.bill,
     })
   })
 </script>
 
 <g bind:this={g}>
   <path
-    d="M797.345 210.69H51.4107L130.009 515.682H782.311"
-    stroke="#004FFF"
-    stroke-width="10"
+    d="M466.828 1228.97H763.422C767.951 1228.97 772.295 1227.17 775.498 1223.96C778.701 1220.76 780.5 1216.42 780.5 1211.89V1066.61"
+    stroke="#00FF8B"
+    stroke-width="10.1714"
     stroke-linecap="round"
     stroke-linejoin="round"
   />

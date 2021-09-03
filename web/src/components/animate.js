@@ -3,10 +3,12 @@ import { shuffle } from 'lodash-es'
 export const DURATIONS = {
   frames: 500,
   arrows: 500,
-  cash: 200,
+  cash: 500,
   copy: 500,
   four: 300,
   bling: 500,
+  bill: 250,
+  nib: 500,
   glow: 3000,
 }
 
@@ -22,9 +24,15 @@ export const TIMELINE = {
 
   copy: 1000,
   four: 2000,
-  cash: 2500,
+  cash: 3000,
 
-  bling: 3000,
+  bling: 2000,
+
+  bill: 2500,
+  middleBill: 2750,
+  bottomBill: 3000,
+
+  nib: 3000,
 }
 
 export function animateNeon(

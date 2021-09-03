@@ -26,6 +26,6 @@
 
 <style>
   path {
-    opacity: 0;
+    opacity: var(--opacity-initial-logo);
   }
 </style>

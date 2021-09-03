@@ -73,7 +73,16 @@ if (!filename) throw new Error('Must specify filename as an argument')
 
 const filePath = join(ARTWORK_PATH, filename)
 const artworkName = basename(filename, extname(filename))
-const outputPath = resolve(dirname, '..', 'src', 'components', artworkName)
+
+const outputPath = resolve(
+  dirname,
+  '..',
+  'src',
+  'components',
+  'logos',
+  artworkName
+)
+
 const relativeOutputPath = relative(process.cwd(), outputPath)
 const svg = readFileSync(filePath, 'utf-8')
 const $ = cheerio.load(svg)

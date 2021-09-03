@@ -15,8 +15,8 @@
     )
 
     animateNeon(parts, {
-      delay: TIMELINE.copy,
-      duration: DURATIONS.copy,
+      delay: TIMELINE.cash,
+      duration: DURATIONS.cash,
       stagger: true,
     })
   })
@@ -51,6 +51,6 @@
 
 <style>
   path {
-    opacity: 0;
+    opacity: var(--opacity-initial-logo);
   }
 </style>

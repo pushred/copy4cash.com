@@ -1,17 +1,17 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount } from "svelte";
 
-  import { animateNeon, DURATIONS, TIMELINE } from '../../animate'
+  import { animateNeon, DURATIONS, TIMELINE } from "../../animate";
 
-  let g
+  let g;
 
   onMount(() => {
-    animateNeon(g.querySelectorAll('path'), {
+    animateNeon(g.querySelectorAll("path"), {
       delay: TIMELINE.cash + 500,
       duration: DURATIONS.glow,
       stagger: true,
-    })
-  })
+    });
+  });
 </script>
 
 <g bind:this={g}>

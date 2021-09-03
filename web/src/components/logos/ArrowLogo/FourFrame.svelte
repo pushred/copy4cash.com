@@ -59,6 +59,6 @@
 
 <style>
   path {
-    opacity: 0.1;
+    opacity: var(--opacity-initial-logo);
   }
 </style>
