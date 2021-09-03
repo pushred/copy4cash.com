@@ -2,6 +2,7 @@
 import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
+import hire from './documents/hire'
 import project from './documents/project'
 
 import audio from './objects/audio'
@@ -27,6 +28,7 @@ export default createSchema({
     brand,
     event,
     heading,
+    hire,
     imageCarousel,
     imageGallery,
     instagram,

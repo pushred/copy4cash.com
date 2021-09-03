@@ -1,5 +1,6 @@
 import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
+import { CurrencyDollar } from 'phosphor-react'
 
 const Preview = ({ document }) => (
   <iframe
@@ -15,4 +16,15 @@ export const getDefaultDocumentNode = () => {
   ])
 }
 
-export default () => S.list().title('Content').items(S.documentTypeListItems())
+export default () =>
+  S.list()
+    .title('Content')
+    .items([
+      S.listItem()
+        .title('Hire')
+        .icon(CurrencyDollar)
+        .child(S.document().schemaType('hire').documentId('hire')),
+      ...S.documentTypeListItems().filter(
+        (listItem) => !['hire'].includes(listItem.getId())
+      ),
+    ])
