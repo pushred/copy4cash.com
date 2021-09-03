@@ -38,9 +38,9 @@
                   aspectRatio,
                   height,
                   width
-                },
-                mimeType
+                }
               },
+              mimeType,
               url
             },
           },

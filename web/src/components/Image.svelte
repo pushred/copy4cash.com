@@ -11,7 +11,7 @@
 
   const asset = document.asset || {}
   const metadata = asset.metadata || {}
-  const originalFormat = document.mimeType
+  const originalFormat = asset.mimeType
   const urlBuilder = imageUrlBuilder(sanity)
 
   const aspectRatio = metadata.dimensions?.aspectRatio
@@ -110,11 +110,13 @@
 <div bind:this={container}>
   {#if hasIntersected}
     <picture>
-      <source
-        type="image/webp"
-        srcset={sources.srcset?.webP}
-        sizes={sources.sizes}
-      />
+      {#if originalFormat !== 'image/gif'}
+        <source
+          type="image/webp"
+          srcset={sources.srcset?.webP}
+          sizes={sources.sizes}
+        />
+      {/if}
       <source
         type={originalFormat}
         srcset={sources.srcset?.originalFormat}
