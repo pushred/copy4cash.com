@@ -1,8 +1,16 @@
 <script>
+  import { expoOut } from 'svelte/easing'
+  import { fade } from 'svelte/transition'
+
   import Loading from './icons/Loading.svelte'
 </script>
 
-<div>
+<div
+  out:fade={{
+    duration: 1000,
+    easing: expoOut,
+  }}
+>
   <Loading />
 </div>
 
@@ -14,5 +22,6 @@
     align-items: center;
     justify-content: center;
     background-color: var(--purple-black);
+    z-index: var(--z-overlay);
   }
 </style>

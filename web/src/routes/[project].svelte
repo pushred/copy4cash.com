@@ -92,6 +92,7 @@
     Button,
     Grid,
     GridItem,
+    LoadingOverlay,
     Navbar,
     NavLink,
     Pagination,
@@ -99,6 +100,9 @@
   } from '../components'
 
   import { onBreakpointChange } from '../theme.js'
+
+  export let projects = []
+  export let slug = undefined
 
   function getProjectIndex() {
     return projects.findIndex((project) => slug === project.slug?.current)
@@ -143,12 +147,10 @@
     carouselEl.scrollTo(target.offsetLeft, 0)
   }
 
-  export let projects = []
-  export let slug = undefined
-
   let carouselEl = undefined
   let currentIndex = undefined
   let project = undefined
+  let isLoading = true
   let isModalOpen = false
 
   let lg = false
@@ -188,9 +190,9 @@
       const observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting) {
-            const slug = projectEl.id
-            if (!slug) return
-            goto(`/${slug}`)
+            const newSlug = projectEl.id
+            if (!newSlug || newSlug === slug) return
+            goto(`/${newSlug}`)
           }
         },
         {
@@ -208,6 +210,8 @@
       }
     })
 
+    isLoading = false
+
     return () =>
       observers.forEach(({ observer, projectEl }) =>
         observer.unobserve(projectEl)
@@ -224,6 +228,7 @@
 <svelte:window on:keydown={handleKeydown} on:resize={handleResize} />
 
 <div class="layout">
+  {#if isLoading}<LoadingOverlay />{/if}
   <Grid cols={[6, 6, 12]}>
     <GridItem colStart={[2, 3, 1]} colSpan={[4, 2, 2]} rowStart={[2, 2, 1]}>
       <Navbar gotoHome={() => goto('/')}>

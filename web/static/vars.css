@@ -49,6 +49,7 @@
   --z-30: 30;
   --z-40: 40;
   --z-50: 50;
+  --z-overlay: 1000;
 
   --fill-transition: fill 100ms ease-out;
   --slow-opacity-transition: opacity 1000ms ease-out;
