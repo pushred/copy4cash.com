@@ -1,14 +1,30 @@
 <script>
   import { createEventDispatcher } from 'svelte'
 
+  import { onBreakpointChange } from '../theme.js'
+
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
   import PaginationDot from './icons/small/PaginationDot.svelte'
+  import Prompt from './text/Prompt.svelte'
 
   export let currentIndex = undefined
   export let totalPages = 10
 
+  const initialIndex = currentIndex
   const dispatch = createEventDispatcher()
+
+  let lg = false
+
+  let hasSwiped = false
+
+  $: if (currentIndex !== initialIndex && currentIndex !== undefined) {
+    hasSwiped = true
+  }
+
+  onBreakpointChange((breakpoint) => {
+    lg = breakpoint?.key === 'lg'
+  })
 
   function handleChange(selection) {
     if (selection === 'back') currentIndex = currentIndex - 1
@@ -24,12 +40,17 @@
     on:click={handleChange.bind(null, 'back')}
     icon="left-arrows"
   />
-  {#each [...Array(totalPages).keys()] as page, index}
-    <PaginationDot
-      active={index === currentIndex}
-      on:click={handleChange.bind(null, index)}
-    />
-  {/each}
+  {#if lg || (!lg && hasSwiped)}
+    {#each [...Array(totalPages).keys()] as page, index}
+      <PaginationDot
+        active={index === currentIndex}
+        on:click={handleChange.bind(null, index)}
+      />
+    {/each}
+  {:else}
+    <Prompt>Swipe left/right to switch projects</Prompt>
+  {/if}
+
   <Button
     disabled={currentIndex === totalPages - 1}
     on:click={handleChange.bind(null, 'next')}
