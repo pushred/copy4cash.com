@@ -2,28 +2,29 @@
   import { onBreakpointChange } from '../theme.js'
   import StackedLogo from './logos/StackedLogo.svelte'
 
-  let isLarge = false
+  let sm = false
+  let md = false
+  let lg = false
 
   onBreakpointChange((breakpoint) => {
-    isLarge = breakpoint?.key === 'lg'
+    sm = breakpoint?.key === 'sm'
+    md = breakpoint?.key === 'md'
+    lg = breakpoint?.key === 'lg'
   })
 
   export let gotoHome
 </script>
 
-<nav class:is-large={isLarge}>
-  <StackedLogo on:click={gotoHome} />
-  {#if isLarge}
-    <div class="sub-nav">
-      <slot name="sub-nav" />
-    </div>
-    <div class="site-nav">
-      <slot name="site-nav" />
-    </div>
+<nav class:sm class:md class:lg>
+  {#if lg}
+    <StackedLogo on:click={gotoHome} />
   {/if}
+  <div class="site-nav">
+    <slot name="site-nav" />
+  </div>
 </nav>
 
-{#if isLarge}
+{#if lg}
   <svg
     width="363"
     height="2054"
@@ -43,14 +44,14 @@
 {/if}
 
 <style>
-  nav.is-large {
+  nav.lg {
     position: sticky;
     top: var(--space-page-margin-y);
     bottom: var(--space-page-margin-y);
     left: var(--space-page-margin-x);
   }
 
-  nav.is-large .site-nav {
+  nav.lg .site-nav {
     position: fixed;
     bottom: var(--space-page-margin-y);
     display: flex;
@@ -58,11 +59,11 @@
     gap: var(--space-5);
   }
 
-  .sub-nav {
+  nav.sm .site-nav,
+  nav.md .site-nav {
     display: flex;
     justify-content: space-between;
-    margin-top: var(--space-5);
-    padding: 0 11%;
+    gap: var(--space-5);
   }
 
   svg {

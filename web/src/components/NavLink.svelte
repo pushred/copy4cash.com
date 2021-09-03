@@ -1,5 +1,7 @@
 <script>
   import Hire from './icons/nav/Hire.svelte'
+  import Instagram from './icons/nav/Instagram.svelte'
+  import Twitter from './icons/nav/Twitter.svelte'
   import Work from './icons/nav/Work.svelte'
 
   export let hover = false
@@ -17,13 +19,16 @@
   }
 
   function handleClick(event) {
-    event.preventDefault()
-    if (typeof goto === 'function') goto(url)
+    if (typeof goto === 'function' && url) {
+      event.preventDefault()
+      goto(url)
+    }
   }
 </script>
 
 <a
   href={url}
+  target={url.startsWith('http') ? '_blank' : undefined}
   on:click={handleClick}
   on:blur={handleLeave}
   on:focus={handleEnter}
@@ -32,6 +37,10 @@
 >
   {#if icon === 'hire'}
     <Hire {hover} />
+  {:else if icon === 'instagram'}
+    <Instagram {hover} />
+  {:else if icon === 'twitter'}
+    <Twitter {hover} />
   {:else if icon === 'work'}
     <Work {hover} />
   {/if}

@@ -230,24 +230,21 @@
 <div class="layout">
   {#if isLoading}<LoadingOverlay />{/if}
   <Grid cols={[6, 6, 12]}>
-    <GridItem colStart={[2, 3, 1]} colSpan={[4, 2, 2]} rowStart={[2, 2, 1]}>
+    <GridItem colStart={[1, 1, 1]} colSpan={[6, 6, 2]} rowStart={[2, 2, 1]}>
       <Navbar gotoHome={() => goto('/')}>
-        <svelte:fragment slot="sub-nav">
-          <Button
-            variant="raised"
-            icon="back"
-            on:click={() => gotoProject('back')}
-          />
-          <Button variant="raised" icon="menu" on:click={() => goto('/')} />
-          <Button
-            variant="raised"
-            icon="next"
-            on:click={() => gotoProject('next')}
-          />
-        </svelte:fragment>
         <svelte:fragment slot="site-nav">
-          <NavLink icon="hire" label="Hire" />
           <NavLink icon="work" label="Work" {goto} url="/" />
+          <NavLink icon="hire" label="Hire" />
+          <NavLink
+            icon="instagram"
+            label="Insta"
+            url="https://www.instagram.com/whitefridaynight/"
+          />
+          <NavLink
+            icon="twitter"
+            label="Follow"
+            url="https://twitter.com/whitefridaynite"
+          />
         </svelte:fragment>
       </Navbar>
     </GridItem>
@@ -276,6 +273,14 @@
           </section>
         {/each}
       </div>
+      {#if lg}
+        <Pagination
+          totalPages={projects.length}
+          {currentIndex}
+          on:change={handlePagination}
+          --space-bottom="var(--space-6)"
+        />
+      {/if}
     </GridItem>
   </Grid>
 </div>
