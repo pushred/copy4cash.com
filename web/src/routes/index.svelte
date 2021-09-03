@@ -26,13 +26,16 @@
 
 <script>
   import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
 
   import {
     ArrowLogo,
     FeaturedProjects,
+    Flex,
     FullScreenVideo,
     LoadingOverlay,
     NameFooter,
+    NavLink,
   } from '../components'
 
   import { onBreakpointChange } from '../theme.js'
@@ -66,7 +69,11 @@
     <FullScreenVideo vimeoId="334283806" />
   </main>
   <footer>
-    <NameFooter />
+    <Flex justifyContent="space-between">
+      <div />
+      <NameFooter />
+      <NavLink icon="hire" label="Hire" {goto} url="/hire" />
+    </Flex>
   </footer>
 </div>
 
@@ -76,7 +83,7 @@
   }
 
   footer {
-    margin: var(--space-10) 0;
+    margin: var(--space-10);
   }
 
   .sm,

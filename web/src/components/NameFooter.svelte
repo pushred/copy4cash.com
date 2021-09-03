@@ -17,6 +17,7 @@
     flex-direction: column;
     gap: var(--space-2);
     align-items: center;
+    justify-content: flex-end;
     font-style: normal;
     font-weight: 400;
     font-size: var(--text-1);

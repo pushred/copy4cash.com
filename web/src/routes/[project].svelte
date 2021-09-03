@@ -88,17 +88,8 @@
   import { goto } from '$app/navigation'
   import unorphan from 'unorphan'
 
-  import {
-    Button,
-    Grid,
-    GridItem,
-    LoadingOverlay,
-    Navbar,
-    NavLink,
-    Pagination,
-    Project,
-  } from '../components'
-
+  import { Pagination, Project } from '../components'
+  import { isLoading, isModalOpen } from '../stores.js'
   import { onBreakpointChange } from '../theme.js'
 
   export let projects = []
@@ -127,7 +118,7 @@
   }
 
   function handleKeydown(event) {
-    if (isModalOpen) return
+    if ($isModalOpen) return
 
     if (event.key === 'ArrowLeft') {
       gotoProject('back')
@@ -150,8 +141,6 @@
   let carouselEl = undefined
   let currentIndex = undefined
   let project = undefined
-  let isLoading = true
-  let isModalOpen = false
 
   let lg = false
 
@@ -173,10 +162,6 @@
 
   setContext('page', {
     getCarouselEl: () => carouselEl,
-  })
-
-  siteContext.stores.isModalOpen.subscribe((value) => {
-    isModalOpen = value
   })
 
   onBreakpointChange((breakpoint) => {
@@ -210,7 +195,7 @@
       }
     })
 
-    isLoading = false
+    isLoading.set(false)
 
     return () =>
       observers.forEach(({ observer, projectEl }) =>
@@ -227,70 +212,39 @@
 
 <svelte:window on:keydown={handleKeydown} on:resize={handleResize} />
 
-<div class="layout">
-  {#if isLoading}<LoadingOverlay />{/if}
-  <Grid cols={[6, 6, 12]}>
-    <GridItem colStart={[1, 1, 1]} colSpan={[6, 6, 2]} rowStart={[2, 2, 1]}>
-      <Navbar gotoHome={() => goto('/')}>
-        <svelte:fragment slot="site-nav">
-          <NavLink icon="work" label="Work" {goto} url="/" />
-          <NavLink icon="hire" label="Hire" />
-          <NavLink
-            icon="instagram"
-            label="Insta"
-            url="https://www.instagram.com/whitefridaynight/"
-          />
-          <NavLink
-            icon="twitter"
-            label="Follow"
-            url="https://twitter.com/whitefridaynite"
-          />
-        </svelte:fragment>
-      </Navbar>
-    </GridItem>
-
-    <GridItem center colStart={[1, 1, 5]} colSpan={6}>
-      {#if !lg}
-        <Pagination
-          totalPages={projects.length}
-          {currentIndex}
-          on:change={handlePagination}
-          --space-bottom="var(--space-8)"
-        />
+{#if !lg}
+  <Pagination
+    totalPages={projects.length}
+    {currentIndex}
+    on:change={handlePagination}
+    --space-bottom="var(--space-8)"
+  />
+{/if}
+<div bind:this={carouselEl} class="carousel">
+  {#each projects as project, index}
+    <section
+      bind:this={projectEls[index]}
+      id={project.slug?.current}
+      class="project"
+      class:active={index === currentIndex}
+    >
+      {#if index === currentIndex}
+        <Project data={project} />
       {/if}
-      <div bind:this={carouselEl} class="carousel">
-        {#each projects as project, index}
-          <section
-            bind:this={projectEls[index]}
-            id={project.slug?.current}
-            class="project"
-            class:active={index === currentIndex}
-          >
-            {#if index === currentIndex}
-              <Project data={project} />
-            {/if}
-            <div class="shim" aria-hidden>.</div>
-          </section>
-        {/each}
-      </div>
-      {#if lg}
-        <Pagination
-          totalPages={projects.length}
-          {currentIndex}
-          on:change={handlePagination}
-          --space-bottom="var(--space-6)"
-        />
-      {/if}
-    </GridItem>
-  </Grid>
+      <div class="shim" aria-hidden>.</div>
+    </section>
+  {/each}
 </div>
+{#if lg}
+  <Pagination
+    totalPages={projects.length}
+    {currentIndex}
+    on:change={handlePagination}
+    --space-bottom="var(--space-6)"
+  />
+{/if}
 
 <style>
-  .layout {
-    max-width: var(--max-page-width);
-    padding: var(--space-page-margin-y) var(--space-page-margin-x);
-  }
-
   .carousel {
     position: relative; /* required by offsetLeft */
     display: flex;

@@ -5,7 +5,7 @@
   import Work from './icons/nav/Work.svelte'
 
   export let hover = false
-  export let goto
+  export let goto = undefined
   export let icon
   export let label = 'Label'
   export let url = '#'
