@@ -5,6 +5,7 @@
 
   export let colStart = 1
   export let colSpan = 1
+  export let justifyContent = undefined
   export let rowStart = undefined
 
   let props = {
@@ -53,6 +54,9 @@
   class:col-span-12={props.colSpan === 12}
   class:row-start-1={props.rowStart === 1}
   class:row-start-2={props.rowStart === 2}
+  class:justify-center={justifyContent === 'center'}
+  class:justify-left={justifyContent === 'left'}
+  class:justify-right={justifyContent === 'right'}
 >
   <slot />
 </div>
@@ -63,6 +67,21 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .justify-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .justify-left {
+    justify-content: left;
+    text-align: left;
+  }
+
+  .justify-right {
+    justify-content: right;
+    text-align: right;
   }
 
   .col-start-auto {
