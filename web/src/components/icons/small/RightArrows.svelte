@@ -6,6 +6,8 @@
   export let disabled = false
   export let glow = false
   export let visible = false
+  export let x = undefined
+  export let y = undefined
 
   export const DURATIONS = {
     arrow: 500,
@@ -19,6 +21,8 @@
 </script>
 
 <svg
+  {x}
+  {y}
   class:disabled
   width="24"
   height="24"

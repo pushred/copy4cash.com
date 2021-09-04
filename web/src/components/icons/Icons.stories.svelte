@@ -4,16 +4,17 @@
   import Flex from '../Flex.svelte'
 
   import {
-    Close,
-    Next,
-    Back,
-    Play,
-    Pause,
-    Nib,
-    LeftArrows,
-    RightArrows,
-    PaginationDot,
     Audio,
+    Close,
+    Down,
+    Left,
+    LeftArrows,
+    Nib,
+    PaginationDot,
+    Pause,
+    Play,
+    Right,
+    RightArrows,
   } from '.'
 
   const icons = {
@@ -25,16 +26,17 @@
       audio: Audio,
     },
     small: {
-      close: Close,
-      next: Next,
-      back: Back,
-      play: Play,
-      pause: Pause,
-      nib: Nib,
       'left-arrows': LeftArrows,
-      'right-arrows': RightArrows,
       'pagination-dot': PaginationDot,
+      'right-arrows': RightArrows,
       audio: Audio,
+      close: Close,
+      down: Down,
+      left: Left,
+      nib: Nib,
+      pause: Pause,
+      play: Play,
+      right: Right,
     },
   }
 </script>

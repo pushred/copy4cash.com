@@ -5,6 +5,8 @@
 
   export let active = false
   export let glow = false
+  export let x = undefined
+  export let y = undefined
 
   export const DURATIONS = {
     active: 500,
@@ -17,6 +19,8 @@
 </script>
 
 <svg
+  {x}
+  {y}
   width="24"
   height="24"
   viewBox="0 0 24 24"

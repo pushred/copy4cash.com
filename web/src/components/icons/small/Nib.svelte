@@ -5,6 +5,8 @@
 
   export let glow = false
   export let visible = false
+  export let x = undefined
+  export let y = undefined
 
   export const DURATIONS = {
     nib: 1000,
@@ -18,6 +20,8 @@
 </script>
 
 <svg
+  {x}
+  {y}
   width="24"
   height="24"
   viewBox="0 0 24 24"
