@@ -38,7 +38,7 @@
   <div bind:this={modalEl} transition:fade={{ duration: 200 }}>
     <div class="content">
       <slot />
-      <div class="button">
+      <div class="modal-buttons">
         <Button
           variant="raised"
           icon="close"
@@ -67,7 +67,7 @@
     overflow-y: auto;
   }
 
-  :global(.button) {
+  :global(.modal-buttons) {
     position: fixed;
     top: var(--space-8);
     right: var(--space-8);
