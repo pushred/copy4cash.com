@@ -1,3 +1,5 @@
+import { Smiley } from 'phosphor-react'
+
 export default {
   name: 'hire',
   title: 'Hire',
@@ -33,9 +35,35 @@ export default {
       type: 'string',
     },
     {
+      name: 'photo',
+      title: 'Photo',
+      type: 'image',
+    },
+    {
       name: 'resume',
       type: 'file',
       accept: '.pdf',
+    },
+    {
+      type: 'array',
+      name: 'artDirectors',
+      title: 'Art Directors',
+      of: [
+        {
+          type: 'object',
+          icon: Smiley,
+          fields: [
+            {
+              type: 'string',
+              name: 'name',
+            },
+            {
+              type: 'url',
+              name: 'url',
+            },
+          ],
+        },
+      ],
     },
   ],
   __experimental_actions: ['update', 'publish'],
