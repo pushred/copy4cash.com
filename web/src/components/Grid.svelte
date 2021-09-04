@@ -26,6 +26,7 @@
     width: 100%;
     display: grid;
     grid-gap: var(--space-grid-gap);
+    margin-bottom: var(--space-bottom);
   }
 
   .cols-2 {
