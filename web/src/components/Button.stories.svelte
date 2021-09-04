@@ -12,14 +12,40 @@
       control: { type: 'boolean' },
     },
     icon: {
-      options: ['next', 'back', 'close', 'menu', 'play', 'pause'],
+      options: ['close', 'down', 'left', 'menu', 'play', 'pause', 'right'],
+      control: { type: 'select' },
+    },
+    variant: {
+      options: ['raised', 'raised-text'],
       control: { type: 'select' },
     },
   }}
 />
 
 <Template let:args>
-  <Button variant="raised" {...args} />
+  <Button {...args} />
 </Template>
 
-<Story name="Raised" args={{ disabled: false, icon: 'next', label: 'Next' }} />
+<Story
+  name="Raised"
+  args={{ disabled: false, icon: 'right', label: 'Next', variant: 'raised' }}
+/>
+
+<Story
+  name="Raised with Text"
+  args={{
+    disabled: false,
+    label: 'Download',
+    variant: 'raised-text',
+  }}
+/>
+
+<Story
+  name="Raised with Text and Icon"
+  args={{
+    disabled: false,
+    icon: 'down',
+    label: 'Download',
+    variant: 'raised-text',
+  }}
+/>
