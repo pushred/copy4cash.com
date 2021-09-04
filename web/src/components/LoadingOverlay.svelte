@@ -6,7 +6,7 @@
 </script>
 
 <div
-  out:fade={{
+  out:fade|local={{
     duration: 1000,
     easing: expoOut,
   }}

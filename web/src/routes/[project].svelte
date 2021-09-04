@@ -84,7 +84,7 @@
 </script>
 
 <script>
-  import { getContext, onMount, setContext } from 'svelte'
+  import { onMount, setContext } from 'svelte'
   import { goto } from '$app/navigation'
   import unorphan from 'unorphan'
 
@@ -138,6 +138,8 @@
     carouselEl.scrollTo(target.offsetLeft, 0)
   }
 
+  isLoading.set(true)
+
   let carouselEl = undefined
   let currentIndex = undefined
   let project = undefined
@@ -157,8 +159,6 @@
       carouselEl.scrollLeft = target.offsetLeft
     }
   }
-
-  const siteContext = getContext('site')
 
   setContext('page', {
     getCarouselEl: () => carouselEl,
