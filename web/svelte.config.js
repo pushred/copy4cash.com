@@ -1,10 +1,9 @@
-import netlifyAdapter from '@sveltejs/adapter-netlify'
+import staticAdapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: netlifyAdapter(),
-    target: '#svelte',
+    adapter: staticAdapter(),
   },
 }
 
