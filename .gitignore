@@ -1,6 +1,8 @@
+build
 node_modules
 package
 
 .DS_Store
+.netlify
 .svelte-kit
 .yarn

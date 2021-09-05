@@ -1813,6 +1813,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iarna/toml@npm:^2.2.5":
+  version: 2.2.5
+  resolution: "@iarna/toml@npm:2.2.5"
+  checksum: 929a8516a24996b75768f7e0591815e37004f2cdda12b245c9a5ae64f423b4bd2bdd6943fc80e9bb5360a7be0b6d05bac57c178578d9a73acfb2eab125c594ee
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -4007,6 +4014,16 @@ __metadata:
     react: ^16.8.0 || ^17.0.0
     react-dom: ^16.8.0 || ^17.0.0
   checksum: e96deabacb947aa92885d309b8ebcc52f322e1442ae7d319ca6b6124be7761ed540f2131318f3c587ce579df56f4105d2f882d106b679ebeef3f5a0550e90dd5
+  languageName: node
+  linkType: hard
+
+"@sveltejs/adapter-netlify@npm:^1.0.0-next.0":
+  version: 1.0.0-next.30
+  resolution: "@sveltejs/adapter-netlify@npm:1.0.0-next.30"
+  dependencies:
+    "@iarna/toml": ^2.2.5
+    esbuild: ^0.12.5
+  checksum: 9c1a08be89a3d1a568bb8803d0cd06d70454c14db761b6ea545bfb35bdf48decab1af7b70a7dd21a544f78a70106a9533abb45828234f333a1b68f56b980a71e
   languageName: node
   linkType: hard
 
@@ -8608,6 +8625,15 @@ __metadata:
   bin:
     esbuild: bin/esbuild
   checksum: b7f4839ba9dfb2e2c2fefd96bda6d6d82cc21e494120a72e9571bf74bc13796b884b04bc216dc8aaaba7cece5ef6ea6bba4a99e00abd3c6d713d4b2ea6a5e39c
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.12.5":
+  version: 0.12.25
+  resolution: "esbuild@npm:0.12.25"
+  bin:
+    esbuild: bin/esbuild
+  checksum: fedfbd8cc1330cbadb8b9eb9f8d50fd8872fdd94b7baca764c6ac14c19a99d584c258f4ade8fbb0161161d9b5b600db5ab282cbfd17e62fe05df8b02fae6d779
   languageName: node
   linkType: hard
 
@@ -19857,6 +19883,7 @@ fsevents@^1.2.7:
     "@storybook/addon-essentials": next
     "@storybook/addon-svelte-csf": ^1.0.0
     "@storybook/svelte": next
+    "@sveltejs/adapter-netlify": ^1.0.0-next.0
     "@sveltejs/kit": next
     body-scroll-lock: ^4.0.0-beta.0
     cheerio: ^1.0.0-rc.10
