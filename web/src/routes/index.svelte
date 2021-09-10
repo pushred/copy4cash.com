@@ -70,7 +70,7 @@
   </main>
   <footer>
     <Flex justifyContent="space-between">
-      <div />
+      <div class="shim" />
       <NameFooter />
       <NavLink icon="hire" label="Hire" {goto} url="/hire" />
     </Flex>
@@ -80,6 +80,10 @@
 <style>
   :global(header > *) {
     height: 250px;
+  }
+
+  .shim {
+    width: 4rem;
   }
 
   footer {
