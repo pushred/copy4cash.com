@@ -5,8 +5,6 @@
   import sanity from '../sanity'
 
   export async function load({ page }) {
-    const { project } = page.params
-
     const query = groq`
       *[_type == 'project'] {
         _id,
@@ -73,11 +71,15 @@
     `
 
     const data = await sanity.fetch(query)
+    const projects = overlayDrafts(data)
 
     return {
       props: {
-        slug: project,
-        projects: overlayDrafts(data),
+        projects,
+        currentIndex: projects.findIndex(
+          (project) => page.params.project === project.slug?.current
+        ),
+        slug: page.params.project,
       },
     }
   }
@@ -93,6 +95,7 @@
   import { onBreakpointChange } from '../theme.js'
 
   export let projects = []
+  export let currentIndex = undefined
   export let slug = undefined
 
   function getProjectIndex() {
@@ -141,7 +144,6 @@
   isLoading.set(true)
 
   let carouselEl = undefined
-  let currentIndex = undefined
   let project = undefined
 
   let lg = false
