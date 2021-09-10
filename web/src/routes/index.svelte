@@ -2,9 +2,9 @@
   import groq from 'groq'
 
   import { overlayDrafts } from '../overlayDrafts'
-  import sanity from '../sanity'
+  import { getSanityClient } from '../sanity'
 
-  export async function load() {
+  export async function load({ page }) {
     const query = groq`
       *[_type == 'project'] | order(order) {
         _id,
@@ -15,6 +15,8 @@
         name
       }
     `
+
+    const sanity = getSanityClient(page.host)
 
     return {
       props: {

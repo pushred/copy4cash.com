@@ -4,7 +4,7 @@
 
   import Placeholder from './Placeholder.svelte'
 
-  import sanity from '../sanity.js'
+  import { getSanityClient } from '../sanity.js'
   import { isModalOpen } from '../stores.js'
 
   export let caption
@@ -13,6 +13,7 @@
   const asset = document.asset || {}
   const metadata = asset.metadata || {}
   const originalFormat = asset.mimeType
+  const sanity = getSanityClient()
   const urlBuilder = imageUrlBuilder(sanity)
 
   const aspectRatio = metadata.dimensions?.aspectRatio

@@ -4,10 +4,10 @@
   import unorphan from 'unorphan'
 
   import { overlayDrafts } from '../overlayDrafts'
-  import sanity from '../sanity'
+  import { getSanityClient } from '../sanity'
   import { isLoading } from '../stores.js'
 
-  export async function load() {
+  export async function load({ page }) {
     const query = groq`
       *[_type == 'hire'] {
         status,
@@ -38,6 +38,8 @@
         }
       }
     `
+
+    const sanity = getSanityClient(page.host)
 
     return {
       props: {

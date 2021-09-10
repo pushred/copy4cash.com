@@ -2,7 +2,7 @@
   import groq from 'groq'
 
   import { overlayDrafts } from '../overlayDrafts'
-  import sanity from '../sanity'
+  import { getSanityClient } from '../sanity'
 
   export async function load({ page }) {
     const query = groq`
@@ -70,6 +70,7 @@
       }
     `
 
+    const sanity = getSanityClient(page.host)
     const data = await sanity.fetch(query)
     const projects = overlayDrafts(data)
 
