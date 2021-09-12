@@ -263,6 +263,7 @@
     flex-shrink: 0;
     overflow-y: hidden;
     scroll-snap-align: start;
+    padding-top: var(--space-10);
   }
 
   .project.active {

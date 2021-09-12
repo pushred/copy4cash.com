@@ -58,8 +58,11 @@
   }
 
   .label {
-    font-size: var(--text-1);
-    color: var(--gold);
+    font-family: var(--ui-font);
+    font-size: var(--text-0);
+    font-weight: 400;
+    color: var(--blended-gold);
+    text-transform: uppercase;
     line-height: 1.2;
   }
 </style>

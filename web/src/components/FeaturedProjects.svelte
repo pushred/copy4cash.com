@@ -70,6 +70,7 @@
   a {
     display: block;
     color: #fff;
+    font-family: var(--ui-font);
     font-size: var(--text-1);
     transition: color 100ms ease-out;
   }
@@ -79,9 +80,9 @@
   }
 
   strong {
+    font-family: var(--ui-font);
     font-size: var(--text-2);
     font-weight: bold;
-    font-style: italic;
     text-transform: uppercase;
   }
 

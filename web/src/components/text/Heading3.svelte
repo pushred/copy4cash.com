@@ -34,9 +34,9 @@
     --space-bottom: var(--space-4);
 
     margin-bottom: var(--space-bottom);
+    font-family: var(--heading-font);
     font-size: var(--text-3);
-    font-style: italic;
-    font-weight: bold;
+    font-weight: 700;
     line-height: 1.5;
     color: var(--purple);
   }

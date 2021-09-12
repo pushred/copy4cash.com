@@ -12,7 +12,8 @@
   } from '../components'
 
   import * as stores from '../stores'
-  import { getMediaQueryStrings, theme } from '../theme.js'
+  import { loadFonts } from '../fonts.js'
+  import { getMediaQueryStrings } from '../theme.js'
 
   setContext('site', {
     stores,
@@ -46,6 +47,8 @@
       }
       mediaQueryList.addEventListener('change', listener)
     })
+
+    loadFonts()
   })
 
   onDestroy(() => {

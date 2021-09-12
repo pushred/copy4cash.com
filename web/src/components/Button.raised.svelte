@@ -70,9 +70,10 @@
     top: 0;
     left: 0;
     padding: 0 var(--space-3) 0 var(--space-2);
-    font-weight: 600;
-    font-size: var(--text-2);
-    color: var(--purple);
+    font-family: var(--ui-font);
+    font-weight: 700;
+    font-size: var(--text-1);
+    color: var(--blended-gold);
     line-height: 30px;
   }
 

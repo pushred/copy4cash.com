@@ -10,9 +10,8 @@
 
 <style>
   * {
-    --space-bottom: var(--space-4);
-
     margin-bottom: var(--space-bottom);
+    font-family: var(--ui-font);
     font-size: var(--text-1);
     line-height: 1.25;
     color: var(--gold);

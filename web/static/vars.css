@@ -1,8 +1,10 @@
 :root {
   --gold: #ffb32c;
+  --blended-gold: hsla(38, 100%, 80%, 70%);
   --blue: #004fff;
   --neon-green: #00ff8b;
   --dark-purple: #17013a;
+  --light-purple: #a870ff;
   --purple: #6a0bff;
   --light-purple: #a870ff;
   --faded-purple: #544370;
@@ -13,6 +15,11 @@
   --button-icon-disabled: var(--faded-purple);
   --button-icon-hover: var(--neon-green);
 
+  --heading-font: 'Mallory Compact';
+  --text-font: 'Mallory MP';
+  --ui-font: 'Mallory MP Compact';
+
+  --text-0: 0.75rem; /* 12px */
   --text-1: 0.875rem; /* 14px */
   --text-2: 1rem; /* 16px */
   --text-3: 1.5rem; /* 24px */

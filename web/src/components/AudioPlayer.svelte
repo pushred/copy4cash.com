@@ -42,7 +42,7 @@
 </script>
 
 <article>
-  <Heading4>{caption}</Heading4>
+  <Heading4 --space-bottom="0">{caption}</Heading4>
   <Flex --align-items="center" --gap="var(--space-2)">
     <Button
       --space-bottom="0"

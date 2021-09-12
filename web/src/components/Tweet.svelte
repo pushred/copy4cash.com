@@ -13,6 +13,7 @@
     border: 1px solid var(--purple);
     border-radius: var(--space-5);
     box-shadow: 0 0 2px var(--purple), 0 0 3px var(--purple);
+    font-family: var(--text-font);
     font-size: var(--text-2);
     line-height: 1.5;
     color: var(--gold);
