@@ -18,6 +18,11 @@ export default {
           hidden: true,
         },
         {
+          name: 'quoteHtml',
+          type: 'string',
+          hidden: true,
+        },
+        {
           name: 'embedHtml',
           type: 'string',
         },

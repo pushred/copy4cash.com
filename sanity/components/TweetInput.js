@@ -50,16 +50,27 @@ export const TweetInput = React.forwardRef((props, ref) => {
       setEmbedHtml(inputValue)
 
       const authorMatches = /\(@(.*)\)/.exec(inputValue)
-      let author
 
-      if (author !== null && authorMatches[1]) {
+      const quoteMatches = /<blockquote[^>]*>(.*)<\/blockquote>/.exec(
+        inputValue
+      )
+
+      let author
+      let quoteHtml
+
+      if (author !== null && authorMatches?.length && authorMatches[1]) {
         author = authorMatches[1]
+      }
+
+      if (quoteHtml !== null && quoteMatches?.length && quoteMatches[1]) {
+        quoteHtml = quoteMatches[1]
       }
 
       onChange(
         PatchEvent.from(
           set({
             author,
+            quoteHtml,
             embedHtml: inputValue,
           })
         )

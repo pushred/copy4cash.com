@@ -52,7 +52,7 @@ export const InstagramInput = React.forwardRef((props, ref) => {
       const authorMatches = /\(@(.*)\)/.exec(inputValue)
       let author
 
-      if (author !== null && authorMatches[1]) {
+      if (author !== null && authorMatches?.length && authorMatches[1]) {
         author = authorMatches[1]
       }
 
