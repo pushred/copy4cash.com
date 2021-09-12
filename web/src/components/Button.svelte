@@ -6,6 +6,7 @@
   import Close from './icons/small/Close.svelte'
   import Down from './icons/small/Down.svelte'
   import Email from './icons/small/Email.svelte'
+  import Instagram from './icons/small/Instagram.svelte'
   import Left from './icons/small/Left.svelte'
   import LeftArrows from './icons/small/LeftArrows.svelte'
   import LinkedIn from './icons/small/LinkedIn.svelte'
@@ -14,6 +15,7 @@
   import Play from './icons/small/Play.svelte'
   import Right from './icons/small/Right.svelte'
   import RightArrows from './icons/small/RightArrows.svelte'
+  import Twitter from './icons/small/Twitter.svelte'
   import WorkingNotWorking from './icons/small/WorkingNotWorking.svelte'
 
   export let disabled = false
@@ -36,6 +38,7 @@
     if (icon === 'close') Icon = Close
     if (icon === 'down') Icon = Down
     if (icon === 'email') Icon = Email
+    if (icon === 'instagram') Icon = Instagram
     if (icon === 'left-arrows') Icon = LeftArrows
     if (icon === 'left') Icon = Left
     if (icon === 'linkedin') Icon = LinkedIn
@@ -44,6 +47,7 @@
     if (icon === 'play') Icon = Play
     if (icon === 'right-arrows') Icon = RightArrows
     if (icon === 'right') Icon = Right
+    if (icon === 'twitter') Icon = Twitter
     if (icon === 'working-not-working') Icon = WorkingNotWorking
   }
 
