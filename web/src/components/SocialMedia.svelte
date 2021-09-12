@@ -1,8 +1,10 @@
 <script>
   import { tick } from 'svelte'
 
-  import AppIcon from './AppIcon.svelte'
+  import Button from './Button.svelte'
+  import Flex from './Flex.svelte'
   import Modal from './Modal.svelte'
+  import Tweet from './Tweet.svelte'
 
   export let data = []
 
@@ -40,12 +42,29 @@
 </svelte:head>
 
 <nav>
-  {#if instagrams.length}
-    <AppIcon icon="instagram" on:click={() => view('instagram')} />
-  {/if}
   {#if tweets.length}
-    <AppIcon icon="twitter" on:click={() => view('twitter')} />
+    <Tweet html={tweets[0].embed.quoteHtml} />
   {/if}
+  <Flex gap="5" --space-bottom="0">
+    {#if instagrams.length}
+      <Button
+        --space-bottom="0"
+        variant="raised-text"
+        icon="instagram"
+        label="Instagram"
+        on:click={() => view('instagram')}
+      />
+    {/if}
+    {#if tweets.length}
+      <Button
+        --space-bottom="0"
+        variant="raised-text"
+        icon="twitter"
+        label="Tweets"
+        on:click={() => view('twitter')}
+      />
+    {/if}
+  </Flex>
 </nav>
 
 <Modal isOpen={posts !== null} onClose={handleClose}>
@@ -63,9 +82,11 @@
 
 <style>
   nav {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: var(--space-bottom);
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 
   .viewer {
