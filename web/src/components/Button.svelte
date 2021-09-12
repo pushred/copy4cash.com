@@ -75,6 +75,7 @@
       {hover}
       hasIcon={Boolean(icon)}
       label={variant === 'raised-text' ? label : undefined}
+      visibleLabel={variant === 'raised-text'}
     >
       <svelte:component this={Icon} {disabled} {hover} x={iconX} y={iconY} />
     </RaisedButton>

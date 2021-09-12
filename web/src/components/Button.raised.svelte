@@ -2,6 +2,7 @@
   export let hasIcon = false
   export let hover = false
   export let label = undefined
+  export let visibleLabel = false
 
   const iconWidth = 24
   const height = 36
@@ -10,10 +11,10 @@
   const shadowStroke = 2
 
   let labelEl
-  let width = 0
-  let viewboxWidth = 0
+  let width = 30
+  let viewboxWidth = 36
 
-  $: if (labelEl) {
+  $: if (visibleLabel && labelEl) {
     // TODO: simplify + improve font resizing by only drawing the shadow with SVG
     const labelWidth = labelEl.getBoundingClientRect().width
     width = hasIcon ? iconWidth + labelWidth : labelWidth
@@ -57,7 +58,11 @@
   <slot />
 </svg>
 
-{#if label}<span class="label" bind:this={labelEl}>{label}</span>{/if}
+{#if visibleLabel && label}
+  <span class="label" bind:this={labelEl}>
+    {label}
+  </span>
+{/if}
 
 <style>
   .label {
