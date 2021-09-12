@@ -72,13 +72,13 @@
     <nav>
       <Button
         variant="raised"
-        icon="back"
+        icon="left"
         label="Back"
         on:click={() => slide('next')}
       />
       <Button
         variant="raised"
-        icon="next"
+        icon="right"
         label="Next"
         on:click={() => slide('next')}
       />

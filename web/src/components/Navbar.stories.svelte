@@ -10,9 +10,9 @@
     <GridItem colStart={[2, 3, 1]} colSpan={[4, 2, 2]} rowStart={[2, 2, 1]}>
       <Navbar isLarge={true}>
         <svelte:fragment slot="sub-nav">
-          <Button variant="raised" icon="back" />
+          <Button variant="raised" icon="left" />
           <Button variant="raised" icon="menu" />
-          <Button variant="raised" icon="next" />
+          <Button variant="raised" icon="right" />
         </svelte:fragment>
         <svelte:fragment slot="site-nav">
           <NavLink icon="hire" label="Hire" />
