@@ -86,7 +86,9 @@
       </GridItem>
 
       <GridItem center colStart={[1, 1, 5]} colSpan={6}>
-        <slot />
+        <div class="wrapper">
+          <slot />
+        </div>
       </GridItem>
     </Grid>
   </div>
@@ -100,5 +102,10 @@
   .layout {
     max-width: var(--max-page-width);
     padding: var(--space-page-margin-y) var(--space-page-margin-x);
+  }
+
+  .wrapper {
+    /* this element avoids issue with double-rendering */
+    display: contents;
   }
 </style>
