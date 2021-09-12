@@ -71,7 +71,12 @@
     <FullScreenVideo vimeoId="334283806" />
   </main>
   <footer>
-    <Flex justifyContent="space-between">
+    <Flex
+      alignItems={['center', 'center', undefined]}
+      flexDirection={['column', 'column', undefined]}
+      gap={['5', '5', undefined]}
+      justifyContent={[undefined, undefined, 'space-between']}
+    >
       <div class="shim" />
       <NameFooter />
       <NavLink icon="hire" label="Hire" {goto} url="/hire" />
