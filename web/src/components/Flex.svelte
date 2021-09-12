@@ -27,7 +27,6 @@
         justifyContent,
         inset,
       })
-      console.log(breakpoint, props)
     })
   }
 </script>
