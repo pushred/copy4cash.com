@@ -7,14 +7,16 @@
   export let inset = undefined
   export let justifyContent = undefined
   export let position = undefined
+  export let wrap = undefined
 
   let props = {
     alignItems,
     flexDirection,
     gap,
-    position,
-    justifyContent,
     inset,
+    justifyContent,
+    position,
+    wrap,
   }
 
   $: {
@@ -23,9 +25,10 @@
         alignItems,
         flexDirection,
         gap,
-        position,
-        justifyContent,
         inset,
+        justifyContent,
+        position,
+        wrap,
       })
     })
   }
@@ -34,6 +37,7 @@
 <div
   class:absolute={props.position === 'absolute'}
   class:flex-direction-column={props.flexDirection === 'column'}
+  class:flex-wrap={props.wrap === true}
   class:inset-0={props.inset === '0'}
   class:items-center={props.alignItems === 'center'}
   class:justify-center={props.justifyContent === 'center'}
@@ -67,6 +71,10 @@
 
   .flex-direction-column {
     flex-direction: column;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
   }
 
   .inset-0 {
