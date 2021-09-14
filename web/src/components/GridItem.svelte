@@ -3,23 +3,31 @@
 
   export let center = false
 
+  export let alignSelf = undefined
   export let colStart = 1
   export let colSpan = 1
-  export let justifyContent = undefined
+  export let justifySelf = undefined
   export let rowStart = undefined
+  export let textAlign = undefined
 
   let props = {
+    alignSelf,
     colStart,
     colSpan,
+    justifySelf,
     rowStart,
+    textAlign,
   }
 
   $: {
     onBreakpointChange((breakpoint) => {
       props = getResponsivePropValues(breakpoint, {
+        alignSelf,
         colStart,
         colSpan,
+        justifySelf,
         rowStart,
+        textAlign,
       })
     })
   }
@@ -27,6 +35,9 @@
 
 <div
   class:center
+  class:align-self-center={props.alignSelf === 'center'}
+  class:align-self-left={props.alignSelf === 'left'}
+  class:align-self-right={props.alignSelf === 'right'}
   class:col-start-auto={props.colStart === 'auto'}
   class:col-start-1={props.colStart === 1}
   class:col-start-2={props.colStart === 2}
@@ -54,34 +65,39 @@
   class:col-span-12={props.colSpan === 12}
   class:row-start-1={props.rowStart === 1}
   class:row-start-2={props.rowStart === 2}
-  class:justify-center={justifyContent === 'center'}
-  class:justify-left={justifyContent === 'left'}
-  class:justify-right={justifyContent === 'right'}
+  class:justify-self-center={props.justifySelf === 'center'}
+  class:justify-self-left={props.justifySelf === 'left'}
+  class:justify-self-right={props.justifySelf === 'right'}
+  class:text-align-center={props.textAlign === 'center'}
+  class:text-align-left={props.textAlign === 'left'}
+  class:text-align-right={props.textAlign === 'right'}
 >
   <slot />
 </div>
 
 <style>
-  .center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .align-self-center {
+    align-self: center;
   }
 
-  .justify-center {
-    justify-content: center;
-    text-align: center;
+  .align-self-left {
+    align-self: left;
   }
 
-  .justify-left {
-    justify-content: left;
-    text-align: left;
+  .align-self-right {
+    align-self: right;
   }
 
-  .justify-right {
-    justify-content: right;
-    text-align: right;
+  .justify-self-center {
+    align-self: center;
+  }
+
+  .justify-self-left {
+    justify-self: left;
+  }
+
+  .justify-self-right {
+    justify-self: right;
   }
 
   .col-start-auto {
@@ -190,5 +206,17 @@
 
   .row-start-2 {
     grid-row-start: 2;
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+
+  .text-align-left {
+    text-align: left;
+  }
+
+  .text-align-right {
+    text-align: right;
   }
 </style>
