@@ -5,13 +5,9 @@
   export let blocks = []
 </script>
 
-<div
-  class:center={align === 'center'}
-  class:left={align === 'left'}
-  class:right={align === 'right'}
->
+<div>
   {#each blocks as block}
-    <Paragraph>
+    <Paragraph {align}>
       {#each block.children as span}
         {span.text}
       {/each}
@@ -22,17 +18,5 @@
 <style>
   div {
     margin-bottom: var(--space-bottom);
-  }
-
-  .center {
-    text-align: center;
-  }
-
-  .left {
-    text-align: left;
-  }
-
-  .right {
-    text-align: right;
   }
 </style>
