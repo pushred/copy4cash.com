@@ -137,6 +137,7 @@
 <style>
   img {
     width: 100%;
+    max-width: var(--max-width);
     height: auto;
   }
 </style>
