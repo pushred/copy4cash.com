@@ -4,7 +4,7 @@
   import Panel from './Panel.svelte'
 </script>
 
-<Panel>
+<Panel --space-bottom="0">
   <blockquote class="html">
     {@html html}
   </blockquote>
