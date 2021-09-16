@@ -63,6 +63,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>Copy4Ca$h</title>
+</svelte:head>
+
 <div class="layout" class:sm class:md class:lg class:xl>
   <header>
     <ArrowLogo />
