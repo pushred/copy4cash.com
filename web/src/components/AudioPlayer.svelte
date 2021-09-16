@@ -4,6 +4,8 @@
   import Flex from './Flex.svelte'
   import Heading4 from './text/Heading4.svelte'
 
+  import { currentPlayerId } from '../stores.js'
+
   export let caption = undefined
   export let url = undefined
 
@@ -13,6 +15,15 @@
   let playedEl
   let isPlaying = false
 
+  let id
+
+  $: id = url?.split('/').pop().split('.').shift()
+
+  $: if (isPlaying && $currentPlayerId !== id) {
+    isPlaying = false
+    audio.pause()
+  }
+
   function handleToggle() {
     isPlaying = !isPlaying
 
@@ -20,6 +31,7 @@
       audio.pause()
     } else if (isPlaying && canPlaythrough) {
       audio.play()
+      currentPlayerId.set(id)
     }
 
     if (isPlaying && !audio && url) {
