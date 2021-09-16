@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte'
 
+  import { isTouch } from '../stores.js'
   import { onBreakpointChange } from '../theme.js'
 
   import Button from './Button.svelte'
@@ -14,17 +15,11 @@
   const initialIndex = currentIndex
   const dispatch = createEventDispatcher()
 
-  let lg = false
-
   let hasSwiped = false
 
   $: if (currentIndex !== initialIndex && currentIndex !== undefined) {
     hasSwiped = true
   }
-
-  onBreakpointChange((breakpoint) => {
-    lg = breakpoint?.key === 'lg'
-  })
 
   function handleChange(selection) {
     if (selection === 'back') currentIndex = currentIndex - 1
@@ -40,7 +35,7 @@
     on:click={handleChange.bind(null, 'back')}
     icon="left-arrows"
   />
-  {#if lg || (!lg && hasSwiped)}
+  {#if hasSwiped || !$isTouch}
     {#each [...Array(totalPages).keys()] as page, index}
       <PaginationDot
         active={index === currentIndex}

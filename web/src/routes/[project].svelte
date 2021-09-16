@@ -92,7 +92,7 @@
   import unorphan from 'unorphan'
 
   import { Pagination, Project } from '../components'
-  import { isLoading, isModalOpen } from '../stores.js'
+  import { isLoading, isModalOpen, isTouch } from '../stores.js'
   import { onBreakpointChange } from '../theme.js'
 
   export let projects = []
@@ -223,7 +223,7 @@
     --space-bottom="var(--space-8)"
   />
 {/if}
-<div bind:this={carouselEl} class="carousel">
+<div bind:this={carouselEl} class="carousel" class:has-touch={$isTouch}>
   {#each projects as project, index}
     <section
       bind:this={projectEls[index]}
@@ -252,6 +252,10 @@
     position: relative; /* required by offsetLeft */
     display: flex;
     width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel.has-touch {
     overflow-y: hidden;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
