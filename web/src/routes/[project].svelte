@@ -6,7 +6,7 @@
 
   export async function load({ page }) {
     const query = groq`
-      *[_type == 'project'] {
+      *[_type == 'project'] | order(order) {
         _id,
         slug,
         client,
