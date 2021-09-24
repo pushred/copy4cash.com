@@ -43,13 +43,15 @@
           if (entries[0].isIntersecting) {
             const newSlug = projectEl.id
             if (!newSlug || newSlug === currentSlug) return
-            goto(`/${newSlug}`)
+            setTimeout(() => {
+              goto(`/${newSlug}`)
+            }, 500) // delay navigation until scroll snap occurs
           }
         },
         {
           root: carouselEl,
           rootMargin: '0px 0px 0px 0px',
-          threshold: 0.5,
+          threshold: 0.9,
         }
       )
 
@@ -80,10 +82,7 @@
       class="project"
       class:active={index === currentIndex}
     >
-      {#if index === currentIndex}
-        <Project data={project} />
-      {/if}
-      <div class="shim" aria-hidden>.</div>
+      <Project data={project} />
     </section>
   {/each}
 </div>
@@ -105,8 +104,9 @@
 
   .project {
     width: 100%;
-    height: 1px; /* limit height for observer threshold */
+    max-height: 100vh;
     flex-shrink: 0;
+    margin: 0 var(--space-10);
     overflow-x: hidden;
     overflow-y: hidden;
     scroll-snap-align: end;
@@ -116,12 +116,6 @@
   .project.active {
     overflow-y: auto;
     height: auto;
-  }
-
-  .shim {
-    /* carousel does not scroll to empty project shells */
-    height: 1px;
-    overflow: hidden;
-    visibility: hidden;
+    max-height: auto;
   }
 </style>

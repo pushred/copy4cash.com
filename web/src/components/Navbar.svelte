@@ -20,7 +20,7 @@
     <StackedLogo on:click={gotoHome} />
   {/if}
   <div class="site-nav">
-    <slot name="site-nav" />
+    <slot />
   </div>
 </nav>
 

@@ -60,10 +60,6 @@
   })
 </script>
 
-<svelte:head>
-  <title>Copy4Ca$h</title>
-</svelte:head>
-
 {#if isHome}
   {#if isLoading}<LoadingOverlay />{/if}
   <slot />
@@ -77,20 +73,18 @@
         rowStart={[2, 2, 1, 1]}
       >
         <Navbar gotoHome={() => goto('/')}>
-          <svelte:fragment slot="site-nav">
-            <NavLink icon="work" label="Work" {goto} url="/" />
-            <NavLink icon="hire" label="Hire" {goto} url="/hire" />
-            <NavLink
-              icon="instagram"
-              label="Insta"
-              url="https://www.instagram.com/whitefridaynight/"
-            />
-            <NavLink
-              icon="twitter"
-              label="Follow"
-              url="https://twitter.com/whitefridaynite"
-            />
-          </svelte:fragment>
+          <NavLink icon="work" label="Work" {goto} url="/" />
+          <NavLink icon="hire" label="Hire" {goto} url="/hire" />
+          <NavLink
+            icon="instagram"
+            label="Insta"
+            url="https://www.instagram.com/whitefridaynight/"
+          />
+          <NavLink
+            icon="twitter"
+            label="Follow"
+            url="https://twitter.com/whitefridaynite"
+          />
         </Navbar>
       </GridItem>
 
