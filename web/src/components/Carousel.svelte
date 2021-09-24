@@ -87,6 +87,10 @@
 </div>
 
 <style>
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   .carousel {
     margin-bottom: var(--space-bottom);
   }

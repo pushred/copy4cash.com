@@ -55,7 +55,7 @@
 
 <article>
   <Heading4 --space-bottom="0">{caption}</Heading4>
-  <Flex --align-items="center" --gap="var(--space-2)">
+  <Flex --align-items="center" --gap="var(--space-2)" --width="100%">
     <Button
       --space-bottom="0"
       icon={isPlaying ? 'pause' : 'play'}
@@ -81,7 +81,6 @@
     height: var(--height-1);
     background-color: hsla(38.4, 100%, 58.6%, 0.1);
     border-radius: var(--height-1);
-    min-width: 20em;
     overflow: hidden;
   }
 
