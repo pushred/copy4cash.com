@@ -7,6 +7,7 @@ export const theme = {
     sm: '0em',
     md: '40em', // 640px
     lg: '75em', // 1200px
+    xl: '87.5em', // 1400px
   },
 }
 

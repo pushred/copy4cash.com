@@ -47,6 +47,7 @@
   let sm = false
   let md = false
   let lg = false
+  let xl = false
 
   let isLoading = true
 
@@ -54,6 +55,7 @@
     sm = breakpoint?.key === 'sm'
     md = breakpoint?.key === 'md'
     lg = breakpoint?.key === 'lg'
+    xl = breakpoint?.key === 'xl'
   })
 
   onMount(() => {
@@ -61,7 +63,7 @@
   })
 </script>
 
-<div class="layout" class:sm class:md class:lg>
+<div class="layout" class:sm class:md class:lg class:xl>
   <header>
     <ArrowLogo />
   </header>
@@ -72,10 +74,10 @@
   </main>
   <footer>
     <Flex
-      alignItems={['center', 'center', undefined]}
-      flexDirection={['column', 'column', undefined]}
-      gap={['5', '5', undefined]}
-      justifyContent={[undefined, undefined, 'space-between']}
+      alignItems={['center', 'center', undefined, undefined]}
+      flexDirection={['column', 'column', undefined, undefined]}
+      gap={['5', '5', undefined, undefined]}
+      justifyContent={[undefined, undefined, 'space-between', 'space-between']}
     >
       <div class="shim" />
       <NameFooter />
@@ -107,7 +109,8 @@
     margin-bottom: var(--space-10);
   }
 
-  .lg {
+  .lg,
+  .xl {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -118,7 +121,8 @@
     justify-content: space-between;
   }
 
-  .lg header {
+  .lg header,
+  .xl header {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -126,7 +130,8 @@
     padding-bottom: var(--space-10);
   }
 
-  .lg main {
+  .lg main,
+  .xl main {
     display: flex;
     justify-content: center;
     flex-grow: 1;

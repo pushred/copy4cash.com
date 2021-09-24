@@ -15,6 +15,5 @@
     font-size: var(--text-1);
     line-height: 1.25;
     color: var(--gold);
-    text-transform: uppercase;
   }
 </style>

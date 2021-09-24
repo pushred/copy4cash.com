@@ -33,6 +33,7 @@
 
 <style>
   div {
+    display: inline-block;
     margin-bottom: var(--space-3);
   }
 </style>

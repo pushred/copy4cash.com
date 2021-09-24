@@ -34,11 +34,12 @@
     --space-bottom: var(--space-4);
 
     margin-bottom: var(--space-bottom);
+    color: var(--purple);
     font-family: var(--heading-font);
     font-size: var(--text-3);
     font-weight: 700;
     line-height: 1.5;
-    color: var(--purple);
+    text-transform: uppercase;
   }
 
   .subheading {

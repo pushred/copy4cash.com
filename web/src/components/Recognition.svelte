@@ -13,10 +13,9 @@
 </script>
 
 <div>
-  <Grid cols={2}>
+  <Grid cols={[1, 2, 2, 2]}>
     {#each data as source, index}
       <GridItem
-        center
         colStart="auto"
         colSpan={index === lastIndex && shouldCenterLastItem ? 2 : 1}
       >

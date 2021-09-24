@@ -22,7 +22,9 @@
   const mediaQueries = []
 
   let isLoading = true
+
   $: isHome = $page.path === '/'
+  $: isHire = $page.path === '/hire'
 
   stores.isLoading.subscribe((value) => (isLoading = value))
 
@@ -68,8 +70,12 @@
 {:else}
   <div class="layout">
     {#if isLoading}<LoadingOverlay />{/if}
-    <Grid cols={[6, 6, 12]}>
-      <GridItem colStart={[1, 1, 1]} colSpan={[6, 6, 2]} rowStart={[2, 2, 1]}>
+    <Grid cols={[6, 6, 12, 12]} height="100%">
+      <GridItem
+        colStart={[1, 1, 1, 1]}
+        colSpan={[6, 6, 2, 2]}
+        rowStart={[2, 2, 1, 1]}
+      >
         <Navbar gotoHome={() => goto('/')}>
           <svelte:fragment slot="site-nav">
             <NavLink icon="work" label="Work" {goto} url="/" />
@@ -88,7 +94,17 @@
         </Navbar>
       </GridItem>
 
-      <GridItem center colStart={[1, 1, 5]} colSpan={6}>
+      <GridItem
+        justifySelf={[
+          undefined,
+          undefined,
+          isHire && 'center',
+          isHire && 'center',
+        ]}
+        colStart={[1, 1, 5, 5]}
+        colSpan={6}
+        textAlign="center"
+      >
         <div class="wrapper">
           <slot />
         </div>

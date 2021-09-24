@@ -5,11 +5,13 @@
   let sm = false
   let md = false
   let lg = false
+  let xl = false
 
   onBreakpointChange((breakpoint) => {
     sm = breakpoint?.key === 'sm'
     md = breakpoint?.key === 'md'
     lg = breakpoint?.key === 'lg'
+    xl = breakpoint?.key === 'xl'
   })
 
   export let data = []
@@ -45,11 +47,11 @@
   }, {})
 </script>
 
-<nav class:sm class:md class:lg>
+<nav class:sm class:md class:lg class:xl>
   {#each rows as row}
     <ul>
       {#each row as project, index}
-        {#if lg && index > 0}
+        {#if (lg || xl) && index > 0}
           <li aria-hidden>
             <Separator />
           </li>
@@ -69,21 +71,22 @@
 <style>
   a {
     display: block;
-    color: #fff;
+    color: var(--blended-gold);
     font-family: var(--ui-font);
     font-size: var(--text-1);
     transition: color 100ms ease-out;
   }
 
-  a:hover {
-    color: var(--gold);
-  }
-
   strong {
+    color: var(--white);
     font-family: var(--ui-font);
     font-size: var(--text-2);
     font-weight: bold;
     text-transform: uppercase;
+  }
+
+  a:hover strong {
+    color: var(--white);
   }
 
   ul {
@@ -99,7 +102,8 @@
     margin-bottom: var(--space-8);
   }
 
-  .lg ul {
+  .lg ul,
+  .xl ul {
     max-width: 75vw;
     display: flex;
     flex-wrap: wrap;

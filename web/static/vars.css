@@ -12,9 +12,12 @@
   --black: #231f20;
   --white: #fff;
 
+  --text-color: var(--white);
+
   --button-icon-disabled: var(--faded-purple);
   --button-icon-hover: var(--neon-green);
 
+  --display-font: 'Mallory Compact';
   --heading-font: 'Mallory Compact';
   --text-font: 'Mallory MP';
   --ui-font: 'Mallory MP Compact';
@@ -24,6 +27,9 @@
   --text-2: 1rem; /* 16px */
   --text-3: 1.5rem; /* 24px */
   --text-4: 2.25rem; /* 36px */
+  --text-5: 3rem; /* 48px */
+  --text-6: 4rem; /* 64px */
+  --text-8: 5rem; /* 80px */
 
   --height-1: 1rem; /* 16px */
   --height-2: 1.5rem; /* 24px */

@@ -9,7 +9,7 @@
   onBreakpointChange((breakpoint) => {
     sm = breakpoint?.key === 'sm'
     md = breakpoint?.key === 'md'
-    lg = breakpoint?.key === 'lg'
+    lg = breakpoint?.key === 'lg' || breakpoint?.key === 'xl'
   })
 
   export let gotoHome
@@ -63,6 +63,7 @@
   nav.md .site-nav {
     display: flex;
     justify-content: space-between;
+    margin-bottom: var(--space-page-margin-y);
     gap: var(--space-5);
   }
 
