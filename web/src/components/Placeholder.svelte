@@ -1,6 +1,4 @@
 <script>
-  import Loading from './icons/Loading.svelte'
-
   export let width = 0
   export let height = 0
 
@@ -11,23 +9,35 @@
   }
 </script>
 
-<div class="box" style={`padding-top: ${paddingTop}%`}>
-  <div class="layout">
-    <Loading />
-  </div>
-</div>
+<div class="placeholder" style={`padding-top: ${paddingTop}%`} />
 
 <style>
-  .box {
-    position: relative;
-    background-color: var(--dark-purple);
+  @keyframes pulse {
+    from {
+      opacity: 0.4;
+      background-color: var(--faded-purple);
+    }
+
+    to {
+      opacity: 0;
+      background-color: transparent;
+    }
   }
 
-  .layout {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .placeholder {
+    position: relative;
+    background-color: var(--dark-purple);
+    animation-name: pulse;
+    animation-direction: alternate;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+
+  @media (prefers-reduced-motion) {
+    .placeholder {
+      animation-name: none;
+      background-color: var(--faded-purple);
+    }
   }
 </style>
