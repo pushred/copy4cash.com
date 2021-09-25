@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte'
 
   import { isTouch } from '../stores.js'
-  import { onBreakpointChange } from '../theme.js'
 
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
