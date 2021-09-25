@@ -28,33 +28,37 @@
             }
           },
           images[] {
-            _key,
             _type,
-            asset -> {
-              metadata {
-                dimensions {
-                  aspectRatio,
-                  height,
-                  width
-                }
+            description,
+            image {
+              asset -> {
+                metadata {
+                  dimensions {
+                    aspectRatio,
+                    height,
+                    width
+                  }
+                },
+                mimeType,
+                url
               },
-              mimeType,
-              url
-            },
+            }
           },
           slides[] {
-            _key,
             _type,
-            asset -> {
-              metadata {
-                dimensions {
-                  aspectRatio,
-                  height,
-                  width
+            description,
+            image {
+              asset -> {
+                metadata {
+                  dimensions {
+                    aspectRatio,
+                    height,
+                    width
+                  },
+                  mimeType
                 },
-                mimeType
-              },
-              url
+                url
+              }
             }
           },
           posts[],

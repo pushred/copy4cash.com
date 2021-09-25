@@ -7,10 +7,10 @@
   import { getSanityClient } from '../sanity.js'
   import { isModalOpen } from '../stores.js'
 
-  export let caption
   export let document = {}
 
-  const asset = document.asset || {}
+  const asset = document.image?.asset || {}
+  const description = document.description
   const metadata = asset.metadata || {}
   const originalFormat = asset.mimeType
   const sanity = getSanityClient()
@@ -35,7 +35,7 @@
   const widthMultiples = [256, 512, 640, 768, 896, 1024, 1280, 1536, 1792, 2048]
 
   function getSanityUrl(document) {
-    return urlBuilder.image(document)
+    return urlBuilder.image(document.image)
   }
 
   function getSrcset(sizes, format) {
@@ -129,7 +129,7 @@
       <img
         class:is-vertical={isVertical}
         src={url}
-        alt={caption}
+        alt={description}
         width={initialWidth}
         height={initialHeight}
       />

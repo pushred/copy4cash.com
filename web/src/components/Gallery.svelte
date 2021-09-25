@@ -34,7 +34,7 @@
 >
   {#each data as item, index}
     <li on:click={() => handleClick(index)}>
-      {#if item._type === 'image'}
+      {#if item._type === 'accessible-image'}
         <Image document={item} />
       {:else if item._type === 'video'}
         <Video

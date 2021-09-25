@@ -38,8 +38,7 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'image',
-          name: 'image',
+          type: 'accessible-image',
         },
       ],
     },

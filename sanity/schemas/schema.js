@@ -5,6 +5,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import hire from './documents/hire'
 import project from './documents/project'
 
+import accessibleImage from './objects/accessible-image'
 import audio from './objects/audio'
 import brand from './objects/brand'
 import event from './objects/event'
@@ -24,6 +25,7 @@ import videoGallery from './objects/video-gallery'
 export default createSchema({
   name: 'copy4cash',
   types: schemaTypes.concat([
+    accessibleImage,
     audio,
     brand,
     event,
