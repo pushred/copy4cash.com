@@ -1,6 +1,6 @@
 <script>
   import imageUrlBuilder from '@sanity/image-url'
-  import { getContext, onMount } from 'svelte'
+  import { afterUpdate, getContext, onDestroy } from 'svelte'
 
   import Placeholder from './Placeholder.svelte'
 
@@ -25,6 +25,7 @@
   let initialWidth
   let initialHeight
   let isVertical
+  let observer
   let sources = {}
   let url
 
@@ -65,11 +66,13 @@
     }
   }
 
-  onMount(() => {
+  afterUpdate(() => {
+    if (!container) return
+
     // adapted from https://css-tricks.com/lazy-loading-images-in-svelte/
     // TODO: https://caniuse.com/loading-lazy-attr — someday
 
-    const { width, height } = container.getBoundingClientRect()
+    const { width } = container.getBoundingClientRect()
 
     initialWidth = Math.round(width)
     initialHeight = Math.round(initialWidth / aspectRatio)
@@ -87,7 +90,7 @@
       root = context?.getCarouselEl()
     }
 
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           hasIntersected = true
@@ -101,8 +104,10 @@
     )
 
     observer.observe(container)
+  })
 
-    return () => observer.unobserve(container)
+  onDestroy(() => {
+    observer?.unobserve(container)
   })
 </script>
 
