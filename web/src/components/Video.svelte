@@ -1,11 +1,13 @@
 <script>
   import { getContext, onMount } from 'svelte'
   import { nanoid } from 'nanoid'
+  import VimeoPlayer from '@vimeo/player'
 
   import Placeholder from './Placeholder.svelte'
 
+  import { currentPlayerId } from '../stores.js'
+
   export let caption = ''
-  export let title = 'Video'
   export let vimeoId
   export let originalWidth
   export let originalHeight
@@ -18,24 +20,30 @@
   let captionId = caption ? nanoid() : undefined
   let container
   let hasIntersected = false
+  let isPlaying
+  let player
+  let playerEl
 
-  function proportionalHeight(node) {
-    if (width === originalWidth) return
+  $: if (playerEl && !player) {
+    player = new VimeoPlayer(playerEl, {
+      width,
+      height,
+      autoplay: false,
+      id: vimeoId,
+      responsive: true,
+    })
 
-    function setHeight() {
-      const offsetWidth = node.offsetWidth
-      const scaleFactor = offsetWidth / originalWidth
-      node.setAttribute('height', originalHeight * scaleFactor)
-    }
+    player.on('pause', () => (isPlaying = false))
 
-    setHeight()
-    window.addEventListener('resize', setHeight)
+    player.on('play', () => {
+      currentPlayerId.set(vimeoId)
+      isPlaying = true
+    })
+  }
 
-    return {
-      destroy() {
-        window.removeEventListener('resize', setHeight)
-      },
-    }
+  $: if (isPlaying && $currentPlayerId !== vimeoId) {
+    isPlaying = false
+    player.pause()
   }
 
   onMount(() => {
@@ -69,16 +77,7 @@
   {/if}
 
   {#if vimeoId && hasIntersected}
-    <iframe
-      use:proportionalHeight
-      {width}
-      {height}
-      aria-describedby={captionId}
-      allow="autoplay; fullscreen; picture-in-picture"
-      frameBorder="0"
-      src={`https://player.vimeo.com/video/${vimeoId}`}
-      {title}
-    />
+    <div bind:this={playerEl} aria-describedby={captionId} />
   {:else}
     <Placeholder width={originalWidth} height={originalHeight} />
   {/if}
