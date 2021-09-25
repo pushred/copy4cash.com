@@ -20,7 +20,7 @@
     <StackedLogo on:click={gotoHome} />
   {/if}
   <div class="site-nav">
-    <slot />
+    <slot name="site-nav" />
   </div>
 </nav>
 
@@ -51,7 +51,7 @@
     left: var(--space-page-margin-x);
   }
 
-  nav.lg .site-nav {
+  nav.lg .site-nav :global(div) {
     position: fixed;
     bottom: var(--space-page-margin-y);
     display: flex;
@@ -59,8 +59,8 @@
     gap: var(--space-5);
   }
 
-  nav.sm .site-nav,
-  nav.md .site-nav {
+  nav.sm .site-nav :global(div),
+  nav.md .site-nav :global(div) {
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--space-page-margin-y);

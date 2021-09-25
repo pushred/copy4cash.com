@@ -73,18 +73,21 @@
         rowStart={[2, 2, 1, 1]}
       >
         <Navbar gotoHome={() => goto('/')}>
-          <NavLink icon="work" label="Work" {goto} url="/" />
-          <NavLink icon="hire" label="Hire" {goto} url="/hire" />
-          <NavLink
-            icon="instagram"
-            label="Insta"
-            url="https://www.instagram.com/whitefridaynight/"
-          />
-          <NavLink
-            icon="twitter"
-            label="Follow"
-            url="https://twitter.com/whitefridaynite"
-          />
+          <!-- TODO: div is necessary to avoid this rendering elsewhere, svelte:fragment does not work either -->
+          <div slot="site-nav">
+            <NavLink icon="work" label="Work" {goto} url="/" />
+            <NavLink icon="hire" label="Hire" {goto} url="/hire" />
+            <NavLink
+              icon="instagram"
+              label="Insta"
+              url="https://www.instagram.com/whitefridaynight/"
+            />
+            <NavLink
+              icon="twitter"
+              label="Follow"
+              url="https://twitter.com/whitefridaynite"
+            />
+          </div>
         </Navbar>
       </GridItem>
 
