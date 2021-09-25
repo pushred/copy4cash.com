@@ -7,5 +7,6 @@ export const breakpoint = writable(null)
 export const currentPlayerId = writable(null)
 
 export const isTouch = readable(null, function start(set) {
-  set(window.matchMedia('(pointer: coarse)').matches)
+  if (globalThis.matchMedia === undefined) return set(false)
+  set(globalThis.matchMedia('(pointer: coarse)').matches)
 })
