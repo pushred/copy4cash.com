@@ -4,6 +4,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import hire from './documents/hire'
 import project from './documents/project'
+import stylizedText from './documents/stylized-text'
 
 import accessibleImage from './objects/accessible-image'
 import audio from './objects/audio'
@@ -39,6 +40,7 @@ export default createSchema({
     project,
     recognition,
     socialMedia,
+    stylizedText,
     tweet,
     video,
     videoCarousel,

@@ -2,12 +2,14 @@
   import { afterUpdate } from 'svelte'
   import unorphan from 'unorphan'
 
+  export let textTransform = 'uppercase'
+
   afterUpdate(() => {
     unorphan('h3')
   })
 </script>
 
-<h3>
+<h3 class:text-transform-none={textTransform === 'none'}>
   <slot />
 </h3>
 
@@ -22,6 +24,10 @@
     font-weight: 700;
     line-height: 1.5;
     text-transform: uppercase;
+  }
+
+  h3.text-transform-none {
+    text-transform: none;
   }
 
   h3 :global(.subheading) {

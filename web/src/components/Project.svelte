@@ -1,4 +1,6 @@
 <script>
+  import { getContext } from 'svelte'
+
   import {
     AudioPlayer,
     Carousel,
@@ -14,11 +16,30 @@
 
   export let data = {}
 
+  const context = getContext('site')
+
+  function smartUppercase(text) {
+    if (!text) return text
+
+    const stylizedTextExclusions = context?.stylizedTextExclusions || []
+
+    let result = text.toUpperCase()
+
+    stylizedTextExclusions.forEach((stylizedText) => {
+      result = result.replace(new RegExp(stylizedText, 'i'), stylizedText)
+    })
+
+    return result
+  }
+
   function styleHeadings(blocks) {
     return blocks.map((block) => {
+      block.heading = smartUppercase(block.heading)
+
       const parts = /(.*)(\s\(.*\))(.*)/.exec(block.heading)
       if (parts === null) return block
 
+      // uppercase with JS so that was can make exceptions
       block.heading = parts[1] + parts[3]
       block.subheading = parts[2].trim()
 
@@ -39,7 +60,7 @@
 
 {#each styleHeadings(data.page) || [] as block}
   {#if block.heading && block.showHeading !== false}
-    <Heading3>
+    <Heading3 textTransform="none">
       {block.heading}
       {#if block.subheading}
         <span class="subheading">{block.subheading}</span>

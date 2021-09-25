@@ -1,3 +1,26 @@
+<script context="module">
+  import groq from 'groq'
+
+  import { getSanityClient } from '../sanity'
+
+  export async function load() {
+    const stylizedTextQuery = groq`
+      *[_id == 'stylized-text'][0] {
+        exclusions[]
+      }
+    `
+
+    const sanity = getSanityClient(page.host)
+    const stylizedText = await sanity.fetch(stylizedTextQuery)
+
+    return {
+      props: {
+        stylizedTextExclusions: stylizedText?.exclusions,
+      },
+    }
+  }
+</script>
+
 <script>
   import { onDestroy, onMount, setContext } from 'svelte'
   import { goto } from '$app/navigation'
@@ -15,8 +38,11 @@
   import { loadFonts } from '../fonts.js'
   import { getMediaQueryStrings } from '../theme.js'
 
+  export let stylizedTextExclusions = []
+
   setContext('site', {
     stores,
+    stylizedTextExclusions,
   })
 
   const mediaQueries = []
