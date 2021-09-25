@@ -13,6 +13,18 @@
   } from '../components'
 
   export let data = {}
+
+  function styleHeadings(blocks) {
+    return blocks.map((block) => {
+      const parts = /(.*)(\s\(.*\))(.*)/.exec(block.heading)
+      if (parts === null) return block
+
+      block.heading = parts[1] + parts[3]
+      block.subheading = parts[2].trim()
+
+      return block
+    })
+  }
 </script>
 
 <Heading2>{data.name}</Heading2>
@@ -25,9 +37,14 @@
   <Text blocks={data.summary} />
 {/if}
 
-{#each data.page || [] as block}
+{#each styleHeadings(data.page) || [] as block}
   {#if block.heading && block.showHeading !== false}
-    <Heading3>{block.heading}</Heading3>
+    <Heading3>
+      {block.heading}
+      {#if block.subheading}
+        <span class="subheading">{block.subheading}</span>
+      {/if}
+    </Heading3>
   {/if}
 
   {#if block._type === 'audio'}
