@@ -1,5 +1,6 @@
 <script context="module">
   import groq from 'groq'
+  import imageUrlBuilder from '@sanity/image-url'
 
   import { overlayDrafts } from '../overlayDrafts'
   import { getSanityClient } from '../sanity'
@@ -12,6 +13,11 @@
         client,
         name,
         summary,
+        featuredImage {
+          asset -> {
+            url
+          }
+        },
         page[] {
           _type,
           caption,
@@ -75,6 +81,8 @@
     `
 
     const sanity = getSanityClient(page.host)
+    const urlBuilder = imageUrlBuilder(sanity)
+
     const data = await sanity.fetch(query)
     const projects = overlayDrafts(data)
 
@@ -82,12 +90,29 @@
       (project) => page.params.project === project.slug?.current
     )
 
+    const currentProject = projects[currentIndex]
+
+    const hasSummary =
+      Array.isArray(currentProject.summary) &&
+      currentProject.summary.length &&
+      Array.isArray(currentProject.summary[0].children)
+
     return {
       props: {
         currentIndex,
         projects,
-        currentProject: projects[currentIndex],
+        currentProject,
         currentSlug: page.params.project,
+        metadata: {
+          description: hasSummary
+            ? currentProject.summary[0].children
+                .map((child) => child.text)
+                .join('')
+            : undefined,
+          imageUrl: currentProject.featuredImage
+            ? urlBuilder.image(currentProject.featuredImage).format('png').url()
+            : undefined,
+        },
       },
     }
   }
@@ -106,6 +131,7 @@
   export let currentIndex = undefined
   export let currentProject = undefined
   export let currentSlug = undefined
+  export let metadata = {}
 
   function gotoProject(directionOrIndex) {
     const prevIndex = currentIndex - 1
@@ -161,6 +187,14 @@
       ? `${currentProject.client}: ${currentProject.name} · `
       : ''}Copy4Ca$h
   </title>
+  <meta name="description" content={metadata.description} />
+  <meta property="og:site_name" content="Copy4Ca$h" />
+  <meta property="og:image" content={metadata.imageUrl} />
+  <meta property="og:image:alt" content={metadata.description} />
+  <meta
+    property="og:title"
+    content={`${currentProject.client}: ${currentProject.name}`}
+  />
 </svelte:head>
 
 <svelte:window on:keydown={handleKeydown} />

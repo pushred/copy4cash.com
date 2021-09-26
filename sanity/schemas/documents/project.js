@@ -1,5 +1,5 @@
 export default {
-  title: 'Project',
+  title: 'Projects',
   name: 'project',
   type: 'document',
   fields: [
@@ -33,6 +33,12 @@ export default {
       name: 'summary',
       title: 'Summary',
       of: [{ type: 'block' }],
+    },
+    {
+      type: 'image',
+      name: 'featuredImage',
+      title: 'Featured Image',
+      description: 'as seen on Facebook, Twitter, etc.',
     },
     {
       type: 'array',

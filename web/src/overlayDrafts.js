@@ -1,7 +1,7 @@
 export function overlayDrafts(documents) {
   return documents
     .reduce((accumulator, doc, index) => {
-      if (doc === undefined || doc._id.startsWith('drafts')) {
+      if (doc === undefined || !doc._id || doc._id.startsWith('drafts')) {
         return accumulator
       }
 

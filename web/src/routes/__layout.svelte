@@ -1,20 +1,34 @@
 <script context="module">
   import groq from 'groq'
+  import imageUrlBuilder from '@sanity/image-url'
 
   import { getSanityClient } from '../sanity'
 
   export async function load() {
-    const stylizedTextQuery = groq`
+    const sanity = getSanityClient(page.host)
+    const urlBuilder = imageUrlBuilder(sanity)
+
+    const metadata = await sanity.fetch(groq`
+      *[_id == 'metadata'][0] {
+        description,
+        image
+      }
+    `)
+
+    const stylizedText = await sanity.fetch(groq`
       *[_id == 'stylized-text'][0] {
         exclusions[]
       }
-    `
-
-    const sanity = getSanityClient(page.host)
-    const stylizedText = await sanity.fetch(stylizedTextQuery)
+    `)
 
     return {
       props: {
+        metadata: {
+          description: metadata.description,
+          imageUrl: metadata.image
+            ? urlBuilder.image(metadata.image).format('png').url()
+            : undefined,
+        },
         stylizedTextExclusions: stylizedText?.exclusions,
       },
     }
@@ -38,9 +52,11 @@
   import { loadFonts } from '../fonts.js'
   import { getMediaQueryStrings } from '../theme.js'
 
+  export let metadata = {}
   export let stylizedTextExclusions = []
 
   setContext('site', {
+    metadata,
     stores,
     stylizedTextExclusions,
   })

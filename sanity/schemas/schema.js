@@ -3,6 +3,7 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import hire from './documents/hire'
+import metadata from './documents/metadata'
 import project from './documents/project'
 import stylizedText from './documents/stylized-text'
 
@@ -36,6 +37,7 @@ export default createSchema({
     imageGallery,
     instagram,
     link,
+    metadata,
     press,
     project,
     recognition,

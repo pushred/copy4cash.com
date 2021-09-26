@@ -27,7 +27,7 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte'
+  import { getContext, onMount } from 'svelte'
   import { goto } from '$app/navigation'
 
   import {
@@ -43,6 +43,8 @@
   import { onBreakpointChange } from '../theme.js'
 
   export let projects
+
+  const context = getContext('site')
 
   let sm = false
   let md = false
@@ -65,6 +67,8 @@
 
 <svelte:head>
   <title>Copy4Ca$h</title>
+  <meta name="description" content={context.metadata.description} />
+  <meta property="og:image" content={context.metadata.imageUrl} />
 </svelte:head>
 
 <div class="layout" class:sm class:md class:lg class:xl>

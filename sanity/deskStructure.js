@@ -1,6 +1,6 @@
 import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
-import { CurrencyDollar, TextT } from 'phosphor-react'
+import { CurrencyDollar, Export, Folder, TextT } from 'phosphor-react'
 
 const PREVIEW_HOST = 'https://preview.copy4cash.com'
 
@@ -35,7 +35,8 @@ export default () =>
     .title('Content')
     .items([
       ...S.documentTypeListItems().filter(
-        (listItem) => !['hire', 'stylized-text'].includes(listItem.getId())
+        (listItem) =>
+          !['hire', 'metadata', 'stylized-text'].includes(listItem.getId())
       ),
       S.listItem()
         .title('Hire')
@@ -55,6 +56,16 @@ export default () =>
             .title('Stylized Text')
             .schemaType('stylized-text')
             .documentId('stylized-text')
+            .views([S.view.form()])
+        ),
+      S.listItem()
+        .title('Metadata')
+        .icon(Export)
+        .child(
+          S.document()
+            .title('Metadata')
+            .schemaType('metadata')
+            .documentId('metadata')
             .views([S.view.form()])
         ),
     ])

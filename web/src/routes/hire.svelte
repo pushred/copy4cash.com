@@ -1,5 +1,6 @@
 <script context="module">
   import groq from 'groq'
+  import imageUrlBuilder from '@sanity/image-url'
   import { onMount } from 'svelte'
   import unorphan from 'unorphan'
 
@@ -41,10 +42,25 @@
     `
 
     const sanity = getSanityClient(page.host)
+    const content = overlayDrafts(await sanity.fetch(query))[0]
+    const urlBuilder = imageUrlBuilder(sanity)
+
+    const hasIntro =
+      Array.isArray(content.intro) &&
+      content.intro.length &&
+      Array.isArray(content.intro[0].children)
 
     return {
       props: {
-        data: overlayDrafts(await sanity.fetch(query))[0],
+        data: content,
+        metadata: {
+          description: hasIntro
+            ? content.intro[0].children.map((child) => child.text).join('')
+            : undefined,
+          imageUrl: content.photo
+            ? urlBuilder.image(content.photo).url()
+            : undefined,
+        },
       },
     }
   }
@@ -52,6 +68,7 @@
 
 <script>
   export let data
+  export let metadata = {}
 
   import {
     Button,
@@ -93,7 +110,10 @@
 </script>
 
 <svelte:head>
-  <title>Hire : Copy4Ca$h</title>
+  <title>Hire Diana Casthart : Copy4Ca$h</title>
+  <meta name="og:title" content="Hire Diana Casthart" />
+  <meta name="description" content={metadata.description} />
+  <meta name="og:image" content={metadata.imageUrl} />
 </svelte:head>
 
 <div class:lg class:xl>
