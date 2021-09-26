@@ -1,14 +1,35 @@
 <script>
   import Coin from './icons/small/Coin.svelte'
+  import { onBreakpointChange } from '../theme.js'
+
+  let sm = false
+  let md = false
+  let lg = false
+  let xl = false
+
+  onBreakpointChange((breakpoint) => {
+    sm = breakpoint?.key === 'sm'
+    md =
+      breakpoint?.key === 'md' ||
+      breakpoint?.key === 'lg' ||
+      breakpoint?.key === 'xl'
+  })
 </script>
 
-<div class="layout">
-  <div class="name">
-    <span>Diana Casthart</span>
+<div class="layout" class:sm class:md>
+  {#if sm}
     <Coin />
+    <span>Diana Casthart</span>
     <span>ACD Copywriter</span>
-  </div>
-  <span>Professional Smartass</span>
+    <span>Professional Smartass</span>
+  {:else}
+    <div class="name">
+      <span>Diana Casthart</span>
+      <Coin />
+      <span>ACD Copywriter</span>
+    </div>
+    <span>Professional Smartass</span>
+  {/if}
 </div>
 
 <style>
@@ -17,7 +38,6 @@
     flex-direction: column;
     gap: var(--space-2);
     align-items: center;
-    justify-content: flex-end;
     font-family: var(--ui-font);
     font-style: normal;
     font-weight: 400;
@@ -26,12 +46,20 @@
     text-transform: uppercase;
   }
 
-  .name {
+  .layout.md {
+    justify-content: flex-end;
+  }
+
+  .layout.md .name {
     display: flex;
     gap: var(--space-2);
   }
 
-  span {
+  .layout.sm span {
+    display: block;
+  }
+
+  .layout.md span {
     padding-top: 1px;
   }
 </style>

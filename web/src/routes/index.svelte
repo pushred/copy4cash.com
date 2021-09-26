@@ -112,11 +112,6 @@
     padding: var(--space-page-margin-y) var(--space-page-margin-x);
   }
 
-  .sm header,
-  .md header {
-    margin-bottom: var(--space-10);
-  }
-
   .lg,
   .xl {
     display: flex;
