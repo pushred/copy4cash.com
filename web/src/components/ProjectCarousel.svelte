@@ -43,8 +43,14 @@
           if (entries[0].isIntersecting) {
             const newSlug = projectEl.id
             if (!newSlug || newSlug === currentSlug) return
+
+            window.scroll({
+              top: 0,
+              behavior: 'smooth',
+            })
+
             setTimeout(() => {
-              goto(`/${newSlug}`)
+              goto(`/${newSlug}`, { noscroll: true })
             }, 500) // delay navigation until scroll snap occurs
           }
         },
@@ -116,6 +122,6 @@
   .project.active {
     overflow-y: auto;
     height: auto;
-    max-height: auto;
+    max-height: 100%;
   }
 </style>

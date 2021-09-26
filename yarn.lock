@@ -17962,6 +17962,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"smoothscroll-polyfill@npm:^0.4.4":
+  version: 0.4.4
+  resolution: "smoothscroll-polyfill@npm:0.4.4"
+  checksum: a2643f711caad9d31ff181c3be976430c32dfcc4c46d5652b86b4166ea8f3693341c0a61f13d57e93b803ac05ccb1a8e30830581686c5d125ab2875ff2fd0bce
+  languageName: node
+  linkType: hard
+
 "snapdragon-node@npm:^2.0.1":
   version: 2.1.1
   resolution: "snapdragon-node@npm:2.1.1"
@@ -20071,6 +20078,7 @@ fsevents@^1.2.7:
     lodash-es: ^4.17.21
     nanoid: ^3.1.23
     prettier: ~2.2.1
+    smoothscroll-polyfill: ^0.4.4
     storybook-builder-vite: 0.0.12
     svelte: ^3.34.0
     unorphan: ^1.2.1

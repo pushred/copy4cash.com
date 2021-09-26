@@ -36,6 +36,7 @@
 </script>
 
 <script>
+  import smoothscroll from 'smoothscroll-polyfill'
   import { onDestroy, onMount, setContext } from 'svelte'
   import { goto } from '$app/navigation'
   import { page } from '$app/stores'
@@ -93,6 +94,7 @@
     })
 
     loadFonts()
+    smoothscroll.polyfill()
   })
 
   onDestroy(() => {

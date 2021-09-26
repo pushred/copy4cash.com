@@ -1,5 +1,7 @@
 import { readable, writable } from 'svelte/store'
 
+export const hasSwiped = writable(false)
+
 export const isLoading = writable(false)
 export const isModalOpen = writable(false)
 

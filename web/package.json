@@ -36,6 +36,7 @@
     "groq": "^2.2.6",
     "lodash-es": "^4.17.21",
     "nanoid": "^3.1.23",
+    "smoothscroll-polyfill": "^0.4.4",
     "unorphan": "^1.2.1"
   }
 }
