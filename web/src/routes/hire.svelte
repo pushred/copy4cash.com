@@ -135,7 +135,7 @@
       colStart={[1, 2, 2, 2]}
       colSpan={[3, 2, 2, 2]}
     >
-      <Text align="left" blocks={data.intro} />
+      <Text align={['center', 'left', 'left', 'left']} blocks={data.intro} />
     </GridItem>
     <GridItem colSpan={3}>
       <Panel --space-bottom="var(--space-5)">
