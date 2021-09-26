@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte'
 
-  import { isTouch } from '../stores.js'
+  import { hasSwiped, isTouch } from '../stores.js'
 
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
@@ -11,14 +11,7 @@
   export let currentIndex = undefined
   export let totalPages = 10
 
-  const initialIndex = currentIndex
   const dispatch = createEventDispatcher()
-
-  let hasSwiped = false
-
-  $: if (currentIndex !== initialIndex && currentIndex !== undefined) {
-    hasSwiped = true
-  }
 
   function handleChange(selection) {
     if (selection === 'back') currentIndex = currentIndex - 1
@@ -33,8 +26,9 @@
     disabled={currentIndex === 0}
     on:click={handleChange.bind(null, 'back')}
     icon="left-arrows"
+    --space-bottom="0"
   />
-  {#if hasSwiped || !$isTouch}
+  {#if $hasSwiped || !$isTouch}
     {#each [...Array(totalPages).keys()] as page, index}
       <PaginationDot
         active={index === currentIndex}
@@ -49,5 +43,6 @@
     disabled={currentIndex === totalPages - 1}
     on:click={handleChange.bind(null, 'next')}
     icon="right-arrows"
+    --space-bottom="0"
   />
 </Flex>

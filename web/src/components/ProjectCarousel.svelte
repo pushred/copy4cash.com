@@ -4,7 +4,7 @@
   import unorphan from 'unorphan'
 
   import Project from './Project.svelte'
-  import { isLoading } from '../stores.js'
+  import { hasSwiped, isLoading } from '../stores.js'
 
   export let data = []
   export let currentIndex = undefined
@@ -43,6 +43,8 @@
           if (entries[0].isIntersecting) {
             const newSlug = projectEl.id
             if (!newSlug || newSlug === currentSlug) return
+
+            hasSwiped.set(true)
 
             window.scroll({
               top: 0,
