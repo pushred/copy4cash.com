@@ -22,7 +22,19 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'accessible-image',
+          type: 'image',
+          fields: [
+            {
+              type: 'string',
+              name: 'description',
+              title: 'Description',
+              description:
+                'Should describe visual or write out copy to optimize for search engines',
+              options: {
+                isHighlighted: true,
+              },
+            },
+          ],
         },
       ],
     },

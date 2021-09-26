@@ -53,7 +53,7 @@
   <ul bind:this={carouselEl}>
     {#each data as slide}
       <li class="slide">
-        {#if slide._type === 'accessible-image'}
+        {#if slide._type === 'image'}
           <Image document={slide} />
         {:else if slide._type === 'video'}
           <Video

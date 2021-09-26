@@ -36,35 +36,31 @@
           images[] {
             _type,
             description,
-            image {
-              asset -> {
-                metadata {
-                  dimensions {
-                    aspectRatio,
-                    height,
-                    width
-                  }
-                },
-                mimeType,
-                url
+            asset -> {
+              metadata {
+                dimensions {
+                  aspectRatio,
+                  height,
+                  width
+                }
               },
-            }
+              mimeType,
+              url
+            },
           },
           slides[] {
             _type,
             description,
-            image {
-              asset -> {
-                metadata {
-                  dimensions {
-                    aspectRatio,
-                    height,
-                    width
-                  },
-                  mimeType
+            asset -> {
+              metadata {
+                dimensions {
+                  aspectRatio,
+                  height,
+                  width
                 },
-                url
-              }
+                mimeType
+              },
+              url
             }
           },
           posts[],

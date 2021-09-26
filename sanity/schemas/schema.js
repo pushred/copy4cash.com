@@ -7,7 +7,6 @@ import metadata from './documents/metadata'
 import project from './documents/project'
 import stylizedText from './documents/stylized-text'
 
-import accessibleImage from './objects/accessible-image'
 import audio from './objects/audio'
 import brand from './objects/brand'
 import event from './objects/event'
@@ -27,7 +26,6 @@ import videoGallery from './objects/video-gallery'
 export default createSchema({
   name: 'copy4cash',
   types: schemaTypes.concat([
-    accessibleImage,
     audio,
     brand,
     event,

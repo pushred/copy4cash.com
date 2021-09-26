@@ -38,7 +38,20 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'accessible-image',
+          type: 'image',
+          fields: [
+            {
+              type: 'text',
+              name: 'description',
+              title: 'Description',
+              description:
+                'Should describe the visual or write out copy to optimize for search engines',
+              rows: 3,
+              options: {
+                isHighlighted: true,
+              },
+            },
+          ],
         },
       ],
     },

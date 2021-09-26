@@ -9,7 +9,7 @@
 
   export let document = {}
 
-  const asset = document.image?.asset || {}
+  const asset = document.asset || {}
   const description = document.description
   const metadata = asset.metadata || {}
   const originalFormat = asset.mimeType
@@ -35,7 +35,7 @@
   const widthMultiples = [256, 512, 640, 768, 896, 1024, 1280, 1536, 1792, 2048]
 
   function getSanityUrl(document) {
-    return urlBuilder.image(document.image)
+    return urlBuilder.image(document)
   }
 
   function getSrcset(sizes, format) {
