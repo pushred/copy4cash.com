@@ -36,6 +36,7 @@
 <div
   class:center
   class:align-self-center={props.alignSelf === 'center'}
+  class:align-self-end={props.alignSelf === 'end'}
   class:align-self-left={props.alignSelf === 'left'}
   class:align-self-right={props.alignSelf === 'right'}
   class:col-start-auto={props.colStart === 'auto'}
@@ -78,6 +79,10 @@
 <style>
   .align-self-center {
     align-self: center;
+  }
+
+  .align-self-end {
+    align-self: end;
   }
 
   .align-self-left {

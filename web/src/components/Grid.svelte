@@ -33,7 +33,7 @@
   }
 
   .height-full {
-    height: calc(100vh - calc(var(--space-page-margin-y) * 2));
+    min-height: calc(100vh - calc(var(--space-page-margin-y) * 2));
     margin-bottom: 0;
   }
 

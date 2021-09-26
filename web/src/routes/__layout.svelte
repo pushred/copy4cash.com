@@ -113,6 +113,7 @@
         colStart={[1, 1, 1, 1]}
         colSpan={[6, 6, 2, 2]}
         rowStart={[2, 2, 1, 1]}
+        alignSelf={['end', 'end']}
       >
         <Navbar gotoHome={() => goto('/')}>
           <!-- TODO: div is necessary to avoid this rendering elsewhere, svelte:fragment does not work either -->
@@ -132,7 +133,6 @@
           </div>
         </Navbar>
       </GridItem>
-
       <GridItem
         justifySelf={[
           undefined,

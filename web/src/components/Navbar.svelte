@@ -63,7 +63,6 @@
   nav.md .site-nav :global(div) {
     display: flex;
     justify-content: space-between;
-    margin-bottom: var(--space-page-margin-y);
     gap: var(--space-5);
   }
 
