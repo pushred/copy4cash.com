@@ -3,6 +3,7 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import hire from './documents/hire'
+import home from './documents/home'
 import metadata from './documents/metadata'
 import project from './documents/project'
 import stylizedText from './documents/stylized-text'
@@ -22,6 +23,7 @@ import tweet from './objects/tweet'
 import video from './objects/video'
 import videoCarousel from './objects/video-carousel'
 import videoGallery from './objects/video-gallery'
+import vimeoVideo from './objects/vimeo-video'
 
 export default createSchema({
   name: 'copy4cash',
@@ -31,6 +33,7 @@ export default createSchema({
     event,
     heading,
     hire,
+    home,
     imageCarousel,
     imageGallery,
     instagram,
@@ -45,5 +48,6 @@ export default createSchema({
     video,
     videoCarousel,
     videoGallery,
+    vimeoVideo,
   ]),
 })

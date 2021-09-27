@@ -1,6 +1,6 @@
 import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
-import { CurrencyDollar, Export, Folder, TextT } from 'phosphor-react'
+import { CurrencyDollar, Export, List, TextT } from 'phosphor-react'
 
 const PREVIEW_HOST = 'https://preview.copy4cash.com'
 
@@ -34,9 +34,21 @@ export default () =>
   S.list()
     .title('Content')
     .items([
+      S.listItem()
+        .title('Home')
+        .icon(List)
+        .child(
+          S.document()
+            .title('Home')
+            .schemaType('home')
+            .documentId('home')
+            .views([S.view.form(), S.view.component(Preview).title('Preview')])
+        ),
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['hire', 'metadata', 'stylized-text'].includes(listItem.getId())
+          !['hire', 'home', 'metadata', 'stylized-text'].includes(
+            listItem.getId()
+          )
       ),
       S.listItem()
         .title('Hire')

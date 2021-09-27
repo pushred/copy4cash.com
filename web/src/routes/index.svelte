@@ -5,7 +5,18 @@
   import { getSanityClient } from '../sanity'
 
   export async function load({ page }) {
-    const query = groq`
+    const sanity = getSanityClient(page.host)
+
+    const homeQuery = await sanity.fetch(groq`
+      *[_type == 'home'] {
+        _id,
+        reel {
+          vimeoId
+        }
+      }
+    `)
+
+    const projectsQuery = await sanity.fetch(groq`
       *[_type == 'project'] | order(order) {
         _id,
         slug {
@@ -14,13 +25,13 @@
         client,
         name
       }
-    `
 
-    const sanity = getSanityClient(page.host)
+    `)
 
     return {
       props: {
-        projects: overlayDrafts(await sanity.fetch(query)),
+        home: overlayDrafts(homeQuery)[0],
+        projects: overlayDrafts(projectsQuery),
       },
     }
   }
@@ -42,7 +53,8 @@
 
   import { onBreakpointChange } from '../theme.js'
 
-  export let projects
+  export let home = undefined
+  export let projects = []
 
   const context = getContext('site')
 
@@ -78,7 +90,7 @@
   <main>
     {#if isLoading}<LoadingOverlay />{/if}
     <FeaturedProjects data={projects} />
-    <FullScreenVideo vimeoId="334283806" />
+    <FullScreenVideo vimeoId={home.reel?.vimeoId} />
   </main>
   <footer>
     <Flex
