@@ -37,7 +37,7 @@
   }
 
   .backdrop:before {
-    opacity: 0.85;
+    opacity: 0.65;
     content: '';
     background-color: #0e0024;
     z-index: 1;
