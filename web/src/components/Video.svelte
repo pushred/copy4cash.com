@@ -1,5 +1,5 @@
 <script>
-  import { getContext, onMount } from 'svelte'
+  import { afterUpdate, getContext, onDestroy } from 'svelte'
   import { nanoid } from 'nanoid'
   import VimeoPlayer from '@vimeo/player'
 
@@ -21,6 +21,7 @@
   let container
   let hasIntersected = false
   let isPlaying
+  let observer
   let player
   let playerEl
 
@@ -46,13 +47,29 @@
     player.pause()
   }
 
-  onMount(() => {
+  afterUpdate(async () => {
+    if (!container) return
+
+    if (player) {
+      const playerId = await player.getVideoId().toString()
+      if (playerId !== vimeoId.toString()) {
+        player.loadVideo(vimeoId)
+        return
+      }
+    }
+
     if (typeof IntersectionObserver === 'undefined') {
       hasIntersected = true
       return
     }
 
-    const observer = new IntersectionObserver(
+    let root = undefined
+
+    if (typeof context?.getCarouselEl === 'function') {
+      root = context?.getCarouselEl()
+    }
+
+    observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           hasIntersected = true
@@ -60,14 +77,17 @@
         }
       },
       {
-        root: context?.getCarouselEl(),
+        root,
         rootMargin: '0px 0px 0px 0px',
       }
     )
 
     observer.observe(container)
+  })
 
-    return () => observer.unobserve(container)
+  onDestroy(() => {
+    if (player) player.destroy()
+    observer?.unobserve(container)
   })
 </script>
 
