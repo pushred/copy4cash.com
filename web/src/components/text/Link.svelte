@@ -5,7 +5,7 @@
 </script>
 
 {#if isExternal}
-  <a href={to} target="_blank">
+  <a href={to} rel="external" target="_blank">
     <slot />
   </a>
 {:else}
