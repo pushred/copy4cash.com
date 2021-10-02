@@ -40,18 +40,24 @@
     if (!isValidSlug) return reason
 
     return {
-      redirect: `/${pathParts[0]}`,
-      status: 302,
+      // don't return an actual redirect, it uses location.href and will 404 again
+      props: {
+        redirectPath: `/${pathParts[0]}`,
+      },
     }
   }
 </script>
 
 <script>
+  import { goto } from '$app/navigation'
+
   import Heading2 from '../components/text/Heading2.svelte'
 
   export let reasonPhrase = 'Error'
+  export let redirectPath = undefined
 
   onMount(() => {
+    if (redirectPath) return goto(redirectPath)
     isLoading.set(false)
   })
 </script>
