@@ -26,6 +26,7 @@
 
     const stylizedTextExclusions = context?.stylizedTextExclusions || []
 
+    // uppercase with JS so that we can make exceptions
     let result = text.toUpperCase()
 
     stylizedTextExclusions.forEach((stylizedText) => {
@@ -39,12 +40,26 @@
     return blocks.map((block) => {
       block.heading = smartUppercase(block.heading)
 
-      const parts = /(.*)(\s\(.*\))(.*)/.exec(block.heading)
-      if (parts === null) return block
+      const parenParts = /(.*)(\s\(.*\))(.*)/.exec(block.heading)
+      const pipeParts = /(.*)\s\|\s(.*)/.exec(block.heading)
 
-      // uppercase with JS so that was can make exceptions
-      block.heading = parts[1] + parts[3]
-      block.subheading = parts[2].trim()
+      if (parenParts) {
+        block.heading = parenParts[1] + parenParts[3]
+        block.subheading = parenParts[2].trim()
+      }
+
+      if (pipeParts) {
+        block.heading = pipeParts[1]
+        block.subheading = pipeParts[2].trim()
+      }
+
+      if (block.heading) {
+        block.heading = block.heading.replace(/\sx\s/i, ' × ')
+      }
+
+      if (block.subheading) {
+        block.subheading = block.subheading.replace(/\sx\s/i, ' × ')
+      }
 
       return block
     })
