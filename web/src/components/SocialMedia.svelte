@@ -67,18 +67,20 @@
   </Flex>
 </nav>
 
-<Modal isOpen={posts !== null} onClose={handleClose}>
-  {#if posts}
-    <div class="viewer">
-      {#each posts as post}
-        <!-- div wrapper works around https://github.com/sveltejs/svelte/issues/6037 -->
-        <div class="wrapper">
-          {@html post.embed.embedHtml}
-        </div>
-      {/each}
-    </div>
-  {/if}
-</Modal>
+{#if Array.isArray(posts)}
+  <Modal isOpen={posts !== null} onClose={handleClose}>
+    {#if posts}
+      <div class="viewer">
+        {#each posts as post}
+          <!-- div wrapper works around https://github.com/sveltejs/svelte/issues/6037 -->
+          <div class="wrapper">
+            {@html post.embed.embedHtml}
+          </div>
+        {/each}
+      </div>
+    {/if}
+  </Modal>
+{/if}
 
 <style>
   nav {

@@ -12,38 +12,40 @@
   const lastIndex = data.length - 1
 </script>
 
-<div>
-  <Grid cols={[1, 2, 2, 2]}>
-    {#each data as source, index}
-      <GridItem
-        colStart="auto"
-        colSpan={index === lastIndex && shouldCenterLastItem ? 2 : 1}
-      >
-        <Logo brand={source.logo} />
+{#if Array.isArray(data)}
+  <div>
+    <Grid cols={[1, 2, 2, 2]}>
+      {#each data as source, index}
+        <GridItem
+          colStart="auto"
+          colSpan={index === lastIndex && shouldCenterLastItem ? 2 : 1}
+        >
+          <Logo brand={source.logo} />
 
-        {#if source.articles}
-          <List>
-            {#each source.articles as article}
-              <ListItem>
-                <Link to={article.link}>
-                  {article.title}
-                </Link>
-              </ListItem>
-            {/each}
-          </List>
-        {/if}
+          {#if source.articles}
+            <List>
+              {#each source.articles as article}
+                <ListItem>
+                  <Link to={article.link}>
+                    {article.title}
+                  </Link>
+                </ListItem>
+              {/each}
+            </List>
+          {/if}
 
-        {#if source.awards}
-          <List>
-            {#each source.awards as award}
-              <ListItem>{award}</ListItem>
-            {/each}
-          </List>
-        {/if}
-      </GridItem>
-    {/each}
-  </Grid>
-</div>
+          {#if source.awards}
+            <List>
+              {#each source.awards as award}
+                <ListItem>{award}</ListItem>
+              {/each}
+            </List>
+          {/if}
+        </GridItem>
+      {/each}
+    </Grid>
+  </div>
+{/if}
 
 <style>
   div {

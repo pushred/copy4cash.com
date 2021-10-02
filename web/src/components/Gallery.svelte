@@ -5,7 +5,6 @@
   import Video from './Video.svelte'
 
   export let data = []
-
   export let columns = 4
   export let gap = true
 
@@ -20,33 +19,35 @@
   }
 </script>
 
-<ul
-  class="gallery"
-  class:cols-1={columns === 1}
-  class:cols-2={columns === 2}
-  class:cols-3={columns === 3}
-  class:cols-4={columns === 4}
-  class:cols-5={columns === 5}
-  class:cols-6={columns === 6}
-  class:cols-7={columns === 7}
-  class:cols-8={columns === 8}
-  class:gap
->
-  {#each data as item, index}
-    <li on:click={() => handleClick(index)}>
-      {#if item._type === 'image'}
-        <Image document={item} />
-      {:else if item._type === 'video'}
-        <Video
-          width="100%"
-          originalWidth={item.video?.width}
-          originalHeight={item.video?.height}
-          vimeoId={item.video?.vimeoId}
-        />
-      {/if}
-    </li>
-  {/each}
-</ul>
+{#if Array.isArray(data)}
+  <ul
+    class="gallery"
+    class:cols-1={columns === 1}
+    class:cols-2={columns === 2}
+    class:cols-3={columns === 3}
+    class:cols-4={columns === 4}
+    class:cols-5={columns === 5}
+    class:cols-6={columns === 6}
+    class:cols-7={columns === 7}
+    class:cols-8={columns === 8}
+    class:gap
+  >
+    {#each data as item, index}
+      <li on:click={() => handleClick(index)}>
+        {#if item._type === 'image'}
+          <Image document={item} />
+        {:else if item._type === 'video'}
+          <Video
+            width="100%"
+            originalWidth={item.video?.width}
+            originalHeight={item.video?.height}
+            vimeoId={item.video?.vimeoId}
+          />
+        {/if}
+      </li>
+    {/each}
+  </ul>
+{/if}
 
 {#if viewerIndex !== undefined}
   <Modal isOpen={true} onClose={handleModalClose}>

@@ -33,38 +33,40 @@
   }
 </script>
 
-<div>
-  {#each blocks as block}
-    <Paragraph align={props.align}>
-      {#each block.children as span}
-        {#each markDefKeys as key}
-          <!-- TODO: try refactoring using svelte:self with a formatting tag component-->
-          {#if span.marks.includes(key) && markDefs[key]._type === 'link'}
-            <a href={markDefs[key].href} target="_blank">
-              {#if span.marks.includes('em') && span.marks.includes('strong')}
-                <strong><em>{span.text} </em></strong>
-              {:else if span.marks.includes('em')}
-                <em>{span.text}</em>
-              {:else if span.marks.includes('strong')}
-                <strong>{span.text}</strong>
-              {:else}
-                {span.text}
-              {/if}
-            </a>
-          {:else if span.marks.includes('em') && span.marks.includes('strong')}
-            <strong><em>{span.text} </em></strong>
-          {:else if span.marks.includes('em')}
-            <em>{span.text}</em>
-          {:else if span.marks.includes('strong')}
-            <strong>{span.text}</strong>
-          {:else}
-            {span.text}
-          {/if}
+{#if Array.isArray(blocks)}
+  <div>
+    {#each blocks as block}
+      <Paragraph align={props.align}>
+        {#each block.children as span}
+          {#each markDefKeys as key}
+            <!-- TODO: try refactoring using svelte:self with a formatting tag component-->
+            {#if span.marks.includes(key) && markDefs[key]._type === 'link'}
+              <a href={markDefs[key].href} target="_blank">
+                {#if span.marks.includes('em') && span.marks.includes('strong')}
+                  <strong><em>{span.text} </em></strong>
+                {:else if span.marks.includes('em')}
+                  <em>{span.text}</em>
+                {:else if span.marks.includes('strong')}
+                  <strong>{span.text}</strong>
+                {:else}
+                  {span.text}
+                {/if}
+              </a>
+            {:else if span.marks.includes('em') && span.marks.includes('strong')}
+              <strong><em>{span.text} </em></strong>
+            {:else if span.marks.includes('em')}
+              <em>{span.text}</em>
+            {:else if span.marks.includes('strong')}
+              <strong>{span.text}</strong>
+            {:else}
+              {span.text}
+            {/if}
+          {/each}
         {/each}
-      {/each}
-    </Paragraph>
-  {/each}
-</div>
+      </Paragraph>
+    {/each}
+  </div>
+{/if}
 
 <style>
   div {

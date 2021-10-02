@@ -45,46 +45,48 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div
-  class="carousel"
-  class:block={variant === 'block'}
-  class:fullscreen={variant === 'fullscreen'}
->
-  <ul bind:this={carouselEl}>
-    {#each data as slide}
-      <li class="slide">
-        {#if slide._type === 'image'}
-          <Image document={slide} />
-        {:else if slide._type === 'video'}
-          <Video
-            caption={slide.caption}
-            width="100%"
-            originalWidth={slide.video.width}
-            originalHeight={slide.video.height}
-            vimeoId={slide.video.vimeoId}
-          />
-        {/if}
-      </li>
-    {/each}
-  </ul>
+{#if Array.isArray(data)}
+  <div
+    class="carousel"
+    class:block={variant === 'block'}
+    class:fullscreen={variant === 'fullscreen'}
+  >
+    <ul bind:this={carouselEl}>
+      {#each data as slide}
+        <li class="slide">
+          {#if slide._type === 'image'}
+            <Image document={slide} />
+          {:else if slide._type === 'video'}
+            <Video
+              caption={slide.caption}
+              width="100%"
+              originalWidth={slide.video.width}
+              originalHeight={slide.video.height}
+              vimeoId={slide.video.vimeoId}
+            />
+          {/if}
+        </li>
+      {/each}
+    </ul>
 
-  {#if data.length > 1}
-    <nav>
-      <Button
-        variant="raised"
-        icon="left"
-        label="Back"
-        on:click={() => slide('next')}
-      />
-      <Button
-        variant="raised"
-        icon="right"
-        label="Next"
-        on:click={() => slide('next')}
-      />
-    </nav>
-  {/if}
-</div>
+    {#if data.length > 1}
+      <nav>
+        <Button
+          variant="raised"
+          icon="left"
+          label="Back"
+          on:click={() => slide('next')}
+        />
+        <Button
+          variant="raised"
+          icon="right"
+          label="Next"
+          on:click={() => slide('next')}
+        />
+      </nav>
+    {/if}
+  </div>
+{/if}
 
 <style>
   ::-webkit-scrollbar {

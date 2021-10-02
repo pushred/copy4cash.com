@@ -198,15 +198,17 @@
   </div>
 </div>
 
-<Modal isOpen={isModalOpen} onClose={toggleModal}>
-  <div class="ad">
-    <Heading3>Need an AD?</Heading3>
-    <Paragraph>S/O to these Art Directors:</Paragraph>
-    {#each data.artDirectors as artDirector}
-      <Link to={artDirector.url}>{artDirector.name}</Link><br />
-    {/each}
-  </div>
-</Modal>
+{#if Array.isArray(data.artDirectors) && data.artDirectors.length}
+  <Modal isOpen={isModalOpen} onClose={toggleModal}>
+    <div class="ad">
+      <Heading3>Need an AD?</Heading3>
+      <Paragraph>S/O to these Art Directors:</Paragraph>
+      {#each data.artDirectors as artDirector}
+        <Link to={artDirector.url}>{artDirector.name}</Link><br />
+      {/each}
+    </div>
+  </Modal>
+{/if}
 
 <style>
   .status-intro,
