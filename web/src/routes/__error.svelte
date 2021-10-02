@@ -34,7 +34,7 @@
     )
 
     const isValidSlug = data.some(
-      (project) => project.slug.current === pathParts[0]
+      (project) => project?.slug?.current === pathParts[0]
     )
 
     if (!isValidSlug) return reason
