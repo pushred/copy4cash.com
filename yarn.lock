@@ -10962,6 +10962,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"http-status-codes@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "http-status-codes@npm:2.1.4"
+  checksum: 7cd5b1c88e25541f6a2ec57dec257295ca5c7d996c8cb1d9d55cce84b63712978a94e649575f6ffac33b975101d4ef3e4f07c7e4e764b0290832a5a8419409a7
+  languageName: node
+  linkType: hard
+
 "https-browserify@npm:^1.0.0":
   version: 1.0.0
   resolution: "https-browserify@npm:1.0.0"
@@ -20075,6 +20082,7 @@ fsevents@^1.2.7:
     cheerio: ^1.0.0-rc.10
     eslint: ^7.22.0
     groq: ^2.2.6
+    http-status-codes: ^2.1.4
     lodash-es: ^4.17.21
     nanoid: ^3.1.23
     prettier: ~2.2.1

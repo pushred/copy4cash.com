@@ -86,7 +86,14 @@
       (project) => page.params.project === project.slug?.current
     )
 
-    const currentProject = projects[currentIndex] || {}
+    const currentProject = projects[currentIndex]
+
+    if (!currentProject) {
+      return {
+        error: new Error('Not a valid project slug'),
+        status: 404,
+      }
+    }
 
     const hasSummary =
       Array.isArray(currentProject.summary) &&
@@ -115,7 +122,6 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte'
   import { goto } from '$app/navigation'
 
   import { Pagination, Project, ProjectCarousel } from '../components'

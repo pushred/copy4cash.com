@@ -4,5 +4,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/router/index.html"
-  status = 200
+  to = "/error/index.html"
+  status = 404
