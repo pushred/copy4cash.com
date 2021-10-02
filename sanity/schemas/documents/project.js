@@ -1,3 +1,6 @@
+import React from 'react'
+import { EyeClosed } from 'phosphor-react'
+
 export default {
   title: 'Projects',
   name: 'project',
@@ -11,7 +14,7 @@ export default {
     {
       type: 'slug',
       name: 'slug',
-      title: 'Slug',
+      title: 'URL',
       options: {
         source: (doc) => `${doc.client}-${doc.name}`,
       },
@@ -82,11 +85,29 @@ export default {
         },
       ],
     },
+    {
+      type: 'boolean',
+      name: 'hidden',
+      title: 'Hidden',
+    },
   ],
+  initialValue: {
+    hidden: false,
+  },
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'client',
+      name: 'name',
+      client: 'client',
+      hidden: 'hidden',
+      featuredImage: 'featuredImage',
+    },
+    prepare(selection) {
+      const { featuredImage, name, client, hidden } = selection
+      return {
+        title: name,
+        subtitle: client,
+        media: hidden ? <EyeClosed /> : featuredImage,
+      }
     },
   },
 }

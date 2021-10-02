@@ -17,7 +17,7 @@
     `)
 
     const projectsQuery = await sanity.fetch(groq`
-      *[_type == 'project'] | order(order) {
+      *[_type == 'project' && hidden == false] | order(order) {
         _id,
         slug {
           current
