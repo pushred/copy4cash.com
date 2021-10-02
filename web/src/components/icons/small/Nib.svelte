@@ -1,10 +1,13 @@
 <script>
   import { onMount } from 'svelte'
   import { expoOut } from 'svelte/easing'
-  import { draw, fade } from 'svelte/transition'
+  import { draw } from 'svelte/transition'
 
+  export let disabled = false
   export let glow = false
+  export let hover = false
   export let visible = false
+
   export let x = undefined
   export let y = undefined
 
@@ -22,6 +25,8 @@
 <svg
   {x}
   {y}
+  class:disabled
+  class:hover
   width="24"
   height="24"
   viewBox="0 0 24 24"

@@ -1,4 +1,7 @@
 <script>
+  export let disabled = false
+  export let hover = false
+
   export let x = undefined
   export let y = undefined
 </script>
@@ -6,6 +9,8 @@
 <svg
   {x}
   {y}
+  class:disabled
+  class:hover
   width="24"
   height="24"
   viewBox="0 0 24 24"

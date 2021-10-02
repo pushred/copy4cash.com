@@ -3,6 +3,8 @@
   import { expoOut } from 'svelte/easing'
   import { fade } from 'svelte/transition'
 
+  export let disabled = false
+  export let hover = false
   export let glow = false
   export let playing = false
   export let x = undefined
@@ -56,6 +58,8 @@
 <svg
   {x}
   {y}
+  class:disabled
+  class:hover
   width="24"
   height="24"
   viewBox="0 0 24 24"
@@ -97,3 +101,6 @@
     stroke-linejoin="round"
   />
 </svg>
+
+<style>
+</style>

@@ -1,6 +1,7 @@
 <script>
   export let x = 0
   export let y = 0
+
   export let disabled = false
   export let hover = false
 </script>
