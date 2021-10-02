@@ -1,9 +1,10 @@
 <script>
-  import { onMount, setContext } from 'svelte'
+  import { onDestroy, onMount, setContext } from 'svelte'
   import { goto } from '$app/navigation'
   import unorphan from 'unorphan'
 
   import Project from './Project.svelte'
+  import { scrollToTop } from '../scroll.js'
   import { hasSwiped, isLoading } from '../stores.js'
 
   export let data = []
@@ -18,17 +19,9 @@
   isLoading.set(true)
 
   let carouselEl = undefined
+  let observers
 
   const projectEls = [...Array(data.length)]
-
-  $: if (currentIndex !== undefined && carouselEl) {
-    const target = carouselEl.children[currentIndex]
-
-    if (target) {
-      document.scrollingElement.scrollTop = 0
-      carouselEl.scrollLeft = target.offsetLeft
-    }
-  }
 
   setContext('page', {
     getCarouselEl: () => carouselEl,
@@ -37,23 +30,25 @@
   onMount(() => {
     unorphan('p, h1, h2, h3, h4')
 
-    const observers = projectEls.map((projectEl) => {
+    const target = carouselEl.children[currentIndex]
+
+    window.addEventListener('sveltekit:start', () => {
+      document.scrollingElement.scrollTop = 0
+      carouselEl.scrollLeft = target.offsetLeft
+    })
+
+    observers = projectEls.map((projectEl) => {
       const observer = new IntersectionObserver(
-        (entries) => {
+        async (entries) => {
           if (entries[0].isIntersecting) {
             const newSlug = projectEl.id
             if (!newSlug || newSlug === currentSlug) return
 
             hasSwiped.set(true)
 
-            window.scroll({
-              top: 0,
-              behavior: 'smooth',
-            })
+            await scrollToTop(projectEl)
 
-            setTimeout(() => {
-              goto(`/${newSlug}`, { noscroll: true })
-            }, 500) // delay navigation until scroll snap occurs
+            goto(`/${newSlug}`, { noscroll: true })
           }
         },
         {
@@ -70,30 +65,39 @@
         projectEl,
       }
     })
+  })
 
-    isLoading.set(false)
+  window.addEventListener('sveltekit:navigation-end', () => {
+    if (!projectEls.filter(Boolean).length || currentIndex === undefined) return
 
-    return () =>
-      observers.forEach(({ observer, projectEl }) =>
-        observer.unobserve(projectEl)
-      )
+    // correct scroll position to counter router update behavior
+    // TODO: investigate further, maybe file an issue
+    carouselEl.scrollLeft = projectEls[currentIndex].offsetLeft
+  })
+
+  onDestroy(() => {
+    observers.forEach(({ observer, projectEl }) =>
+      observer.unobserve(projectEl)
+    )
   })
 </script>
 
 <svelte:window on:resize={handleResize} />
 
-<div bind:this={carouselEl} class="carousel">
-  {#each data as project, index}
-    <section
-      bind:this={projectEls[index]}
-      id={project.slug?.current}
-      class="project"
-      class:active={index === currentIndex}
-    >
-      <Project data={project} />
-    </section>
-  {/each}
-</div>
+{#if Array.isArray(data)}
+  <div bind:this={carouselEl} class="carousel">
+    {#each data as project, index}
+      <section
+        bind:this={projectEls[index]}
+        id={project.slug?.current}
+        class="project"
+        class:active={index === currentIndex}
+      >
+        <Project data={project} />
+      </section>
+    {/each}
+  </div>
+{/if}
 
 <style>
   ::-webkit-scrollbar {

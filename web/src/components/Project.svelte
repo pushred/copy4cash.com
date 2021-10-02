@@ -1,5 +1,6 @@
 <script>
-  import { getContext } from 'svelte'
+  import { afterUpdate, getContext } from 'svelte'
+  import unorphan from 'unorphan'
 
   import {
     AudioPlayer,
@@ -13,6 +14,8 @@
     Text,
     Video,
   } from '../components'
+
+  import { isLoading } from '../stores.js'
 
   export let data = {}
 
@@ -32,7 +35,7 @@
     return result
   }
 
-  function styleHeadings(blocks) {
+  function styleHeadings(blocks = []) {
     return blocks.map((block) => {
       block.heading = smartUppercase(block.heading)
 
@@ -46,6 +49,12 @@
       return block
     })
   }
+
+  afterUpdate(() => {
+    if (Array.isArray(data.page)) data.page = styleHeadings(data.page)
+    unorphan('p, h1, h2, h3, h4')
+    isLoading.set(false)
+  })
 </script>
 
 <Heading2>{data.name}</Heading2>
@@ -58,52 +67,54 @@
   <Text blocks={data.summary} />
 {/if}
 
-{#each styleHeadings(data.page) || [] as block}
-  {#if block.heading && block.showHeading !== false}
-    <Heading3 textTransform="none">
-      {block.heading}
-      {#if block.subheading}
-        <span class="subheading">{block.subheading}</span>
-      {/if}
-    </Heading3>
-  {/if}
+{#if Array.isArray(data.page)}
+  {#each data.page as block}
+    {#if block.heading && block.showHeading !== false}
+      <Heading3 textTransform="none">
+        {block.heading}
+        {#if block.subheading}
+          <span class="subheading">{block.subheading}</span>
+        {/if}
+      </Heading3>
+    {/if}
 
-  {#if block._type === 'audio'}
-    <AudioPlayer caption={block.caption} url={block.file?.asset?.url} />
-  {/if}
+    {#if block._type === 'audio'}
+      <AudioPlayer caption={block.caption} url={block.file?.asset?.url} />
+    {/if}
 
-  {#if block._type === 'carousel'}
-    <Carousel data={block.slides} />
-  {/if}
+    {#if block._type === 'carousel'}
+      <Carousel data={block.slides} />
+    {/if}
 
-  {#if block._type === 'gallery'}
-    <Gallery columns={block.columns} gap={block.gap} data={block.images} />
-  {/if}
+    {#if block._type === 'gallery'}
+      <Gallery columns={block.columns} gap={block.gap} data={block.images} />
+    {/if}
 
-  {#if block._type === 'recognition'}
-    <Heading3>Recognition</Heading3>
-    <Recognition data={block.sources} />
-  {/if}
+    {#if block._type === 'recognition'}
+      <Heading3>Recognition</Heading3>
+      <Recognition data={block.sources} />
+    {/if}
 
-  {#if block._type === 'social-media'}
-    <Heading3>What People Are Saying</Heading3>
-    <SocialMedia data={block.posts} />
-  {/if}
+    {#if block._type === 'social-media'}
+      <Heading3>What People Are Saying</Heading3>
+      <SocialMedia data={block.posts} />
+    {/if}
 
-  {#if block._type === 'video'}
-    <Video
-      vimeoId={block.video.vimeoId}
-      width="100%"
-      originalWidth={block.video.width}
-      originalHeight={block.video.height}
-    />
-  {/if}
+    {#if block._type === 'video'}
+      <Video
+        vimeoId={block.video.vimeoId}
+        width="100%"
+        originalWidth={block.video.width}
+        originalHeight={block.video.height}
+      />
+    {/if}
 
-  {#if block._type === 'video-carousel'}
-    <Carousel data={block.videos} />
-  {/if}
+    {#if block._type === 'video-carousel'}
+      <Carousel data={block.videos} />
+    {/if}
 
-  {#if block._type === 'video-gallery'}
-    <Gallery columns={block.columns} gap={block.gap} data={block.videos} />
-  {/if}
-{/each}
+    {#if block._type === 'video-gallery'}
+      <Gallery columns={block.columns} gap={block.gap} data={block.videos} />
+    {/if}
+  {/each}
+{/if}

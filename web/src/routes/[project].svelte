@@ -86,7 +86,7 @@
       (project) => page.params.project === project.slug?.current
     )
 
-    const currentProject = projects[currentIndex]
+    const currentProject = projects[currentIndex] || {}
 
     const hasSummary =
       Array.isArray(currentProject.summary) &&
@@ -117,7 +117,6 @@
 <script>
   import { onMount } from 'svelte'
   import { goto } from '$app/navigation'
-  import unorphan from 'unorphan'
 
   import { Pagination, Project, ProjectCarousel } from '../components'
   import { isLoading, isModalOpen, isTouch } from '../stores.js'
@@ -169,11 +168,6 @@
 
   onBreakpointChange((breakpoint) => {
     lg = breakpoint?.key === 'lg'
-  })
-
-  onMount(() => {
-    unorphan('p, h1, h2, h3, h4')
-    isLoading.set(false)
   })
 </script>
 
