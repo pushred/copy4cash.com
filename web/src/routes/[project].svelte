@@ -22,9 +22,10 @@
           _type,
           caption,
           columns,
+          gap,
           heading,
           showHeading,
-          gap,
+          spaceBottom,
           embed {
             embedHtml
           },

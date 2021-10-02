@@ -87,7 +87,12 @@
     {/if}
 
     {#if block._type === 'gallery'}
-      <Gallery columns={block.columns} gap={block.gap} data={block.images} />
+      <Gallery
+        columns={block.columns}
+        gap={block.gap}
+        data={block.images}
+        spaceBottom={block.spaceBottom}
+      />
     {/if}
 
     {#if block._type === 'recognition'}
@@ -114,7 +119,12 @@
     {/if}
 
     {#if block._type === 'video-gallery'}
-      <Gallery columns={block.columns} gap={block.gap} data={block.videos} />
+      <Gallery
+        columns={block.columns}
+        gap={block.gap}
+        data={block.videos}
+        spaceBottom={block.spaceBottom}
+      />
     {/if}
   {/each}
 {/if}

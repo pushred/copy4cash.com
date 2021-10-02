@@ -7,6 +7,7 @@
   export let data = []
   export let columns = 4
   export let gap = true
+  export let spaceBottom = 'bottom'
 
   let viewerIndex
 
@@ -31,6 +32,9 @@
     class:cols-7={columns === 7}
     class:cols-8={columns === 8}
     class:gap
+    class:space-default={spaceBottom === 'default'}
+    class:space-grid={spaceBottom === 'grid'}
+    class:space-none={spaceBottom === 'none'}
   >
     {#each data as item, index}
       <li on:click={() => handleClick(index)}>
@@ -42,6 +46,7 @@
             originalWidth={item.video?.width}
             originalHeight={item.video?.height}
             vimeoId={item.video?.vimeoId}
+            --space-bottom="0"
           />
         {/if}
       </li>
@@ -59,6 +64,14 @@
   .gallery {
     display: grid;
     margin-bottom: var(--space-bottom);
+  }
+
+  .gallery.space-none {
+    margin-bottom: 0;
+  }
+
+  .gallery.space-grid {
+    margin-bottom: var(--space-grid-gap-sm);
   }
 
   .cols-2 {
@@ -84,6 +97,6 @@
   }
 
   .gap {
-    grid-gap: 10px;
+    grid-gap: var(--space-grid-gap-sm);
   }
 </style>

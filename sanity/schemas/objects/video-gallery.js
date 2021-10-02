@@ -34,6 +34,28 @@ export default {
       initialValue: true,
     },
     {
+      type: 'string',
+      name: 'spaceBottom',
+      title: 'Space Below Gallery',
+      options: {
+        list: [
+          {
+            title: 'Default',
+            value: 'default',
+          },
+          {
+            title: 'Same as Grid Items',
+            value: 'grid',
+          },
+          {
+            title: 'None',
+            value: 'none',
+          },
+        ],
+      },
+      initialValue: 'default',
+    },
+    {
       name: 'videos',
       type: 'array',
       of: [

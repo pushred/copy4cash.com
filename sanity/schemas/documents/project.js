@@ -89,11 +89,9 @@ export default {
       type: 'boolean',
       name: 'hidden',
       title: 'Hidden',
+      initialValue: true,
     },
   ],
-  initialValue: {
-    hidden: false,
-  },
   preview: {
     select: {
       name: 'name',
