@@ -65,6 +65,10 @@
 {/if}
 
 <style>
+  svg {
+    pointer-events: none;
+  }
+
   .label {
     position: absolute; /* relative to parent button */
     top: 0;

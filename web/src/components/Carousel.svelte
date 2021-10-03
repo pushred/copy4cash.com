@@ -172,4 +172,9 @@
     align-items: center;
     pointer-events: none;
   }
+
+  .carousel.fullscreen nav {
+    right: var(--space-8);
+    left: var(--space-8);
+  }
 </style>

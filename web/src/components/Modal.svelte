@@ -19,6 +19,10 @@
   }
 
   function handleClose(event) {
+    if (event.target.title === 'Next' || event.target.title === 'Back') {
+      return
+    }
+
     clearAllBodyScrollLocks()
     isOpen = false
     isModalOpen.set(false)
@@ -35,16 +39,15 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if isOpen}
-  <div bind:this={modalEl} transition:fade={{ duration: 200 }}>
+  <div
+    bind:this={modalEl}
+    transition:fade={{ duration: 200 }}
+    on:click={handleClose}
+  >
     <div class="content">
       <slot />
       <div class="modal-buttons">
-        <Button
-          variant="raised"
-          icon="close"
-          label="Close"
-          on:click={handleClose}
-        />
+        <Button variant="raised" icon="close" label="Close" />
       </div>
     </div>
     <div class="backdrop" aria-hidden />
