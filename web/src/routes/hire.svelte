@@ -146,7 +146,7 @@
           width="100%"
           wrap
         >
-          {#if data.resume.asset}
+          {#if data.resume?.asset}
             <Button
               download
               icon="down"
