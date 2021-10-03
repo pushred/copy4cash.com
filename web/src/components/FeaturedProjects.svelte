@@ -20,7 +20,7 @@
 
   let rows = [data.map((project) => project.name)]
 
-  $: if (lg) {
+  function calculateRows() {
     rows = data.reduce(
       (accumulator, project) => {
         const currentRow = accumulator[accumulator.length - 1]
@@ -41,11 +41,17 @@
     )
   }
 
+  $: if (lg || xl) {
+    calculateRows()
+  }
+
   const projects = data.reduce((accumulator, project) => {
     accumulator[project.name] = project
     return accumulator
   }, {})
 </script>
+
+<svelte:window on:resize={calculateRows} />
 
 <nav class:sm class:md class:lg class:xl>
   {#each rows as row}
@@ -104,7 +110,6 @@
 
   .lg ul,
   .xl ul {
-    max-width: 75vw;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
