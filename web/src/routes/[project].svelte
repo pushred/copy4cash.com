@@ -211,11 +211,9 @@
   <Project data={currentProject} />
 {/if}
 
-{#if lg}
-  <Pagination
-    totalPages={projects.length}
-    {currentIndex}
-    on:change={handlePagination}
-    --space-bottom="var(--space-6)"
-  />
-{/if}
+<Pagination
+  totalPages={projects.length}
+  {currentIndex}
+  on:change={handlePagination}
+  --space-bottom="var(--space-6)"
+/>

@@ -5,7 +5,7 @@
 
   import Project from './Project.svelte'
   import { scrollToTop } from '../scroll.js'
-  import { hasSwiped, isLoading } from '../stores.js'
+  import { hasSwiped, isLoading, isPaginationVisible } from '../stores.js'
 
   export let data = []
   export let currentIndex = undefined
@@ -85,7 +85,11 @@
 <svelte:window on:resize={handleResize} />
 
 {#if Array.isArray(data)}
-  <div bind:this={carouselEl} class="carousel">
+  <div
+    bind:this={carouselEl}
+    class="carousel"
+    class:can-scroll={$isPaginationVisible}
+  >
     {#each data as project, index}
       <section
         bind:this={projectEls[index]}
@@ -109,9 +113,14 @@
     display: flex;
     width: 100%;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: auto; /* disable momentum, skips projects */
+  }
+
+  .can-scroll {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
   }
 
   .project {

@@ -4,6 +4,7 @@ export const hasSwiped = writable(false)
 
 export const isLoading = writable(false)
 export const isModalOpen = writable(false)
+export const isPaginationVisible = writable(false)
 
 export const breakpoint = writable(null)
 export const currentPlayerId = writable(null)

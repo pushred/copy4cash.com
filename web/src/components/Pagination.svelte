@@ -1,7 +1,7 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 
-  import { hasSwiped, isTouch } from '../stores.js'
+  import { hasSwiped, isPaginationVisible, isTouch } from '../stores.js'
 
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
@@ -19,34 +19,60 @@
     if (typeof selection === 'number') currentIndex = selection
     dispatch('change', currentIndex)
   }
+
+  let container
+  let observer
+
+  onMount(() => {
+    observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          isPaginationVisible.set(true)
+        } else {
+          isPaginationVisible.set(false)
+        }
+      },
+      {
+        rootMargin: '0px 0px 0px 0px',
+      }
+    )
+
+    observer.observe(container)
+  })
+
+  onDestroy(() => {
+    observer?.unobserve(container)
+  })
 </script>
 
-<Flex
-  justifyContent="space-between"
-  paddingX={['margin-x', 'margin-x']}
-  width="100%"
->
-  <Button
-    disabled={currentIndex === 0}
-    on:click={handleChange.bind(null, 'back')}
-    icon="left-arrows"
-    --space-bottom="0"
-  />
-  {#if $hasSwiped || !$isTouch}
-    {#each [...Array(totalPages).keys()] as page, index}
-      <PaginationDot
-        active={index === currentIndex}
-        on:click={handleChange.bind(null, index)}
-      />
-    {/each}
-  {:else}
-    <Prompt>Swipe left/right to switch projects</Prompt>
-  {/if}
+<div bind:this={container}>
+  <Flex
+    justifyContent="space-between"
+    paddingX={['margin-x', 'margin-x']}
+    width="100%"
+  >
+    <Button
+      disabled={currentIndex === 0}
+      on:click={handleChange.bind(null, 'back')}
+      icon="left-arrows"
+      --space-bottom="0"
+    />
+    {#if $hasSwiped || !$isTouch}
+      {#each [...Array(totalPages).keys()] as page, index}
+        <PaginationDot
+          active={index === currentIndex}
+          on:click={handleChange.bind(null, index)}
+        />
+      {/each}
+    {:else}
+      <Prompt>Swipe left/right to switch projects</Prompt>
+    {/if}
 
-  <Button
-    disabled={currentIndex === totalPages - 1}
-    on:click={handleChange.bind(null, 'next')}
-    icon="right-arrows"
-    --space-bottom="0"
-  />
-</Flex>
+    <Button
+      disabled={currentIndex === totalPages - 1}
+      on:click={handleChange.bind(null, 'next')}
+      icon="right-arrows"
+      --space-bottom="0"
+    />
+  </Flex>
+</div>
