@@ -92,6 +92,13 @@ export default {
       initialValue: true,
     },
   ],
+  orderings: [
+    {
+      title: 'Preferred Order',
+      name: 'preferredOrder',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
+  ],
   preview: {
     select: {
       name: 'name',
