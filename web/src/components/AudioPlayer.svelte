@@ -26,13 +26,13 @@
   }
 
   function handleToggle() {
+    currentPlayerId.set(id) // must come first for above reactive check
     isPlaying = !isPlaying
 
     if (!isPlaying && audio) {
       audio.pause()
     } else if (isPlaying && canPlaythrough) {
       audio.play()
-      currentPlayerId.set(id)
     }
 
     if (isPlaying && !audio && url) {
