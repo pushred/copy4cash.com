@@ -96,3 +96,9 @@
     </g>
   </g>
 </svg>
+
+<style>
+  svg {
+    pointer-events: none;
+  }
+</style>

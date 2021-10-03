@@ -28,3 +28,9 @@
     fill="#6A0BFF"
   />
 </svg>
+
+<style>
+  svg {
+    pointer-events: none;
+  }
+</style>

@@ -26,6 +26,10 @@
 </svg>
 
 <style>
+  svg {
+    pointer-events: none;
+  }
+
   path {
     transition: var(--fill-transition);
   }

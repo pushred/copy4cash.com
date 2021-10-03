@@ -113,6 +113,10 @@
 </svg>
 
 <style>
+  svg {
+    pointer-events: none;
+  }
+
   .disabled .icon {
     stroke: var(--button-icon-disabled);
   }

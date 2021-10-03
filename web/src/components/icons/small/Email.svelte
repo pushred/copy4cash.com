@@ -32,3 +32,9 @@
     stroke-linejoin="round"
   />
 </svg>
+
+<style>
+  svg {
+    pointer-events: none;
+  }
+</style>

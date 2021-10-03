@@ -56,3 +56,9 @@
     />
   {/if}
 </svg>
+
+<style>
+  svg {
+    pointer-events: none;
+  }
+</style>
