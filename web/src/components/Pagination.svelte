@@ -59,9 +59,11 @@
     />
     {#if $hasSwiped || !$isTouch}
       {#each [...Array(totalPages).keys()] as page, index}
-        <PaginationDot
+        <Button
           active={index === currentIndex}
           on:click={handleChange.bind(null, index)}
+          icon="pagination-dot"
+          --space-bottom="0"
         />
       {/each}
     {:else}

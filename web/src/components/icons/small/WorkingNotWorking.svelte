@@ -1,4 +1,5 @@
 <script>
+  export let active = false
   export let disabled = false
   export let hover = false
 
@@ -9,6 +10,7 @@
 <svg
   {x}
   {y}
+  class:active
   class:disabled
   class:hover
   width="24"

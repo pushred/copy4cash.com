@@ -11,6 +11,7 @@
   import LeftArrows from './icons/small/LeftArrows.svelte'
   import LinkedIn from './icons/small/LinkedIn.svelte'
   import Menu from './icons/small/Menu.svelte'
+  import PaginationDot from './icons/small/PaginationDot.svelte'
   import Pause from './icons/small/Pause.svelte'
   import Play from './icons/small/Play.svelte'
   import Right from './icons/small/Right.svelte'
@@ -18,6 +19,7 @@
   import Twitter from './icons/small/Twitter.svelte'
   import WorkingNotWorking from './icons/small/WorkingNotWorking.svelte'
 
+  export let active = false
   export let disabled = false
   export let download = undefined
   export let hover = false
@@ -43,6 +45,7 @@
     if (icon === 'left') Icon = Left
     if (icon === 'linkedin') Icon = LinkedIn
     if (icon === 'menu') Icon = Menu
+    if (icon === 'pagination-dot') Icon = PaginationDot
     if (icon === 'pause') Icon = Pause
     if (icon === 'play') Icon = Play
     if (icon === 'right-arrows') Icon = RightArrows
@@ -84,7 +87,14 @@
       <svelte:component this={Icon} {disabled} {hover} x={iconX} y={iconY} />
     </RaisedButton>
   {:else if icon}
-    <svelte:component this={Icon} {disabled} {hover} x={iconX} y={iconY} />
+    <svelte:component
+      this={Icon}
+      {active}
+      {disabled}
+      {hover}
+      x={iconX}
+      y={iconY}
+    />
   {:else}
     <slot />
   {/if}

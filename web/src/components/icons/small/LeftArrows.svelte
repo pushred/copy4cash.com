@@ -3,6 +3,7 @@
   import { expoOut } from 'svelte/easing'
   import { fade } from 'svelte/transition'
 
+  export let active = false
   export let disabled = false
   export let glow = false
   export let hover = false
@@ -25,6 +26,7 @@
 <svg
   {x}
   {y}
+  class:active
   class:disabled
   class:hover
   width="24"
@@ -32,7 +34,6 @@
   viewBox="0 0 24 24"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  on:click
 >
   {#if visible}
     <path

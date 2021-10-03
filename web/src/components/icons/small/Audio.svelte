@@ -3,10 +3,12 @@
   import { expoOut } from 'svelte/easing'
   import { fade } from 'svelte/transition'
 
+  export let active = false
   export let disabled = false
   export let hover = false
   export let glow = false
   export let playing = false
+
   export let x = undefined
   export let y = undefined
 
@@ -58,6 +60,7 @@
 <svg
   {x}
   {y}
+  class:active
   class:disabled
   class:hover
   width="24"
