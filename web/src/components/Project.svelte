@@ -4,6 +4,7 @@
 
   import {
     AudioPlayer,
+    Box,
     Carousel,
     Gallery,
     Heading2,
@@ -72,11 +73,13 @@
   })
 </script>
 
-<Heading2>{data.name}</Heading2>
+<Box paddingX={['margin-x', 'margin-x']}>
+  <Heading2>{data.name}</Heading2>
 
-{#if data.client}
-  <Heading4>{data.client}</Heading4>
-{/if}
+  {#if data.client}
+    <Heading4>{data.client}</Heading4>
+  {/if}
+</Box>
 
 {#if data.summary}
   <Text blocks={data.summary} />
