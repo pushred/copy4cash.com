@@ -41,11 +41,18 @@
   <script async src="https://www.instagram.com/embed.js"></script>
 </svelte:head>
 
-<nav>
+<Flex
+  id="social"
+  alignItems="center"
+  flexDirection="column"
+  paddingX={['margin-x', 'margin-x']}
+  marginBottom
+  gap="5"
+>
   {#if tweets.length}
     <Tweet html={tweets[0].embed.quoteHtml} />
   {/if}
-  <Flex gap="5" --space-bottom="0">
+  <Flex gap="5" marginBottom="0">
     {#if instagrams.length}
       <Button
         --space-bottom="0"
@@ -65,7 +72,7 @@
       />
     {/if}
   </Flex>
-</nav>
+</Flex>
 
 {#if Array.isArray(posts)}
   <Modal isOpen={posts !== null} onClose={handleClose}>
@@ -83,14 +90,6 @@
 {/if}
 
 <style>
-  nav {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: var(--space-bottom);
-    gap: var(--space-5);
-  }
-
   .viewer {
     display: flex;
     width: 100%;

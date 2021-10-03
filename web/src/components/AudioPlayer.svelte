@@ -1,5 +1,6 @@
 <script>
   import AudioIcon from './icons/small/Audio.svelte'
+  import Box from './Box.svelte'
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
   import Heading4 from './text/Heading4.svelte'
@@ -53,9 +54,9 @@
   }
 </script>
 
-<article>
+<Box marginBottom paddingX={['margin-x', 'margin-x']}>
   <Heading4 --space-bottom="0">{caption}</Heading4>
-  <Flex --align-items="center" --gap="var(--space-2)" --width="100%">
+  <Flex alignItems="center" gap="2" width="100%">
     <Button
       --space-bottom="0"
       icon={isPlaying ? 'pause' : 'play'}
@@ -68,13 +69,9 @@
     </ul>
     <AudioIcon glow={isPlaying} playing={isPlaying} />
   </Flex>
-</article>
+</Box>
 
 <style>
-  article {
-    margin-bottom: var(--space-bottom);
-  }
-
   .progress {
     position: relative;
     flex-grow: 1;

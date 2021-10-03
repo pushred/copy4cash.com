@@ -21,7 +21,11 @@
   }
 </script>
 
-<Flex justifyContent="space-between" --width="100%">
+<Flex
+  justifyContent="space-between"
+  paddingX={['margin-x', 'margin-x']}
+  width="100%"
+>
   <Button
     disabled={currentIndex === 0}
     on:click={handleChange.bind(null, 'back')}

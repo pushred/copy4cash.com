@@ -5,9 +5,19 @@
   import Image from './Image.svelte'
   import Video from './Video.svelte'
 
+  import { onBreakpointChange } from '../theme.js'
+
   export let startIndex = 0
   export let data = []
   export let variant = 'block'
+
+  let sm = false
+  let md = false
+
+  onBreakpointChange((breakpoint) => {
+    sm = breakpoint?.key === 'sm'
+    md = breakpoint?.key === 'md'
+  })
 
   let carouselEl
   let currentIndex = startIndex
@@ -50,6 +60,8 @@
     class="carousel"
     class:block={variant === 'block'}
     class:fullscreen={variant === 'fullscreen'}
+    class:sm
+    class:md
   >
     <ul bind:this={carouselEl}>
       {#each data as slide}
@@ -69,7 +81,7 @@
       {/each}
     </ul>
 
-    {#if data.length > 1}
+    {#if !sm && !md && data.length > 1}
       <nav>
         <Button
           variant="raised"
@@ -103,6 +115,16 @@
 
   .carousel.block .slide {
     width: 100%;
+  }
+
+  .carousel.block.sm .slide {
+    width: 90%;
+    margin: 0 var(--space-2);
+  }
+
+  .carousel.block.md .slide {
+    width: 95%;
+    margin: 0 var(--space-2);
   }
 
   .carousel.fullscreen {
@@ -142,9 +164,9 @@
   nav {
     position: absolute;
     top: 0;
-    right: var(--space-8);
+    right: calc(var(--space-14) * -1);
     bottom: 0;
-    left: var(--space-8);
+    left: calc(var(--space-14) * -1);
     display: flex;
     justify-content: space-between;
     align-items: center;

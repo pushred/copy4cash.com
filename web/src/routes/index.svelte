@@ -121,7 +121,7 @@
 
   .sm,
   .md {
-    padding: var(--space-page-margin-y) var(--space-page-margin-x);
+    padding: var(--space-margin-y) var(--space-margin-x);
   }
 
   .lg,

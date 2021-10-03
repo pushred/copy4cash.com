@@ -42,6 +42,7 @@
   import { page } from '$app/stores'
 
   import {
+    Flex,
     Grid,
     GridItem,
     LoadingOverlay,
@@ -51,7 +52,7 @@
 
   import * as stores from '../stores'
   import { loadFonts } from '../fonts.js'
-  import { getMediaQueryStrings } from '../theme.js'
+  import { getMediaQueryStrings, onBreakpointChange } from '../theme.js'
 
   export let metadata = {}
   export let stylizedTextExclusions = []
@@ -63,13 +64,18 @@
   })
 
   const mediaQueries = []
-
-  let isLoading = true
+  const { isLoading } = stores
 
   $: isHome = $page.path === '/'
   $: isHire = $page.path === '/hire'
 
-  stores.isLoading.subscribe((value) => (isLoading = value))
+  let lg = false
+  let xl = false
+
+  onBreakpointChange((breakpoint) => {
+    lg = breakpoint?.key === 'lg'
+    xl = breakpoint?.key === 'xl'
+  })
 
   onMount(() => {
     const mediaQueryStrings = getMediaQueryStrings()
@@ -105,12 +111,12 @@
 </script>
 
 {#if isHome}
-  {#if isLoading}<LoadingOverlay />{/if}
+  {#if $isLoading}<LoadingOverlay />{/if}
   <slot />
 {:else}
-  <div class="layout">
-    {#if isLoading}<LoadingOverlay />{/if}
-    <Grid cols={[6, 6, 12, 12]} height="100%">
+  <div class="layout" class:lg class:xl>
+    {#if $isLoading}<LoadingOverlay />{/if}
+    <Grid cols={[6, 6, 12, 12]} minHeight="full">
       <GridItem
         colStart={[1, 1, 1, 1]}
         colSpan={[6, 6, 2, 2]}
@@ -118,21 +124,18 @@
         alignSelf={['end', 'end']}
       >
         <Navbar gotoHome={() => goto('/')}>
-          <!-- TODO: div is necessary to avoid this rendering elsewhere, svelte:fragment does not work either -->
-          <div slot="site-nav">
-            <NavLink icon="work" label="Work" {goto} url="/" />
-            <NavLink icon="hire" label="Hire" {goto} url="/hire" />
-            <NavLink
-              icon="instagram"
-              label="Insta"
-              url="https://www.instagram.com/whitefridaynight/"
-            />
-            <NavLink
-              icon="twitter"
-              label="Follow"
-              url="https://twitter.com/whitefridaynite"
-            />
-          </div>
+          <NavLink icon="work" label="Work" {goto} url="/" />
+          <NavLink icon="hire" label="Hire" {goto} url="/hire" />
+          <NavLink
+            icon="instagram"
+            label="Insta"
+            url="https://www.instagram.com/whitefridaynight/"
+          />
+          <NavLink
+            icon="twitter"
+            label="Follow"
+            url="https://twitter.com/whitefridaynite"
+          />
         </Navbar>
       </GridItem>
       <GridItem
@@ -161,7 +164,14 @@
 
   .layout {
     max-width: var(--max-page-width);
-    padding: var(--space-page-margin-y) var(--space-page-margin-x);
+    padding-top: var(--space-margin-y);
+    padding-bottom: var(--space-margin-y);
+  }
+
+  .layout.lg,
+  .layout.xl {
+    padding-right: var(--space-margin-x);
+    padding-left: var(--space-margin-x);
   }
 
   .wrapper {

@@ -1,4 +1,6 @@
 <script>
+  import Flex from './Flex.svelte'
+
   import { onBreakpointChange } from '../theme.js'
   import StackedLogo from './logos/StackedLogo.svelte'
 
@@ -19,9 +21,17 @@
   {#if lg}
     <StackedLogo on:click={gotoHome} />
   {/if}
-  <div class="site-nav">
-    <slot name="site-nav" />
-  </div>
+  <Flex
+    bottom={[undefined, undefined, 'margin-y', 'margin-y']}
+    flexDirection={['row', 'row', 'column', 'column']}
+    gap="5"
+    justifyContent="space-between"
+    marginBottom="0"
+    paddingX={['margin-x', 'margin-x']}
+    position={['static', 'static', 'fixed', 'fixed']}
+  >
+    <slot />
+  </Flex>
 </nav>
 
 {#if lg}
@@ -46,24 +56,9 @@
 <style>
   nav.lg {
     position: sticky;
-    top: var(--space-page-margin-y);
-    bottom: var(--space-page-margin-y);
-    left: var(--space-page-margin-x);
-  }
-
-  nav.lg .site-nav :global(div) {
-    position: fixed;
-    bottom: var(--space-page-margin-y);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  nav.sm .site-nav :global(div),
-  nav.md .site-nav :global(div) {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-5);
+    top: var(--space-margin-y);
+    bottom: var(--space-margin-y);
+    left: var(--space-margin-x);
   }
 
   svg {

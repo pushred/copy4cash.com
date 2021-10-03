@@ -117,7 +117,7 @@
 </svelte:head>
 
 <div class:lg class:xl>
-  <Grid cols={3}>
+  <Grid cols={3} paddingX={['margin-x', 'margin-x']}>
     <GridItem colSpan={3}>
       <strong class="status-intro">Diana Casthart is</strong>
       <strong class="status">{data.status}</strong>
@@ -140,11 +140,11 @@
     <GridItem colSpan={3}>
       <Panel --space-bottom="var(--space-5)">
         <Flex
-          justifyContent="center"
-          wrap
           gap="4"
-          --space-bottom="0"
-          --width="100%"
+          justifyContent="center"
+          marginBottom="0"
+          width="100%"
+          wrap
         >
           {#if data.resume.asset}
             <Button
@@ -238,8 +238,8 @@
   .lg .prompt-ad,
   .xl .prompt-ad {
     position: fixed;
-    top: var(--space-page-margin-y);
-    right: var(--space-page-margin-y);
+    top: var(--space-margin-y);
+    right: var(--space-margin-y);
   }
 
   .ad {

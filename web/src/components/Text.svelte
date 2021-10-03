@@ -1,4 +1,5 @@
 <script>
+  import Box from './Box.svelte'
   import Paragraph from './text/Paragraph.svelte'
   import { getResponsivePropValues, onBreakpointChange } from '../theme.js'
 
@@ -34,7 +35,7 @@
 </script>
 
 {#if Array.isArray(blocks)}
-  <div>
+  <Box paddingX={['margin-x', 'margin-x']}>
     {#each blocks as block}
       <Paragraph align={props.align}>
         {#each block.children as span}
@@ -65,14 +66,10 @@
         {/each}
       </Paragraph>
     {/each}
-  </div>
+  </Box>
 {/if}
 
 <style>
-  div {
-    margin-bottom: var(--space-bottom);
-  }
-
   a {
     color: var(--blended-gold);
     text-decoration: underline;
