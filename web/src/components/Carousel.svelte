@@ -87,7 +87,7 @@
           variant="raised"
           icon="left"
           label="Back"
-          on:click={() => slide('next')}
+          on:click={() => slide('back')}
         />
         <Button
           variant="raised"
