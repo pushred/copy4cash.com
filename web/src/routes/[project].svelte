@@ -7,8 +7,9 @@
 
   export async function load({ page }) {
     const query = groq`
-      *[_type == 'project' && hidden == false] | order(order) {
+      *[_type == 'project'] | order(order) {
         _id,
+        hidden,
         slug,
         client,
         name,
@@ -82,8 +83,13 @@
 
     const data = await sanity.fetch(query)
     const projects = overlayDrafts(data)
+    const visibleProjects = projects.filter((project) => !project.hidden)
 
     const currentIndex = projects.findIndex(
+      (project) => page.params.project === project.slug?.current
+    )
+
+    const visibleCurrentIndex = visibleProjects.findIndex(
       (project) => page.params.project === project.slug?.current
     )
 
@@ -103,10 +109,10 @@
 
     return {
       props: {
-        currentIndex,
-        projects,
         currentProject,
+        currentIndex: visibleCurrentIndex,
         currentSlug: page.params.project,
+        projects: visibleProjects,
         metadata: {
           description: hasSummary
             ? currentProject.summary[0].children
