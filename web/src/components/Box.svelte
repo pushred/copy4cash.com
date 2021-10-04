@@ -158,11 +158,6 @@
     gap: var(--space-10);
   }
 
-  .height-full {
-    min-height: calc(100vh - calc(var(--space-margin-y) * 2));
-    margin-bottom: 0;
-  }
-
   .inset-0 {
     inset: 0;
   }
