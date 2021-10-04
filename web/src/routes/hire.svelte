@@ -9,6 +9,8 @@
   import { isLoading } from '../stores.js'
   import { onBreakpointChange } from '../theme.js'
 
+  export const prerender = true
+
   export async function load({ page }) {
     const query = groq`
       *[_type == 'hire'] {

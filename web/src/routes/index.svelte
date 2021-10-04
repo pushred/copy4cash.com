@@ -4,6 +4,8 @@
   import { overlayDrafts } from '../overlayDrafts'
   import { getSanityClient } from '../sanity'
 
+  export const prerender = true
+
   export async function load({ page }) {
     const sanity = getSanityClient(page.host)
 
