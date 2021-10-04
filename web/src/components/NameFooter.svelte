@@ -2,6 +2,12 @@
   import Coin from './icons/small/Coin.svelte'
   import { onBreakpointChange } from '../theme.js'
 
+  export let goto = undefined
+
+  function handleClick() {
+    goto('/hire')
+  }
+
   let sm = false
   let md = false
   let lg = false
@@ -16,7 +22,7 @@
   })
 </script>
 
-<div class="layout" class:sm class:md>
+<div class="layout" class:sm class:md on:click={handleClick}>
   {#if sm}
     <Coin />
     <span>Diana Casthart</span>
@@ -34,6 +40,7 @@
 
 <style>
   .layout {
+    cursor: default;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
@@ -43,6 +50,7 @@
     font-weight: 400;
     font-size: var(--text-1);
     color: var(--blended-gold);
+    user-select: none;
     text-transform: uppercase;
   }
 
@@ -61,5 +69,10 @@
 
   .layout.md span {
     padding-top: 1px;
+  }
+
+  span {
+    /* Diana is not content with Tobias Frere-Jones */
+    word-spacing: 0.2em;
   }
 </style>

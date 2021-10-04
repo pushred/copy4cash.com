@@ -100,7 +100,7 @@
       justifyContent={[undefined, undefined, 'space-between', 'space-between']}
     >
       <div class="shim" />
-      <NameFooter />
+      <NameFooter {goto} />
       <NavLink icon="hire" label="Hire" {goto} url="/hire" />
     </Flex>
   </footer>
