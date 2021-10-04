@@ -51,8 +51,8 @@
     if (!container) return
 
     if (player) {
-      const playerId = await player.getVideoId().toString()
-      if (playerId !== vimeoId.toString()) {
+      const playerId = await player.getVideoId()
+      if (playerId.toString() !== vimeoId.toString()) {
         player.loadVideo(vimeoId)
         return
       }
