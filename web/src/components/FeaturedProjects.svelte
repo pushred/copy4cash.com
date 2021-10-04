@@ -92,7 +92,11 @@
   }
 
   a:hover strong {
-    color: var(--white);
+    color: var(--neon-green);
+  }
+
+  a:hover {
+    color: var(--gold);
   }
 
   ul {
