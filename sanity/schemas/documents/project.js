@@ -42,6 +42,9 @@ export default {
       name: 'featuredImage',
       title: 'Featured Image',
       description: 'as seen on Facebook, Twitter, etc.',
+      options: {
+        hotspot: true,
+      },
     },
     {
       type: 'array',

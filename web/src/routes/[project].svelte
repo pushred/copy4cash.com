@@ -116,13 +116,27 @@
         currentSlug: page.params.project,
         projects: visibleProjects,
         metadata: {
+          title: `${currentProject.client}: ${currentProject.name}`,
           description: hasSummary
             ? currentProject.summary[0].children
                 .map((child) => child.text)
                 .join('')
             : undefined,
-          imageUrl: currentProject.featuredImage
-            ? urlBuilder.image(currentProject.featuredImage).format('png').url()
+          facebookImageUrl: currentProject.featuredImage
+            ? urlBuilder
+                .image(currentProject.featuredImage)
+                .width(1200)
+                .height(628)
+                .format('png')
+                .url()
+            : undefined,
+          twitterImageUrl: currentProject.featuredImage
+            ? urlBuilder
+                .image(currentProject.featuredImage)
+                .width(800)
+                .height(418)
+                .format('png')
+                .url()
             : undefined,
         },
       },
@@ -192,14 +206,20 @@
       ? `${currentProject.client}: ${currentProject.name} · `
       : ''}Copy4Ca$h
   </title>
+
   <meta name="description" content={metadata.description} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="Copy4Ca$h" />
+  <meta name="twitter:title" content={metadata.title} />
+  <meta name="twitter:description" content={metadata.description} />
+  <meta name="twitter:image" content={metadata.twitterImageUrl} />
+
   <meta property="og:site_name" content="Copy4Ca$h" />
-  <meta property="og:image" content={metadata.imageUrl} />
+  <meta property="og:title" content={metadata.title} />
+  <meta property="og:description" content={metadata.description} />
+  <meta property="og:image" content={metadata.facebookImageUrl} />
   <meta property="og:image:alt" content={metadata.description} />
-  <meta
-    property="og:title"
-    content={`${currentProject.client}: ${currentProject.name}`}
-  />
 </svelte:head>
 
 <svelte:window on:keydown={handleKeydown} />

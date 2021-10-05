@@ -4,7 +4,7 @@
 
   import { getSanityClient } from '../sanity'
 
-  export async function load() {
+  export async function load({ page }) {
     const sanity = getSanityClient(page.host)
     const urlBuilder = imageUrlBuilder(sanity)
 
@@ -24,9 +24,23 @@
     return {
       props: {
         metadata: {
+          title: 'Copy4Ca$h',
           description: metadata.description,
-          imageUrl: metadata.image
-            ? urlBuilder.image(metadata.image).format('png').url()
+          facebookImageUrl: metadata.image
+            ? urlBuilder
+                .image(metadata.image)
+                .width(1200)
+                .height(628)
+                .format('png')
+                .url()
+            : undefined,
+          twitterImageUrl: metadata.image
+            ? urlBuilder
+                .image(metadata.image)
+                .width(800)
+                .height(418)
+                .format('png')
+                .url()
             : undefined,
         },
         stylizedTextExclusions: stylizedText?.exclusions,

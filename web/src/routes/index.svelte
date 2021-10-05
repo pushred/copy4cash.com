@@ -81,8 +81,20 @@
 
 <svelte:head>
   <title>Copy4Ca$h</title>
+
   <meta name="description" content={context.metadata.description} />
-  <meta property="og:image" content={context.metadata.imageUrl} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="Copy4Ca$h" />
+  <meta name="twitter:title" content={context.metadata.title} />
+  <meta name="twitter:description" content={context.metadata.description} />
+  <meta name="twitter:image" content={context.metadata.twitterImageUrl} />
+
+  <meta property="og:site_name" content="Copy4Ca$h" />
+  <meta property="og:title" content={context.metadata.title} />
+  <meta property="og:description" content={context.metadata.description} />
+  <meta property="og:image" content={context.metadata.facebookImageUrl} />
+  <meta property="og:image:alt" content={context.metadata.description} />
 </svelte:head>
 
 <div class="layout" class:sm class:md class:lg class:xl>

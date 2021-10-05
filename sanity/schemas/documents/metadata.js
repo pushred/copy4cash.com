@@ -9,6 +9,9 @@ export default {
       title: 'Default Site Image',
       description:
         'Used for home page and any projects without a featured image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       type: 'text',

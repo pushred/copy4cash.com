@@ -56,11 +56,25 @@
       props: {
         data: content,
         metadata: {
+          title: 'Hire Diana Casthart',
           description: hasIntro
             ? content.intro[0].children.map((child) => child.text).join('')
             : undefined,
-          imageUrl: content.photo
-            ? urlBuilder.image(content.photo).url()
+          facebookImageUrl: content.photo
+            ? urlBuilder
+                .image(content.photo)
+                .width(1200)
+                .height(628)
+                .format('png')
+                .url()
+            : undefined,
+          twitterImageUrl: content.photo
+            ? urlBuilder
+                .image(content.photo)
+                .width(800)
+                .height(418)
+                .format('png')
+                .url()
             : undefined,
         },
       },
@@ -113,9 +127,20 @@
 
 <svelte:head>
   <title>Hire Diana Casthart : Copy4Ca$h</title>
-  <meta name="og:title" content="Hire Diana Casthart" />
+
   <meta name="description" content={metadata.description} />
-  <meta name="og:image" content={metadata.imageUrl} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="Copy4Ca$h" />
+  <meta name="twitter:title" content={metadata.title} />
+  <meta name="twitter:description" content={metadata.description} />
+  <meta name="twitter:image" content={metadata.twitterImageUrl} />
+
+  <meta property="og:site_name" content="Copy4Ca$h" />
+  <meta property="og:title" content={metadata.title} />
+  <meta property="og:description" content={metadata.description} />
+  <meta property="og:image" content={metadata.facebookImageUrl} />
+  <meta property="og:image:alt" content={metadata.description} />
 </svelte:head>
 
 <div class:lg class:xl>
