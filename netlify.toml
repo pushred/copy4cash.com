@@ -1,3 +1,28 @@
 [build]
   command = "yarn workspace web build"
   publish = "web/build/"
+
+[[redirects]]
+  from = "/Hire-Me"
+  to = "/hire"
+  status = 301
+
+[[redirects]]
+  from = "/Nicorette-QuitTips"
+  to = "/misc-one-hit-wonders"
+  status = 301
+
+[[redirects]]
+  from = "/BJ-s-Live-Generously"
+  to = "/bj-s-wholesale-club-live-generously"
+  status = 301
+
+[[redirects]]
+  from = "/Lines-Print-Ain-t-Dead"
+  to = "/misc-one-hit-wonders"
+  status = 301
+
+[[redirects]]
+  from = "/AMEX-More-than-a-Card"
+  to = "/misc-one-hit-wonders"
+  status = 301
