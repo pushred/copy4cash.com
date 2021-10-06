@@ -26,3 +26,28 @@
   from = "/AMEX-More-than-a-Card"
   to = "/misc-one-hit-wonders"
   status = 301
+
+[[redirects]]
+  from = "/hire-me"
+  to = "/hire"
+  status = 301
+
+[[redirects]]
+  from = "/nicorette-quittips"
+  to = "/misc-one-hit-wonders"
+  status = 301
+
+[[redirects]]
+  from = "/bj-s-live-generously"
+  to = "/bj-s-wholesale-club-live-generously"
+  status = 301
+
+[[redirects]]
+  from = "/lines-print-ain-t-dead"
+  to = "/misc-one-hit-wonders"
+  status = 301
+
+[[redirects]]
+  from = "/amex-more-than-a-card"
+  to = "/misc-one-hit-wonders"
+  status = 301
