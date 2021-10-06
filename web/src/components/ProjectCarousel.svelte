@@ -6,7 +6,12 @@
   import Project from './Project.svelte'
   import { scrollToTop } from '../scroll.js'
 
-  import { hasSwiped, isLoading, isPaginationVisible } from '../stores.js'
+  import {
+    currentPlayerId,
+    hasSwiped,
+    isLoading,
+    isPaginationVisible,
+  } from '../stores.js'
 
   export let data = []
   export let currentIndex = undefined
@@ -43,6 +48,7 @@
             if (!newSlug || newSlug === currentSlug) return
 
             hasSwiped.set(true)
+            currentPlayerId.set(null) // pause any active players
 
             await scrollToTop(projectEl)
 
