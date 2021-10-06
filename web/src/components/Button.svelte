@@ -20,6 +20,7 @@
   import WorkingNotWorking from './icons/small/WorkingNotWorking.svelte'
 
   export let active = false
+  export let el = undefined
   export let disabled = false
   export let download = undefined
   export let hover = false
@@ -54,6 +55,10 @@
     if (icon === 'working-not-working') Icon = WorkingNotWorking
   }
 
+  export function getElement() {
+    return el.getElement()
+  }
+
   function handleEnter() {
     hover = true
   }
@@ -65,6 +70,7 @@
 
 <svelte:component
   this={url ? a : button}
+  bind:this={el}
   class="button"
   {disabled}
   {download}
@@ -103,7 +109,6 @@
 <style>
   :global(.button) {
     display: inline-block;
-    margin-bottom: var(--space-bottom);
     position: relative; /* for RaisedButton content */
     pointer-events: auto;
     white-space: nowrap;
