@@ -5,6 +5,7 @@
 
   import Project from './Project.svelte'
   import { scrollToTop } from '../scroll.js'
+
   import { hasSwiped, isLoading, isPaginationVisible } from '../stores.js'
 
   export let data = []
@@ -19,6 +20,8 @@
   isLoading.set(true)
 
   let carouselEl = undefined
+  let initialLoad = true
+  let initialProjectEl
   let observers
 
   const projectEls = [...Array(data.length)]
@@ -30,12 +33,7 @@
   onMount(() => {
     unorphan('p, h1, h2, h3, h4')
 
-    const target = carouselEl.children[currentIndex]
-
-    window.addEventListener('sveltekit:start', () => {
-      document.scrollingElement.scrollTop = 0
-      carouselEl.scrollLeft = target.offsetLeft
-    })
+    initialProjectEl = carouselEl.children[currentIndex]
 
     observers = projectEls.map((projectEl) => {
       const observer = new IntersectionObserver(
@@ -67,13 +65,23 @@
     })
   })
 
-  window.addEventListener('sveltekit:navigation-end', () => {
+  function handleStart() {
+    document.scrollingElement.scrollTop = 0
+    carouselEl.scrollLeft = initialProjectEl.offsetLeft
+  }
+
+  function handleNavigationEnd() {
     if (!projectEls.filter(Boolean).length || currentIndex === undefined) return
 
     // correct scroll position to counter router update behavior
     // TODO: investigate further, maybe file an issue
     carouselEl.scrollLeft = projectEls[currentIndex].offsetLeft
-  })
+  }
+
+  function handleInitialScroll() {
+    // workaround issue where $isPaginationVisible is not correctly initialized
+    initialLoad = false
+  }
 
   onDestroy(() => {
     observers.forEach(({ observer, projectEl }) =>
@@ -82,13 +90,18 @@
   })
 </script>
 
-<svelte:window on:resize={handleResize} />
+<svelte:window
+  on:resize={handleResize}
+  on:scroll|once={handleInitialScroll}
+  on:sveltekit:start={handleStart}
+  on:sveltekit:navigation-end={handleNavigationEnd}
+/>
 
 {#if Array.isArray(data)}
   <div
     bind:this={carouselEl}
     class="carousel"
-    class:can-scroll={$isPaginationVisible}
+    class:can-scroll={$isPaginationVisible || initialLoad}
   >
     {#each data as project, index}
       <section
