@@ -180,7 +180,6 @@
               label="Download Resume"
               url={resumeUrl}
               variant="raised-text"
-              --space-bottom="0"
             />
           {/if}
           <Button
@@ -188,21 +187,18 @@
             label="Email"
             url="mailto:diana@copy4cash.com"
             variant="raised-text"
-            --space-bottom="0"
           />
           <Button
             icon="linkedin"
             label="LinkedIn"
             url="https://www.linkedin.com/in/diana-casthart-b7815041/"
             variant="raised-text"
-            --space-bottom="0"
           />
           <Button
             icon="working-not-working"
             label="Working Not Working"
             url="https://workingnotworking.com/75263-diana"
             variant="raised-text"
-            --space-bottom="0"
           />
         </Flex>
       </Panel>

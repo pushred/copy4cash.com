@@ -55,7 +55,6 @@
   <Flex gap="5" marginBottom="0">
     {#if instagrams.length}
       <Button
-        --space-bottom="0"
         variant="raised-text"
         icon="instagram"
         label="Instagram"
@@ -64,7 +63,6 @@
     {/if}
     {#if tweets.length}
       <Button
-        --space-bottom="0"
         variant="raised-text"
         icon="twitter"
         label="Tweets"

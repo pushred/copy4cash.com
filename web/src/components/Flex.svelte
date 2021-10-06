@@ -9,6 +9,7 @@
   export let inset = undefined
   export let justifyContent = undefined
   export let marginBottom = undefined
+  export let overflowX = undefined
   export let paddingX = undefined
   export let position = undefined
   export let width = undefined
@@ -25,6 +26,7 @@
   {inset}
   {justifyContent}
   {marginBottom}
+  {overflowX}
   {paddingX}
   {position}
   {width}

@@ -58,7 +58,6 @@
   <Heading4 --space-bottom="var(--space-3)">{caption}</Heading4>
   <Flex alignItems="center" gap="2" width="100%">
     <Button
-      --space-bottom="0"
       icon={isPlaying ? 'pause' : 'play'}
       variant="raised"
       on:click={handleToggle}

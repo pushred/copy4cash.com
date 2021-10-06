@@ -12,6 +12,7 @@
   export let justifyContent = undefined
   export let marginBottom = undefined
   export let minHeight = undefined
+  export let overflowX = undefined
   export let paddingX = undefined
   export let position = undefined
   export let width = undefined
@@ -33,6 +34,7 @@
         justifyContent,
         marginBottom,
         minHeight,
+        overflowX,
         paddingX,
         position,
         width,
@@ -68,15 +70,22 @@
   class:margin-bottom-0={props.marginBottom === '0'}
   class:margin-bottom={props.marginBottom === true}
   class:min-height-full={props.minHeight === 'full'}
+  class:overflow-x-auto={props.overflowX === 'auto'}
+  class:overflow-x-scroll={props.overflowX === 'scroll'}
   class:padding-x-margin-x={props.paddingX === 'margin-x'}
   class:position-absolute={props.position === 'absolute'}
   class:position-fixed={props.position === 'fixed'}
+  class:position-relative={props.position === 'relative'}
   class:width-100={props.width === '100%'}
 >
   <slot />
 </div>
 
 <style>
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   div {
     width: var(--width);
     margin-bottom: var(--space-bottom);
@@ -186,6 +195,14 @@
     min-height: calc(100vh - calc(var(--space-margin-y) * 2));
   }
 
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+
+  .overflow-x-scroll {
+    overflow-x: scroll;
+  }
+
   .padding-x-margin-x {
     padding-right: var(--space-margin-x);
     padding-left: var(--space-margin-x);
@@ -197,6 +214,10 @@
 
   .position-fixed {
     position: fixed;
+  }
+
+  .position-relative {
+    position: relative;
   }
 
   .width-100 {

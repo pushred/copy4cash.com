@@ -5,7 +5,6 @@
 
   import Button from './Button.svelte'
   import Flex from './Flex.svelte'
-  import PaginationDot from './icons/small/PaginationDot.svelte'
   import Prompt from './text/Prompt.svelte'
 
   export let currentIndex = undefined
@@ -20,8 +19,22 @@
     dispatch('change', currentIndex)
   }
 
+  let activeDotEl
   let container
   let observer
+
+  $: if (activeDotEl) {
+    const buttonEl = activeDotEl.getElement()
+
+    if (buttonEl) {
+      // TODO: only scroll when out of view
+      buttonEl.parentNode.scroll({
+        top: 0,
+        left: buttonEl.offsetLeft,
+        behavior: 'smooth',
+      })
+    }
+  }
 
   onMount(() => {
     observer = new IntersectionObserver(
@@ -47,6 +60,7 @@
 
 <div bind:this={container}>
   <Flex
+    alignItems="center"
     justifyContent="space-between"
     paddingX={['margin-x', 'margin-x']}
     width="100%"
@@ -55,26 +69,32 @@
       disabled={currentIndex === 0}
       on:click={handleChange.bind(null, 'back')}
       icon="left-arrows"
-      --space-bottom="0"
     />
-    {#if $hasSwiped || !$isTouch}
-      {#each [...Array(totalPages).keys()] as page, index}
-        <Button
-          active={index === currentIndex}
-          on:click={handleChange.bind(null, index)}
-          icon="pagination-dot"
-          --space-bottom="0"
-        />
-      {/each}
-    {:else}
-      <Prompt>Swipe left/right to switch projects</Prompt>
-    {/if}
-
+    <Flex
+      justifyContent="space-between"
+      marginBottom="0"
+      overflowX="scroll"
+      position="relative"
+    >
+      {#if $hasSwiped || !$isTouch}
+        {#each [...Array(totalPages).keys()] as page, index}
+          {#if index === currentIndex}
+            <Button bind:this={activeDotEl} active icon="pagination-dot" />
+          {:else}
+            <Button
+              on:click={handleChange.bind(null, index)}
+              icon="pagination-dot"
+            />
+          {/if}
+        {/each}
+      {:else}
+        <Prompt>Swipe left/right to switch projects</Prompt>
+      {/if}
+    </Flex>
     <Button
       disabled={currentIndex === totalPages - 1}
       on:click={handleChange.bind(null, 'next')}
       icon="right-arrows"
-      --space-bottom="0"
     />
   </Flex>
 </div>
