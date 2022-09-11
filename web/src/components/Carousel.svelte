@@ -71,6 +71,7 @@
           {:else if slide._type === 'video'}
             <Video
               caption={slide.caption}
+              context="carousel"
               width="100%"
               originalWidth={slide.video.width}
               originalHeight={slide.video.height}

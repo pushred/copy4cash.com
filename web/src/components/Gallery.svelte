@@ -43,6 +43,7 @@
         {:else if item._type === 'video'}
           <Video
             width="100%"
+            context="gallery"
             originalWidth={item.video?.width}
             originalHeight={item.video?.height}
             vimeoId={item.video?.vimeoId}
