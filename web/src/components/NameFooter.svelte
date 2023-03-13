@@ -26,13 +26,13 @@
   {#if sm}
     <Coin />
     <span>Diana Casthart</span>
-    <span>ACD Copywriter</span>
+    <span>Freelance Copywriter</span>
     <span>Professional Smartass</span>
   {:else}
     <div class="name">
       <span>Diana Casthart</span>
       <Coin />
-      <span>ACD Copywriter</span>
+      <span>Freelance Copywriter</span>
     </div>
     <span>Professional Smartass</span>
   {/if}
