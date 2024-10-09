@@ -1,16 +1,27 @@
 <script>
+  import { kebabCase } from 'lodash'
   import { afterUpdate } from 'svelte'
   import unorphan from 'unorphan'
 
   export let textTransform = 'uppercase'
 
+  let anchorId
+  let headingEl
+
   afterUpdate(() => {
     unorphan('h3')
+    anchorId = kebabCase(headingEl.textContent)
   })
 </script>
 
-<h3 class:text-transform-none={textTransform === 'none'}>
-  <slot />
+<h3
+  bind:this={headingEl}
+  class:text-transform-none={textTransform === 'none'}
+  id={anchorId}
+>
+  <a href={`#${anchorId}`}>
+    <slot />
+  </a>
 </h3>
 
 <style>

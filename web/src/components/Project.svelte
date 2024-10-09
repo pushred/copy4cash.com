@@ -70,6 +70,12 @@
     if (Array.isArray(data.page)) data.page = styleHeadings(data.page)
     unorphan('p, h1, h2, h3, h4')
     isLoading.set(false)
+
+    if (!window.location.hash) {
+      document
+        .getElementById(window.location.hash.slice(1))
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
   })
 </script>
 
